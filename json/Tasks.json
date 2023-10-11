@@ -1,0 +1,14 @@
+[
+    {
+        "tUUID": "aaa-aaa",
+        "type": "NewFeature",
+        "name": "Add Manager Class",
+        "priority": 2
+    },
+    {
+        "tUUID": "ccc-ccc",
+        "type": "Bug",
+        "name": "Fix Reply System",
+        "priority": 1
+    }
+]

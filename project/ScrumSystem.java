@@ -1,4 +1,7 @@
 package project;
+
+import java.util.ArrayList;
+
 /**
  * @author Miles Wedeking
  */
@@ -6,37 +9,37 @@ public class ScrumSystem {
     private Account currentUser;
     private Project currentProject;
 
-    public ProjectSystem(){
-        //I don't think this is correct.
-        //UML isn't defined... public/private??
-    }
-
-    public void Login(){
-
-    }
-
-    private account enterUser(){
-
-    }
-
-    private void enterPassword(){
-
-    }
-
-    private Account searchForAccount(String userName){
-
-    }
-
-    private boolean checkPassword(Account account, String password){
+    public ScrumSystem()
+    {
         
     }
 
-    private ArrayList<Project> getAllProjects(){
+    public void Login()
+    {
 
     }
-
-    public project getProject(String id){
+    private Account enterUser()
+    {
+        return null;
+    }
+    private void enterPassword()
+    {
         
     }
-
+    private Account searchForAccount(String userName)
+    {
+        return null;
+    }
+    private boolean checkPassword(Account account, String password)
+    {
+        return false;
+    }
+    private ArrayList<Project> getAllProjects()
+    {
+        return null;
+    }
+    public Project getProject(String id)
+    {
+        return null;
+    }
 }

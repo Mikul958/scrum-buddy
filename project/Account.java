@@ -1,37 +1,41 @@
 package project;
+
+import java.util.ArrayList;
 import java.util.UUID;
+
 /**
  * @author Miles Wedeking
  */
-public class Account{
+public class Account
+{
     private UUID id;
     private String firstName;
     private String lastName;
     private String email;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
     private boolean isVerified;
     private ArrayList<Project> projects;
-    //Constructor
-    public Account(String firstName, String lastName, String userName, String passWord){
+
+    public Account(String firstName, String lastName, String username, String password)
+    {
 
     }
-    //This is a duplicate constructor, this one is including a UUID id
-    //There are two constructors on the UML Diagram... 
-     public Account(UUID id, String firstName, String lastName, String userName, String passWord){
+    public Account(UUID id, String firstName, String lastName, String username, String password)
+    {
         
     }
 
-    public void verifyAccount(){
+    public void verifyAccount()
+    {
 
     }
-
-    public String toString(){
-
+    public String toString()
+    {
+        return null;
     }
-
-    public boolean equals(Account account){
-
+    public boolean equals(Account account)
+    {
         return false;
     }
 }

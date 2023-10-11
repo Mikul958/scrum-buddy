@@ -1,0 +1,22 @@
+[
+    {
+        "aUUID": "111-111",
+        "username": "CadeAP",
+        "password": "Password123!?",
+        "email": "cadephillips123@gmail.com",
+        "firstName": "Cade",
+        "lastName": "Phillips",
+        "isVerified": true,
+        "projects": ["123-456", "135-246"]
+    },
+    {
+        "aUUID": "222-222",
+        "username": "APacicco",
+        "password": "123Password!",
+        "email": "appacicco123@gmail.com",
+        "firstName": "Al",
+        "lastName": "Pacicco",
+        "isVerified": false,
+        "projects": ["654-321", "642-531"]
+    }
+]

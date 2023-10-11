@@ -1,32 +1,29 @@
 package project;
 
-//al pacicco
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-
-
-public class Edit {
+/**
+ * @author Al Pacicco
+ */
+public class Edit
+{
     private Account editor;
     private LocalDateTime dateTime;
     private String description;
 
-    public Edit(Account editor, int time, Calendar date, String content)
+    public Edit(Account editor, Calendar date, String description)
     {
 
     }
 
-    public static void timeStamp(int time, Calendar date)
+    public static void timeStamp(Calendar date)
     {
 
     }
-
     public String toString()
     {
-        return "";
+        return null;
     }
-
 }

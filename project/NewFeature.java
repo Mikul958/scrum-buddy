@@ -1,26 +1,30 @@
 package project;
 
-//al pacicco
-
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class NewFeature extends Task{
+/**
+ * @author Al Pacicco
+ */
+public class NewFeature extends Task
+{
     private ArrayList<String> todo;
     private String reasoning;
 
-    //assuming typo in uml
+    public NewFeature(String name, int priority, String reasoning)
+    {
 
-    public NewFeature(String name, int priority, Account tester)
+    }
+    public NewFeature(UUID id, String name, int priority, String reasoning)
     {
 
     }
 
     public String toString()
     {
-        return "";
+        return null;
     }
-
-    public boolean equals(NewFeature newfeature)
+    public boolean equals(Task task)
     {
         return false;
     }

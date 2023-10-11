@@ -1,9 +1,13 @@
 package project;
-//al pacicco
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Bug {
+/**
+ * @author Al Pacicco
+ */
+public class Bug
+{
     private Account tester;
     private ArrayList<String> repoSteps;
 
@@ -11,13 +15,16 @@ public class Bug {
     {
 
     }
+    public Bug(UUID id, String name, int priority, Account tester)
+    {
+        
+    }
 
     public String toString()
     {
-        return "";
+        return null;
     }
-
-    public boolean equals (Bug bug)
+    public boolean equals(Bug bug)
     {
         return false;
     }

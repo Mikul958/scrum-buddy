@@ -1,14 +1,16 @@
-//Cade Phillips
-
 package project;
 
+/**
+ * @author Cade Phillips
+ */
 public class DataWriter {
 
-    public boolean saveAccounts(){
+    public boolean saveAccounts()
+    {
         return false;
     }
-
-    public boolean saveProjects(){
+    public boolean saveProjects()
+    {
         return false;
     }
     

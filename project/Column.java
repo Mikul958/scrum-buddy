@@ -1,16 +1,16 @@
 package project;
 
-//al pacicco
+import java.util.ArrayList;
 
-import java.util.*;
-
-
-public class Column {
+/**
+ * @author Al Pacicco
+ */
+public class Column
+{
     private String title;
+    private ArrayList<Task> tasks;
 
-    private ArrayList<Task> tasks;//no task class yet
-
-    public Column()
+    public Column(String title)
     {
 
     }
@@ -19,14 +19,12 @@ public class Column {
     {
 
     }
-
     public void removeTask(Task task)
     {
 
     }
-
     public String toString()
     {
-        return "";
+        return null;
     }
 }
