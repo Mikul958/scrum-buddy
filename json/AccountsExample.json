@@ -1,22 +1,22 @@
 [
     {
-        "aUUID": "111-111",
+        "aUUID": "0e6a1d4d-6057-4d53-b28f-c13610e43bf6",
         "username": "CadeAP",
         "password": "Password123!?",
         "email": "cadephillips123@gmail.com",
         "firstName": "Cade",
         "lastName": "Phillips",
         "isVerified": true,
-        "projects": ["123-456", "135-246"]
+        "projects": ["2abdfb60-8ef2-4bbb-82eb-20321a406d3c", "c1495dc4-7b17-407d-b6ad-2188c2dee7bf"]
     },
     {
-        "aUUID": "222-222",
+        "aUUID": "6898f2bb-b114-4fa1-b9b8-e83958b78343",
         "username": "APacicco",
         "password": "123Password!",
         "email": "appacicco123@gmail.com",
         "firstName": "Al",
         "lastName": "Pacicco",
         "isVerified": false,
-        "projects": ["654-321", "642-531"]
+        "projects": ["c69ef17b-7fe1-4771-9488-64b671643a81", "567dff5f-843a-4bac-af8d-3daa9677b815"]
     }
 ]
