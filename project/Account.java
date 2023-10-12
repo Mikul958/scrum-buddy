@@ -15,7 +15,7 @@ public class Account
     private boolean isVerified;
     private ArrayList<Project> projects;
 
-    public Account(String firstName, String lastName, String email, String username, String password)
+    public Account(String username, String password, String email, String firstName, String lastName)
     {
         this.username = username;
         this.password = password;
