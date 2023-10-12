@@ -1,5 +1,3 @@
-//Cade Phillips
-
 package project;
 
 import java.util.ArrayList;
