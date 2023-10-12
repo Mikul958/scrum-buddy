@@ -26,6 +26,32 @@ public class Account
         this.projects = new ArrayList<Project>();
     }
 
+    // Getters go here
+    public String getUsername()
+    {
+        return this.username;
+    }
+    public String getPassword()
+    {
+        return this.password;
+    }
+    public String getEmail()
+    {
+        return this.email;
+    }
+    public String getFirstName()
+    {
+        return this.firstName;
+    }
+    public String getLastName()
+    {
+        return this.lastName;
+    }
+    public boolean getIsVerified()
+    {
+        return this.isVerified;
+    }
+
     public void verifyAccount()
     {
         this.isVerified = true;
@@ -39,7 +65,11 @@ public class Account
     }
     public boolean equals(Account account)
     {
-        // TODO create getters.
-        return false;
+        return username.equals(account.getUsername())
+            && password.equals(account.getPassword())
+            && email.equals(account.getEmail())
+            && firstName.equals(account.getFirstName())
+            && lastName.equals(account.getLastName())
+            && this.isVerified == account.getIsVerified();
     }
 }
