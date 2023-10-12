@@ -1,6 +1,5 @@
 [
     {
-        "aUUID": "0e6a1d4d-6057-4d53-b28f-c13610e43bf6",
         "username": "CadeAP",
         "password": "Password123!?",
         "email": "cadephillips123@gmail.com",
@@ -10,7 +9,6 @@
         "projects": ["2abdfb60-8ef2-4bbb-82eb-20321a406d3c", "c1495dc4-7b17-407d-b6ad-2188c2dee7bf"]
     },
     {
-        "aUUID": "6898f2bb-b114-4fa1-b9b8-e83958b78343",
         "username": "APacicco",
         "password": "123Password!",
         "email": "appacicco123@gmail.com",

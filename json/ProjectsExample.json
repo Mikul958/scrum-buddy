@@ -3,8 +3,8 @@
         "pUUID": "2abdfb60-8ef2-4bbb-82eb-20321a406d3c",
         "title": "Project1",
         "category": "EDUCATION",
-        "owner": "0e6a1d4d-6057-4d53-b28f-c13610e43bf6",
-        "contributors": ["0e6a1d4d-6057-4d53-b28f-c13610e43bf6", "6418a071-3bc8-431b-8a19-7098843a7ef3"],
+        "owner": "CadeAP",
+        "contributors": ["CadeAP", "MPikula"],
         "columns": [
             {
                 "title": "To-Do",
@@ -17,23 +17,16 @@
         ],
         "comments": [
             {
-                "user": "0e6a1d4d-6057-4d53-b28f-c13610e43bf6",
+                "user": "CadeAP",
                 "dateTime": "4 November 2022",
                 "content": "Wow!",
                 "replies": []
             },
             {
-                "user": "6418a071-3bc8-431b-8a19-7098843a7ef3",
+                "user": "Mpikula",
                 "dateTime": "5 March 2023",
                 "content": "This doesn't work.",
                 "replies": []
-            }
-        ],
-        "editHistory": [
-            {
-                "editor": "0e6a1d4d-6057-4d53-b28f-c13610e43bf6",
-                "dateTime": "7 June 2023",
-                "description": "Changed project name"
             }
         ]
     },
@@ -41,15 +34,14 @@
         "pUUID": "c69ef17b-7fe1-4771-9488-64b671643a81",
         "title": "Project2",
         "category": "BUSINESS",
-        "owner": "6898f2bb-b114-4fa1-b9b8-e83958b78343",
-        "contributors": ["6898f2bb-b114-4fa1-b9b8-e83958b78343", "3f2cae11-8ea9-484f-91c1-cd33b3756da9"],
+        "owner": "APacicco",
+        "contributors": ["Apacicco", "MWedeking"],
         "columns": [
             {
                 "title": "Backlog",
                 "tasks": ["3d632899-c2e4-4b82-8c23-457104bfdda9", "4d0ae7fe-386a-45e3-8ecc-c8ec6dffebeb"]
             }
         ],
-        "comments": [],
-        "editHistory": []
+        "comments": []
     }
 ]

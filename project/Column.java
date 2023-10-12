@@ -3,7 +3,7 @@ package project;
 import java.util.ArrayList;
 
 /**
- * @author Al Pacicco
+ * @author Al Pacicco & Michael Pikula
  */
 public class Column
 {
