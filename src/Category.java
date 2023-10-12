@@ -1,4 +1,4 @@
-package project;
+package src;
 
 /**
  * @author Michael Pikula
