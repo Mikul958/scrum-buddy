@@ -46,16 +46,21 @@ public class Bug
     public String toString()
     {
         return "Name: "+name+
-        "\n Priority: "+priority+
-        "\n Account: "+account;
+        "\nPriority: "+priority+
+        "\nAccount: "+account;
     }
+    
     public boolean equals(Bug bug)
     {
-        if(this.name == bug.name){
+        if(name == bug.getName(bug)){
             return true;
         }
-        else {
+        else{
             return false;
         }
+    }
+
+    public String getName(Bug bug){
+        return this.name;
     }
 }
