@@ -1,4 +1,4 @@
-package project;
+package src;
 
 import java.io.FileReader;
 import java.util.ArrayList;

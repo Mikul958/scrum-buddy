@@ -1,7 +1,10 @@
-package project;
+package src;
 
 import java.util.ArrayList;
 
+/**
+ * @author Al Pacicco & Michael Pikula
+ */
 public class Column
 {
     private String title;
