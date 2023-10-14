@@ -3,6 +3,9 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * @author Al Pacicco, Michael Pikula
+ */
 public abstract class Task
 {
     protected UUID id;

@@ -26,8 +26,8 @@ public class Bug extends Task
 
     public String toString()
     {
-        return "Name: "+ name+
-        "\nPriority: "+ priority+
-        "\nAccount: "+ tester;
+        return "Name: " + name +
+        "\nPriority: " + priority +
+        "\nTester: " + tester;
     }
 }

@@ -3,6 +3,9 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * @author Cade Phillips, Michael Pikula
+ */
 public class NewFeature extends Task
 {
     private ArrayList<String> todo;
@@ -21,6 +24,8 @@ public class NewFeature extends Task
 
     public String toString()
     {
-        return null;
+        return "Name: " + name +
+        "\nPriority: " + priority +
+        "\nReasoning: " + reasoning;
     }
 }
