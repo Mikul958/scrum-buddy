@@ -28,7 +28,15 @@ public abstract class Task
         editHistory = new ArrayList<Edit>();
     }
 
-    public abstract UUID getID();
+    public UUID getID()
+    {
+        return this.id;
+    }
+
+    public boolean equals(Task task)
+    {
+        return this.id.equals(task.getID());
+    }
+
     public abstract String toString();
-    public abstract boolean equals(Task task);
 }

@@ -24,19 +24,10 @@ public class Bug extends Task
         this.repoSteps = new ArrayList<String>();
     }
 
-    public UUID getID()
-    {
-        return this.id;
-    }
-
     public String toString()
     {
         return "Name: "+ name+
         "\nPriority: "+ priority+
         "\nAccount: "+ tester;
-    }
-    public boolean equals(Task task)
-    {
-        return this.id == task.getID();
     }
 }

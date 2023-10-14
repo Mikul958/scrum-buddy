@@ -19,16 +19,8 @@ public class NewFeature extends Task
 
     }
 
-    public UUID getID()
-    {
-        return this.id;
-    }
     public String toString()
     {
         return null;
-    }
-    public boolean equals(Task task)
-    {
-        return false;
     }
 }
