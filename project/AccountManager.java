@@ -2,9 +2,6 @@ package project;
 
 import java.util.ArrayList;
 
-/**
- * @author Miles Wedeking
- */
 public class AccountManager
 {
     private static AccountManager accountManager;

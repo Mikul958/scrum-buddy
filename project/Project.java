@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Locale.Category;
 
-/**
- * @author Cade Phillips
- */
 public class Project
 {
     private UUID id;

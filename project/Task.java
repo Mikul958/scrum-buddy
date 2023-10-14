@@ -3,9 +3,6 @@ package project;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * @author Al Pacicco
- */
 public abstract class Task
 {
     private UUID id;

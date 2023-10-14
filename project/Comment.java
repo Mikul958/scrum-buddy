@@ -1,13 +1,9 @@
 package project;
-
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * @author Al Pacicco
- */
 public class Comment
 {
     private Account user;
@@ -15,13 +11,16 @@ public class Comment
     private String content;
     private ArrayList<Comment> replies;
 
-    public Comment(Account user, Calendar date, String content)
+    public Comment(Account user, LocalDateTime dateTime, String content)
     {
-
+        this.user = user;
+        this.dateTime = dateTime;
+        this.content = content;
     }
 
     public String toString()
     {
-        return null;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return "User: "+user+"\n"+"DTG: "+format+"\n"+" Content: "+content;
     }
 }

@@ -3,9 +3,6 @@ package project;
 import java.util.ArrayList;
 import java.util.Locale.Category;
 
-/**
- * @author Cade Phillips
- */
 public class ProjectManager
 {
     private static ProjectManager projectManager;

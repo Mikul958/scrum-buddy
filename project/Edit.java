@@ -4,9 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-/**
- * @author Al Pacicco
- */
 public class Edit
 {
     private Account editor;

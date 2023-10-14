@@ -3,9 +3,6 @@ package project;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * @author Miles Wedeking
- */
 public class Account
 {
     private UUID id;

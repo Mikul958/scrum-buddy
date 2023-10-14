@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-/**
- * @author Cade Phillips
- */
 public class DataWriter {
 
     public boolean saveAccounts()

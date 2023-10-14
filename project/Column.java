@@ -2,9 +2,6 @@ package project;
 
 import java.util.ArrayList;
 
-/**
- * @author Al Pacicco
- */
 public class Column
 {
     private String title;

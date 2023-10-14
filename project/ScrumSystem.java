@@ -2,9 +2,6 @@ package project;
 
 import java.util.ArrayList;
 
-/**
- * @author Miles Wedeking
- */
 public class ScrumSystem {
     private Account currentUser;
     private Project currentProject;
