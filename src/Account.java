@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Account
 {
-    private String username;
+    private String username;  // Username must be unique for account creation, no need for UUIDs.
     private String password;
     private String email;
     private String firstName;
@@ -26,7 +26,6 @@ public class Account
         this.projects = new ArrayList<Project>();
     }
 
-    // Getters go here
     public String getUsername()
     {
         return this.username;
@@ -65,11 +64,6 @@ public class Account
     }
     public boolean equals(Account account)
     {
-        return username.equals(account.getUsername())
-            && password.equals(account.getPassword())
-            && email.equals(account.getEmail())
-            && firstName.equals(account.getFirstName())
-            && lastName.equals(account.getLastName())
-            && this.isVerified == account.getIsVerified();
+        return username.equals(account.getUsername());
     }
 }

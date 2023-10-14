@@ -8,6 +8,8 @@ public class NewFeature extends Task
     private ArrayList<String> todo;
     private String reasoning;
 
+    // Note to whoever is working on this:
+    // Don't overcomplicate, use Bug class as a guideline.
     public NewFeature(String name, int priority, String reasoning)
     {
 
@@ -17,6 +19,10 @@ public class NewFeature extends Task
 
     }
 
+    public UUID getID()
+    {
+        return this.id;
+    }
     public String toString()
     {
         return null;

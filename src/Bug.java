@@ -3,66 +3,40 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Bug
+/**
+ * @author Miles Wedeking, Michael Pikula
+ */
+public class Bug extends Task
 {
-    public int BUG_COUNT = 0;   //Global bug count;
-    private String name;
-    private int priority;
-    private Account account;
-    private ArrayList<String> repoSteps;
+    private Account tester;
+    private ArrayList<String> repoSteps;  // Need to learn what the hell this is from portia
 
-    public Bug(String name, int priority, Account account)
+    public Bug(String name, int priority, Account tester)
     {
-        //Name
-        if(name != null){   //TODO name isValid() method.
-            this.name = name;
-            BUG_COUNT++;
-        }
-        else{
-            this.name = "Bug"+BUG_COUNT;
-            BUG_COUNT++;
-        }
-
-        //Priority
-        if(priority < 0){
-            this.priority = 0;
-        }
-        else{
-            this.priority = priority;
-        }
-
-        //Account
-        if(account != null){    //TODO account isValid() method.
-            this.account = account;
-        }
-        else{
-            this.account = null;
-        }
-
+        super(name, priority);
+        this.tester = tester;
+        this.repoSteps = new ArrayList<String>();
     }
     public Bug(UUID id, String name, int priority, Account tester)
     {
-        //TODO Need Mike's help here <-
+        super(id, name, priority);
+        this.tester = tester;
+        this.repoSteps = new ArrayList<String>();
+    }
+
+    public UUID getID()
+    {
+        return this.id;
     }
 
     public String toString()
     {
-        return "Name: "+name+
-        "\nPriority: "+priority+
-        "\nAccount: "+account;
+        return "Name: "+ name+
+        "\nPriority: "+ priority+
+        "\nAccount: "+ tester;
     }
-    
-    public boolean equals(Bug bug)
+    public boolean equals(Task task)
     {
-        if(name == bug.getName(bug)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public String getName(Bug bug){
-        return this.name;
+        return this.id == task.getID();
     }
 }
