@@ -1,5 +1,8 @@
 package src;
 
+/**
+ * @author Michael Pikula
+ */
 public enum Category
 {
     BUSINESS("Business"),

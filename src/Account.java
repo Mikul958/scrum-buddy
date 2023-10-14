@@ -2,6 +2,9 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * @author Michael Pikula
+ */
 public class Account
 {
     private String username;
