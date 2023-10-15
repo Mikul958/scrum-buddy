@@ -3,7 +3,6 @@ package src;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * @author Miles Wedeking, Michael Pikula
@@ -14,7 +13,7 @@ public class Comment
     private Account user;
     private String content;
     private ArrayList<Comment> replies;
-    private DateTimeFormatter dtf;  // I don't know how to use this, is it one-time use?
+    private DateTimeFormatter dateFormat;
 
     public Comment(Account user, String content)
     {
@@ -22,7 +21,7 @@ public class Comment
         this.user = user;
         this.content = content;
         this.replies = new ArrayList<Comment>();
-        this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     }
     public Comment (LocalDateTime dateTime, Account user, String content)
     {
@@ -30,7 +29,7 @@ public class Comment
         this.user = user;
         this.content = content;
         this.replies = new ArrayList<Comment>();
-        this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     }
 
     public String toString()
@@ -42,7 +41,7 @@ public class Comment
         else
             out += "anonymous";
 
-        out += "\nDate: " + dateTime + "\nContent: " + content;
+        out += "\nDate: " + dateTime.format(dateFormat) + "\nContent: " + content;
         return out;
     }
     public void addReply(Account user, String content)
