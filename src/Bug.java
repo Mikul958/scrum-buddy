@@ -26,9 +26,12 @@ public class Bug extends Task
 
     public String toString()
     {
-        return "Name: " + name +
-        "\nPriority: " + priority +
-        "\nTester: " + tester;
+        String out = "Name: " + name + "\nPriority: " + priority + "\nTester: " + tester;
+        if (reproSteps.size() > 0)
+            out += "\nReproduction Steps: ";
+        for (int i=0; i<reproSteps.size(); i++)
+            out += "\n- " + reproSteps.get(i);
+        return out;
     }
     public void addReproStep(String reproStep)
     {
