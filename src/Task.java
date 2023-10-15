@@ -33,13 +33,27 @@ public abstract class Task
 
     public UUID getID()
     {
-        return this.id;
-    }
-
-    public boolean equals(Task task)
-    {
-        return this.id.equals(task.getID());
+        return id;
     }
 
     public abstract String toString();
+
+    public boolean equals(Task task)
+    {
+        return id.equals(task.getID());
+    }
+    public void addComment(Account user, String content)
+    {
+        Comment newComment = new Comment(user, content);
+        comments.add(newComment);
+    }
+    public boolean deleteComment(Comment comment)
+    {
+        return comments.remove(comment);
+    }
+    public void addEdit(Account editor, String description)
+    {
+        Edit newEdit = new Edit(editor, description);
+        editHistory.add(newEdit);
+    }
 }

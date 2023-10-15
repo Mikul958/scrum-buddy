@@ -10,7 +10,7 @@ public class Edit
     private LocalDateTime dateTime;
     private String description;
 
-    public Edit(Account editor, Calendar date, String description)
+    public Edit(Account editor, String description)
     {
 
     }
