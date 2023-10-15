@@ -30,11 +30,11 @@ public class Bug extends Task
         "\nPriority: " + priority +
         "\nTester: " + tester;
     }
-    public void addRepoStep(String reproStep)
+    public void addReproStep(String reproStep)
     {
         reproSteps.add(reproStep);
     }
-    public boolean removeRepoStep(String reproStep)
+    public boolean removeReproStep(String reproStep)
     {
         return reproSteps.remove(reproStep);
     }
