@@ -9,7 +9,7 @@ public enum Category
     DEVELOPMENT("Development"),
     EDUCATION("Education"),
     PERSONAL("Personal"),
-    OTHER("Other");
+    OTHER("Miscellaneous");
 
     public final String description;
 
