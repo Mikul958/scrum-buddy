@@ -8,20 +8,19 @@ import java.util.UUID;
  */
 public class NewFeature extends Task
 {
-    private ArrayList<String> todo;
+    private ArrayList<String> todoList;
     private String reasoning;
 
-    // Note to whoever is working on this:
-    // Don't overcomplicate, use Bug class as a guideline.
     public NewFeature(String name, int priority, String reasoning)
     {
         super(name, priority);
+        this.todoList = new ArrayList<String>();
         this.reasoning = reasoning;
-        this.todo = new ArrayList<String>();
     }
     public NewFeature(UUID id, String name, int priority, String reasoning)
     {
         super(id, name, priority);
+        this.todoList = new ArrayList<String>();
         this.reasoning = reasoning;
     }
 
@@ -30,5 +29,13 @@ public class NewFeature extends Task
         return "Name: " + name +
         "\nPriority: " + priority +
         "\nReasoning: " + reasoning;
+    }
+    public void addTodo(String item)
+    {
+        todoList.add(item);
+    }
+    public boolean removeTodo(String item)
+    {
+        return todoList.remove(item);
     }
 }
