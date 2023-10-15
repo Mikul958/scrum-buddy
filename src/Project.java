@@ -13,7 +13,6 @@ public class Project
     private ArrayList<Account> contributors;
     private ArrayList<Column> columns;
     private ArrayList<Comment> comment;
-    private ArrayList<Edit> editHistory;
 
     public Project(String title, Category category, Account owner)
     {
