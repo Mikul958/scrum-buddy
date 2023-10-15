@@ -18,19 +18,17 @@ public class Column
 
     public void addNewFeature(String name, int priority, String reasoning)
     {
-        // TODO figure out parameters
+        Task newFeature = new NewFeature(name, priority, reasoning);
+        tasks.add(newFeature);
     }
-    public void addBug(String name, int priority, Account testerAccount)
+    public void addBug(String name, int priority, Account tester)
     {
-        // TODO figure out parameters
+        Task newBug = new Bug(name, priority, tester);
+        tasks.add(newBug);
     }
     public void removeTask(Task task)
     {
-        for (int i=0; i<tasks.size(); i++)
-        {
-            if (tasks.get(i).equals(task))
-                tasks.remove(i);
-        }
+        tasks.remove(task);
     }
     public String toString()
     {
