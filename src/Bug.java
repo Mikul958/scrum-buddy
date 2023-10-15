@@ -9,19 +9,19 @@ import java.util.UUID;
 public class Bug extends Task
 {
     private Account tester;
-    private ArrayList<String> repoSteps;  // Need to learn what the hell this is from portia
+    private ArrayList<String> reproSteps;  // Need to learn what the hell this is from portia
 
     public Bug(String name, int priority, Account tester)
     {
         super(name, priority);
         this.tester = tester;
-        this.repoSteps = new ArrayList<String>();
+        this.reproSteps = new ArrayList<String>();
     }
     public Bug(UUID id, String name, int priority, Account tester)
     {
         super(id, name, priority);
         this.tester = tester;
-        this.repoSteps = new ArrayList<String>();
+        this.reproSteps = new ArrayList<String>();
     }
 
     public String toString()
@@ -29,5 +29,13 @@ public class Bug extends Task
         return "Name: " + name +
         "\nPriority: " + priority +
         "\nTester: " + tester;
+    }
+    public void addRepoStep(String reproStep)
+    {
+        reproSteps.add(reproStep);
+    }
+    public boolean removeRepoStep(String reproStep)
+    {
+        return reproSteps.remove(reproStep);
     }
 }
