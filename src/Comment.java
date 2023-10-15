@@ -24,6 +24,14 @@ public class Comment
         this.replies = new ArrayList<Comment>();
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     }
+    public Comment (LocalDateTime dateTime, Account user, String content)
+    {
+        this.dateTime = dateTime;
+        this.user = user;
+        this.content = content;
+        this.replies = new ArrayList<Comment>();
+        this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    }
 
     public String toString()
     {
