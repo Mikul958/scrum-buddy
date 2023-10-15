@@ -41,7 +41,7 @@ public class Comment
         else
             out += "anonymous";
 
-        out += "\nDate: " + dateTime.format(dateFormat) + "\nContent: " + content;
+        out += "\nDate: " + dateFormat.format(dateTime) + "\nContent: " + content;
         return out;
     }
     public void addReply(Account user, String content)
