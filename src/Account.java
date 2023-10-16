@@ -17,7 +17,7 @@ public class Account
 
     public Account(String username, String password, String email, String firstName, String lastName)
     {
-        this.username = username;
+        this.username = username;  // Uniqueness must be checked externally.
         this.password = password;
         this.email = email;
         this.firstName = firstName;
@@ -53,7 +53,7 @@ public class Account
     }
     public void setUsername(String username)
     {
-        this.username = username;  // Uniqueness of username must be checked externally.
+        this.username = username;
     }
     public void setPassword(String password)
     {
