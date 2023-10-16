@@ -26,6 +26,7 @@ public class Account
         this.projects = new ArrayList<Project>();
     }
 
+    // Getters and setters
     public String getUsername()
     {
         return this.username;
@@ -50,7 +51,25 @@ public class Account
     {
         return this.isVerified;
     }
+    public void setUsername(String username)
+    {
+        this.username = username;  // Uniqueness of username must be checked externally.
+    }
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+    public void setName(String firstName, String lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
+    // Other methods
     public void verifyAccount()
     {
         this.isVerified = true;
