@@ -21,7 +21,7 @@ public class Comment
         this.user = user;
         this.content = content;
         this.replies = new ArrayList<Comment>();
-        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     }
     public Comment (LocalDateTime dateTime, Account user, String content)
     {
@@ -29,7 +29,7 @@ public class Comment
         this.user = user;
         this.content = content;
         this.replies = new ArrayList<Comment>();
-        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     }
 
     public String toString()

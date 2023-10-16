@@ -2,33 +2,32 @@ package src;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 public class Edit
 {
-    private Account editor;
     private LocalDateTime dateTime;
+    private Account editor;
     private String description;
-
-    public Edit(Account editor, LocalDateTime date, String description)
-    {
-
-    }
-
+    private DateTimeFormatter dateFormat;
 
     public Edit(Account editor, String description)
     {
-        this.editor = editor;
         this.dateTime = LocalDateTime.now();
+        this.editor = editor;
         this.description = description;
-    }
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
 
+    }
+    public Edit(LocalDateTime dateTime, Account editor, String description)
+    {
+        this.dateTime = dateTime;
+        this.editor = editor;
+        this.description = description;
+        this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
+    }
 
     public String toString()
     {
-        LocalDateTime local = LocalDateTime.now();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-        return editor + "\n" + description + "\ntime stamp: " + local.format(format);
+        return "Edit on " + dateFormat.format(dateTime) + " by " + editor + ":\n" + description;
     }
 }
