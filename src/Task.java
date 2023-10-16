@@ -40,7 +40,7 @@ public abstract class Task
 
     public boolean equals(Task task)
     {
-        return id.equals(task.getID());
+        return task != null && id.equals(task.getID());
     }
     public void addComment(Account user, String content)
     {

@@ -83,6 +83,6 @@ public class Account
     }
     public boolean equals(Account account)
     {
-        return username.equals(account.getUsername());
+        return account != null && username.equals(account.getUsername());
     }
 }
