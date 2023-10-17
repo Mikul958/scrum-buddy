@@ -10,8 +10,19 @@ public class DataWriter extends DataConstants
 {
     public static boolean saveAccounts()
     {
+        AccountManager manager = AccountManager.getInstance();
+        ArrayList<Account> accounts = manager.getAccounts();
+        JSONArray accountsJSON = new JSONArray();
+
+        for (int i=0; i<accounts.size(); i++)
+        {
+            // TODO populate JSONArray
+        }
+
         try
         {
+            // TODO add code to write to file
+            
             return true;
         }
         catch (Exception e)
@@ -24,7 +35,7 @@ public class DataWriter extends DataConstants
     {
         try
         {
-            return true;
+            return false; // Will change back to true when method is finished
         }
         catch (Exception e)
         {
