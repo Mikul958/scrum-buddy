@@ -6,7 +6,6 @@
         "firstName": "Cade",
         "lastName": "Phillips",
         "isVerified": true,
-        "projects": ["2abdfb60-8ef2-4bbb-82eb-20321a406d3c", "c1495dc4-7b17-407d-b6ad-2188c2dee7bf"]
     },
     {
         "username": "APacicco",
@@ -15,6 +14,5 @@
         "firstName": "Al",
         "lastName": "Pacicco",
         "isVerified": false,
-        "projects": ["c69ef17b-7fe1-4771-9488-64b671643a81", "567dff5f-843a-4bac-af8d-3daa9677b815"]
     }
 ]
