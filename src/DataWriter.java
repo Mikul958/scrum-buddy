@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter {
-
-    public boolean saveAccounts()
+public class DataWriter extends DataConstants
+{
+    public static boolean saveAccounts()
     {
         try {
             return true;
@@ -19,8 +19,6 @@ public class DataWriter {
             return false;
         }
     }
-
-
     public boolean saveProjects()
     {
         try {
@@ -31,5 +29,4 @@ public class DataWriter {
             return false;
         }
     }
-    
 }
