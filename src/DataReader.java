@@ -8,8 +8,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataReader extends DataConstants
 {
-    // NOTE DONE - DOES NOT SUPPORT LINKING PROJECTS
-    public static ArrayList<Account> getAccounts()
+    public static ArrayList<Account> loadAccounts()
     {
         ArrayList<Account> accounts = new ArrayList<Account>();
 
@@ -40,8 +39,13 @@ public class DataReader extends DataConstants
         }
         return null;
     }
-    public static ArrayList<Project> getProjects()
+
+    public static ArrayList<Project> loadProjects()
     {
+        // Load in tasks first, then load in projects.
+        // Link projects to tasks based on UUID, then projects to accounts based on username
+        // Then, link accounts BACK to projects based on project UUID. (This part may be handled by external method).
+
         return null;
     }
 }
