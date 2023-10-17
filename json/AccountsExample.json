@@ -5,7 +5,7 @@
         "email": "cadephillips123@gmail.com",
         "firstName": "Cade",
         "lastName": "Phillips",
-        "isVerified": true,
+        "isVerified": true
     },
     {
         "username": "APacicco",
@@ -13,6 +13,6 @@
         "email": "appacicco123@gmail.com",
         "firstName": "Al",
         "lastName": "Pacicco",
-        "isVerified": false,
+        "isVerified": false
     }
 ]
