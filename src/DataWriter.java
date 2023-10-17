@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter {
-
+public class DataWriter extends DataConstants
+{
     public static boolean saveAccounts()
     {
         return false;
@@ -16,5 +16,4 @@ public class DataWriter {
     {
         return false;
     }
-    
 }
