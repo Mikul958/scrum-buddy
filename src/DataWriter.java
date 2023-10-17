@@ -10,11 +10,26 @@ public class DataWriter {
 
     public boolean saveAccounts()
     {
-        return false;
+        try {
+            return true;
+        } catch (Exception e)
+        {
+            e.getStackTrace();
+            System.out.println("what the hell happened");
+            return false;
+        }
     }
+
+
     public boolean saveProjects()
     {
-        return false;
+        try {
+            return true;
+        } catch (Exception e)
+        {
+            e.getStackTrace();
+            return false;
+        }
     }
     
 }
