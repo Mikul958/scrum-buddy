@@ -10,22 +10,25 @@ public class DataWriter extends DataConstants
 {
     public static boolean saveAccounts()
     {
-        try {
-            return true;
-        } catch (Exception e)
+        try
         {
-            e.getStackTrace();
-            System.out.println("what the hell happened");
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
             return false;
         }
     }
     public boolean saveProjects()
     {
-        try {
-            return true;
-        } catch (Exception e)
+        try
         {
-            e.getStackTrace();
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
             return false;
         }
     }

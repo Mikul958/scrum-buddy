@@ -1,0 +1,34 @@
+[
+    {
+        "username": "CadeAP",
+        "password": "Password123!?",
+        "email": "cadephillips123@gmail.com",
+        "firstName": "Cade",
+        "lastName": "Phillips",
+        "isVerified": true
+    },
+    {
+        "username": "APacicco",
+        "password": "123Password!",
+        "email": "appacicco123@gmail.com",
+        "firstName": "Al",
+        "lastName": "Pacicco",
+        "isVerified": false
+    },
+    {
+        "username": "MPikula1",
+        "password": "Apple456##",
+        "email": "michaelpikula@aol.com",
+        "firstName": "Michael",
+        "lastName": "Pikula",
+        "isVerified": true
+    },
+    {
+        "username": "WedekingM",
+        "password": "hi",
+        "email": "mwedeking@hotmail.com",
+        "firstName": "Miles",
+        "lastName": "Wedeking",
+        "isVerified": false
+    }
+]

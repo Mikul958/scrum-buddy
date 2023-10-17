@@ -9,13 +9,20 @@ public class AccountManager
 
     private AccountManager()
     {
-        //Not sure
+        accounts = DataReader.loadAccounts();
     } 
     public static AccountManager getInstance()
     {
-        return null;
+        if (accountManager == null)
+            accountManager = new AccountManager();
+        return accountManager;
     }
 
+    public ArrayList<Account> getAccounts()
+    {
+        return accounts;
+    }
+    
     public Account getAccount(String userName)
     {    
         return null;
