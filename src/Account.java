@@ -15,14 +15,14 @@ public class Account
     private boolean isVerified;
     private ArrayList<Project> projects;
 
-    public Account(String username, String password, String email, String firstName, String lastName)
+    public Account(String username, String password, String email, String firstName, String lastName, boolean isVerified)
     {
         this.username = username;  // Uniqueness must be checked externally.
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isVerified = false;
+        this.isVerified = isVerified;
         this.projects = new ArrayList<Project>();
     }
 
