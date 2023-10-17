@@ -8,11 +8,11 @@ import org.json.simple.JSONObject;
 
 public class DataWriter {
 
-    public boolean saveAccounts()
+    public static boolean saveAccounts()
     {
         return false;
     }
-    public boolean saveProjects()
+    public static boolean saveProjects()
     {
         return false;
     }

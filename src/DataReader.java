@@ -8,11 +8,11 @@ import org.json.simple.parser.JSONParser;
 
 public class DataReader
 {
-    public ArrayList<Project> getAccounts()
+    public static ArrayList<Project> getAccounts()
     {
         return null;
     }
-    public ArrayList<Account> getProjects()
+    public static ArrayList<Account> getProjects()
     {
         return null;
     }
