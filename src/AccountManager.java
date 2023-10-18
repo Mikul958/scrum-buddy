@@ -23,7 +23,7 @@ public class AccountManager
         return accounts;
     }
     
-    public Account getAccount(String userName)
+    public Account getAccount(String username, String password)
     {    
         for (int i=0; i<accounts.size(); i++)
         {
@@ -32,14 +32,18 @@ public class AccountManager
         }
         return null;
     }
-    public boolean createAccount(String userName, String passWord, String email, String firstName, String lastName, )
+    public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
-        // TODO make sure username is unique, return false if not
+        for (int i=0; i<accounts.size(); i++)
+        {
+            if (username.equals(accounts.get(i).getUsername()))
+                return false;
+        }
         Account newAccount = new Account(username, password, email, firstName, lastName, false);
         accounts.add(newAccount);
-        return true
+        return true;
     }
-    public void deleteAccount(Account account)
+    public boolean deleteAccount(Account account)
     {
 
     }
