@@ -9,14 +9,21 @@ public class AccountManager
 
     private AccountManager()
     {
-        //Not sure
+        accounts = DataReader.loadAccounts();
     } 
     public static AccountManager getInstance()
     {
-        return null;
+        if (accountManager == null)
+            accountManager = new AccountManager();
+        return accountManager;
     }
 
-    public Account getAccount(String username, String password)
+    public ArrayList<Account> getAccounts()
+    {
+        return accounts;
+    }
+    
+    public Account getAccount(String userName)
     {    
         for (int i=0; i<accounts.size(); i++)
         {
@@ -25,11 +32,12 @@ public class AccountManager
         }
         return null;
     }
-    public void createAccount(String userName, String passWord, String email, String firstName, String lastName, )
+    public boolean createAccount(String userName, String passWord, String email, String firstName, String lastName, )
     {
-        // TODO make sure username is unique
+        // TODO make sure username is unique, return false if not
         Account newAccount = new Account(username, password, email, firstName, lastName, false);
         accounts.add(newAccount);
+        return true
     }
     public void deleteAccount(Account account)
     {

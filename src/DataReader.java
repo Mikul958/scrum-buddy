@@ -14,7 +14,7 @@ public class DataReader extends DataConstants
 
         try
         {
-            FileReader reader =  new FileReader(ACCOUNTS_FILE_NAME);
+            FileReader reader =  new FileReader(ACCOUNTS_FILE);
             JSONParser parser = new JSONParser();
             JSONArray accountsJSON = (JSONArray)(parser.parse(reader));
 

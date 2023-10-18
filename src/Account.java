@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * @author Michael Pikula
@@ -77,10 +76,10 @@ public class Account
     }
     public String toString()
     {
-        return "\n Username: " + username
-        + "\n Email: " + email
-        + "\n Name: " + firstName + " " + lastName
-        + "\n Is User Verified: " + isVerified;
+        return "Username: " + username
+        + "\nEmail: " + email
+        + "\nName: " + firstName + " " + lastName
+        + "\nIs User Verified: " + isVerified;
     }
     public boolean equals(Account account)
     {
