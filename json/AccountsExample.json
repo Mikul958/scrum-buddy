@@ -14,5 +14,21 @@
         "firstName": "Al",
         "lastName": "Pacicco",
         "isVerified": false
+    },
+    {
+        "username": "MPikula1",
+        "password": "Apple456##",
+        "email": "michaelpikula@aol.com",
+        "firstName": "Michael",
+        "lastName": "Pikula",
+        "isVerified": true
+    },
+    {
+        "username": "WedekingM",
+        "password": "hi",
+        "email": "mwedeking@hotmail.com",
+        "firstName": "Miles",
+        "lastName": "Wedeking",
+        "isVerified": false
     }
 ]

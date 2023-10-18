@@ -23,8 +23,8 @@ public class DataWriter extends DataConstants
             accountJSON.put(PASSWORD, currentAcc.getPassword());
             accountJSON.put(EMAIL, currentAcc.getEmail());
             accountJSON.put(FIRST_NAME, currentAcc.getFirstName());
-            accountJSON.put(LAST_NAME, currentAcc.getFirstName());
-            accountJSON.put(IS_VERIFIED, currentAcc.getIsVerified());
+            accountJSON.put(LAST_NAME, currentAcc.getLastName());
+            accountJSON.put(IS_VERIFIED, false);
 
             accountsJSON.add(accountJSON);
         }
