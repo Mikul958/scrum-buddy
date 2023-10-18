@@ -14,18 +14,31 @@ public class DataWriter extends DataConstants
         ArrayList<Account> accounts = manager.getAccounts();
         JSONArray accountsJSON = new JSONArray();
 
+        // Populate a JSONObject with account details and add object to JSONArray for all accounts.
         for (int i=0; i<accounts.size(); i++)
         {
-            // TODO populate JSONArray
+            Account currentAcc = accounts.get(i);
+            JSONObject accountJSON = new JSONObject();
+            accountJSON.put(USERNAME, currentAcc.getUsername());
+            accountJSON.put(PASSWORD, currentAcc.getPassword());
+            accountJSON.put(EMAIL, currentAcc.getEmail());
+            accountJSON.put(FIRST_NAME, currentAcc.getFirstName());
+            accountJSON.put(LAST_NAME, currentAcc.getFirstName());
+            accountJSON.put(IS_VERIFIED, currentAcc.getIsVerified());
+
+            accountsJSON.add(accountJSON);
         }
 
         try
         {
-            // TODO add code to write to file
-            
+            FileWriter writer = new FileWriter(ACCOUNTS_TEMP_FILE);
+
+            writer.write(accountsJSON.toJSONString());
+            writer.flush();
+            writer.close();
             return true;
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             e.printStackTrace();
             return false;
