@@ -11,9 +11,9 @@ public class ScrumSystem {
         
     }
 
-    public void Login()
+    public void Login(String user, String pass)
     {
-
+        currentUser = AccountManager.getInstance().getAccount(user, pass);
     }
     private Account enterUser()
     {
@@ -38,5 +38,8 @@ public class ScrumSystem {
     public Project getProject(String id)
     {
         return null;
+    }
+    public boolean createAccount(String firstName, String lastName, String email, String userName, String passWord){
+        return AccountManager.getInstance().createAccount(firstName, lastName, email, userName, passWord);
     }
 }
