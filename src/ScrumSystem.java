@@ -3,34 +3,27 @@ package src;
 import java.util.ArrayList;
 
 public class ScrumSystem {
-    private AccountManager manager;
+    private AccountManager accountManager;
+    private ProjectManager projectManager;
     private Account currentUser;
     private Project currentProject;
 
     public ScrumSystem()
     {
-        manager = AccountManager.getInstance();
+        accountManager = AccountManager.getInstance();
     }
 
     public void login(String username, String password)
     {
-        currentUser = manager.login(username, password);
+        currentUser = accountManager.login(username, password);
     }
-    private Account enterUser()
+    public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
-        return null;
+        return accountManager.createAccount(username, password, email, firstName, lastName);
     }
-    private void enterPassword()
+    private Account getAccount(String username)
     {
-        
-    }
-    private Account searchForAccount(String username)
-    {
-        return null;
-    }
-    private boolean checkPassword(Account account, String password)
-    {
-        return false;
+        return accountManager.getAccountByUsername(username);
     }
     private ArrayList<Project> getAllProjects()
     {
@@ -39,9 +32,5 @@ public class ScrumSystem {
     public Project getProject(String id)
     {
         return null;
-    }
-    public boolean createAccount(String username, String password, String email, String firstName, String lastName)
-    {
-        return manager.createAccount(username, password, email, firstName, lastName);
     }
 }
