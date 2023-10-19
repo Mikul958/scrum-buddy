@@ -22,8 +22,17 @@ public class AccountManager
     {
         return accounts;
     }
-    
-    public Account getAccount(String username, String password)
+    public Account getAccountByUsername(String username)
+    {
+        for (int i=0; i<accounts.size(); i++)
+        {
+            if (username.equals(accounts.get(i).getUsername()))
+                return accounts.get(i);
+        }
+        return null;
+    }
+
+    public Account login(String username, String password)
     {    
         for (int i=0; i<accounts.size(); i++)
         {
@@ -45,6 +54,6 @@ public class AccountManager
     }
     public boolean deleteAccount(Account account)
     {
-
+        return accounts.remove(account);
     }
 }
