@@ -80,7 +80,7 @@ public class Account
     }
 
     /**
-     * Changes the value of isVerified to true.
+     * Sets the value of isVerified to true.
      */
     public void verifyAccount()
     {
@@ -100,7 +100,7 @@ public class Account
     /**
      * Checks if this account and the specified account are equivalent via their usernames.
      * @param account The account to be compared to.
-     * @return Whether or not the accounts are equivalent.
+     * @return true if the accounts are equivalent.
      */
     public boolean equals(Account account)
     {

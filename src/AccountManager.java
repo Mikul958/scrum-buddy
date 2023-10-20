@@ -40,7 +40,7 @@ public class AccountManager
     /**
      * Retrieves an account from the list based on the entered username.
      * @param username The username of the account to be retrieved.
-     * @return The account retrieved.
+     * @return The account retrieved (null if no accounts with the username exist).
      */
     public Account getAccountByUsername(String username)
     {
@@ -74,7 +74,7 @@ public class AccountManager
      * @param email The email account associated with the account.
      * @param firstName The real first name of the account user.
      * @param lastName The real last name of the account user.
-     * @return Whether or not the entered username was unique.
+     * @return True if the entered username was unique.
      */
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
@@ -90,7 +90,7 @@ public class AccountManager
     /**
      * Removes the specified account from the list of accounts if it exists.
      * @param account Account to be removed.
-     * @return Whether or not the specified account existed in the list.
+     * @return true if the specified account existed in the list.
      */
     public boolean deleteAccount(Account account)
     {
