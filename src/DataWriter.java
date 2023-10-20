@@ -24,14 +24,14 @@ public class DataWriter extends DataConstants
             accountJSON.put(EMAIL, currentAcc.getEmail());
             accountJSON.put(FIRST_NAME, currentAcc.getFirstName());
             accountJSON.put(LAST_NAME, currentAcc.getLastName());
-            accountJSON.put(IS_VERIFIED, false);
+            accountJSON.put(IS_VERIFIED, currentAcc.getIsVerified());
 
             accountsJSON.add(accountJSON);
         }
 
         try
         {
-            FileWriter writer = new FileWriter(ACCOUNTS_TEMP_FILE);
+            FileWriter writer = new FileWriter(ACCOUNTS_FILE);
 
             writer.write(accountsJSON.toJSONString());
             writer.flush();
