@@ -15,13 +15,17 @@ public enum Category
     public final String description;
 
     /**
-     * @param description
+     * Sets the description of the category equal to its corresponding string.
+     * @param description The string corresponding to a given category.
      */
     private Category(String description)
     {
         this.description = description;
     }
 
+    /**
+     * Returns the description of this category.
+     */
     public String toString()
     {
         return description;
