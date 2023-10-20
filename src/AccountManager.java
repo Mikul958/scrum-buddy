@@ -68,13 +68,13 @@ public class AccountManager
         return null;
     }
     /**
-     * Creates a new account with the specified details and adds it to the list of accounts.
-     * @param username A unique account identifier that also serves as a display name.
+     * Creates a new account with the specified details and adds it to the list of accounts. Username must be unique for account creation.
+     * @param username An account identifier that also serves as a display name.
      * @param password A password used while attempting to log-in.
      * @param email The email account associated with the account.
      * @param firstName The real first name of the account user.
      * @param lastName The real last name of the account user.
-     * @return True if the entered username was unique.
+     * @return True if the username was unique and the account was successfully created..
      */
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
