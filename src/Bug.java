@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
+ * A task of the type bug, containing a name, priority, tester, and list of reproduction steps.
  * @author Miles Wedeking, Michael Pikula
  */
 public class Bug extends Task
 {
     private Account tester;
-    private ArrayList<String> reproSteps;  // Need to learn what the hell this is from portia
+    private ArrayList<String> reproSteps;
     
     /**
      * Creates a new bug and assigns it a new UUID.
