@@ -1,6 +1,7 @@
 package src;
 
 /**
+ * A class containing constants for DataReader and DataWriter.
  * @author Michael Pikula
  */
 public abstract class DataConstants
