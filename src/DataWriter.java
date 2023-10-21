@@ -6,8 +6,15 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * A class responsible for saving system information to respective JSON files.
+ */
 public class DataWriter extends DataConstants
 {
+    /**
+     * Saves the system-wide list of accounts to Accounts.json
+     * @return true if accounts were successfully written.
+     */
     public static boolean saveAccounts()
     {
         AccountManager manager = AccountManager.getInstance();
@@ -44,6 +51,7 @@ public class DataWriter extends DataConstants
             return false;
         }
     }
+
     public boolean saveProjects()
     {
         try
