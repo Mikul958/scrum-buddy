@@ -6,8 +6,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * A class responsible for loading information from the application's JSON files.
+ * @author Michael Pikula
+ */
 public class DataReader extends DataConstants
 {
+    /**
+     * Reads all accounts from Accounts.json and adds them to a system-wide ArrayList.
+     * @return The list of all accounts system-wide.
+     */
     public static ArrayList<Account> loadAccounts()
     {
         ArrayList<Account> accounts = new ArrayList<Account>();
@@ -39,7 +47,7 @@ public class DataReader extends DataConstants
         }
         return null;
     }
-
+    
     public static ArrayList<Project> loadProjects()
     {
         // Load in tasks first, then load in projects.
