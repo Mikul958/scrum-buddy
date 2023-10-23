@@ -28,7 +28,7 @@ public class NewFeature extends Task
     {
         String out =  "Name: " + name + "\nPriority: " + priority + "\nReasoning: " + reasoning;
         if (todoList.size() > 0)
-            out += "To-Do: ";
+            out += "\nTo-Do: ";
         for (int i=0; i<todoList.size(); i++)
             out += "\n- " + todoList.get(i);
         return out;
