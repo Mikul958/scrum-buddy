@@ -9,19 +9,19 @@
         "comments": [
             {
                 "user": "MPikula1",
-                "dateTime": "8 October 2022",
+                "dateTime": "2022/10/8 at 19:06:50",
                 "content": "Amazing!"
             },
             {
                 "user": "CadeAP",
-                "dateTime": "5 April 2023",
+                "dateTime": "2023/4/5 at 08:08:08",
                 "content": "This sucks"
             }
         ],
         "editHistory": [
             {
                 "editor": "MPikula1",
-                "dateTime": "7 May 2021",
+                "dateTime": "2021/5/7 at 12:50:00",
                 "description": "Changed task name"
             }
         ]

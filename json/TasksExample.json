@@ -8,20 +8,20 @@
         "todoList": ["Make a source file for the feature", "Code the feature", "Test the feature"],
         "comments": [
             {
-                "user": "RandomUser1",
-                "dateTime": "8 October 2022",
+                "user": "MPikula1",
+                "dateTime": "2022/10/8 at 19:06:50",
                 "content": "Amazing!"
             },
             {
-                "user": "RandomUser2",
-                "dateTime": "5 April 2023",
+                "user": "CadeAP",
+                "dateTime": "2023/4/5 at 08:08:08",
                 "content": "This sucks"
             }
         ],
         "editHistory": [
             {
-                "editor": "RandomUser3",
-                "dateTime": "7 May 2021",
+                "editor": "MPikula1",
+                "dateTime": "2021/5/7 at 12:50:00",
                 "description": "Changed task name"
             }
         ]
@@ -31,7 +31,7 @@
         "type": "Bug",
         "name": "Fix Reply System",
         "priority": 1,
-        "tester": "MPikula1",
+        "tester": "APacicco",
         "reproSteps": ["Turn on program", "Click on something"],
         "comments": [],
         "editHistory": []
