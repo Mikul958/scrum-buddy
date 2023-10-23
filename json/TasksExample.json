@@ -5,7 +5,7 @@
         "name": "Add Manager Class",
         "priority": 2,
         "reasoning": "Because I said so.",
-        "todoList": [],
+        "todoList": ["Make a source file for the feature", "Code the feature", "Test the feature"],
         "comments": [
             {
                 "user": "RandomUser1",
@@ -32,7 +32,7 @@
         "name": "Fix Reply System",
         "priority": 1,
         "tester": "MPikula1",
-        "reproSteps": [],
+        "reproSteps": ["Turn on program", "Click on something"],
         "comments": [],
         "editHistory": []
     }

@@ -85,18 +85,31 @@ public class DataReader extends DataConstants
                     String testerName = (String)taskJSON.get(BUG_TESTER);
                     Account tester = manager.getAccountByUsername(testerName);
 
-                    newTask = new Bug(id, name, priority, tester);
+                    Bug newBug = new Bug(id, name, priority, tester);
 
+                    // Add all reproduction steps, convert newBug into a Task.
                     JSONArray reproStepsJSON = (JSONArray)taskJSON.get(BUG_REPRO_STEPS);
-                    // TODO load reproSteps
+                    for (int j=0; j<reproStepsJSON.size(); j++)
+                    {
+                        String newStep = (String)reproStepsJSON.get(j);
+                        newBug.addReproStep(newStep);
+                    }
+                    newTask = (Task)newBug;
                 }
                 else if (type.equalsIgnoreCase("NewFeature"))
                 {
                     String reasoning = (String)taskJSON.get(NEW_FEATURE_REASONING);
-                    newTask = new NewFeature(id, name, priority, reasoning);
 
+                    NewFeature newFeature = new NewFeature(id, name, priority, reasoning);
+
+                    // Add all to-dos, convert newFeature into a Task
                     JSONArray todoListJSON = (JSONArray)taskJSON.get(NEW_FEATURE_TODO);
-                    // TODO load todoList
+                    for (int j=0; j<todoListJSON.size(); j++)
+                    {
+                        String newTodo = (String)todoListJSON.get(j);
+                        newFeature.addTodo(newTodo);
+                    }
+                    newTask = (Task)newFeature;
                 }
                 else
                 {
@@ -104,10 +117,18 @@ public class DataReader extends DataConstants
                 }
 
                 JSONArray commentsJSON = (JSONArray)taskJSON.get(TASK_COMMENTS);
-                // TODO load comments
+                for (int j=0; j<commentsJSON.size(); j++)
+                {
+                    JSONObject newComment = (JSONObject)commentsJSON.get(j);
+                    // TODO figure out dateTime
+                }
 
                 JSONArray editsJSON = (JSONArray)taskJSON.get(TASK_EDITS);
-                // TODO load editHistory
+                for (int j=0; j<editsJSON.size(); j++)
+                {
+                    JSONObject newEdit = (JSONObject)editsJSON.get(j);
+                    // TODO figure out dateTime
+                }
 
                 // Add new task to the list of tasks.
                 tasks.add(newTask);
