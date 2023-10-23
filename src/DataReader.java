@@ -87,6 +87,7 @@ public class DataReader extends DataConstants
 
                     newTask = new Bug(id, name, priority, tester);
 
+                    JSONArray reproStepsJSON = (JSONArray)taskJSON.get(BUG_REPRO_STEPS);
                     // TODO load reproSteps
                 }
                 else if (type.equalsIgnoreCase("NewFeature"))
@@ -94,6 +95,7 @@ public class DataReader extends DataConstants
                     String reasoning = (String)taskJSON.get(NEW_FEATURE_REASONING);
                     newTask = new NewFeature(id, name, priority, reasoning);
 
+                    JSONArray todoListJSON = (JSONArray)taskJSON.get(NEW_FEATURE_TODO);
                     // TODO load todoList
                 }
                 else
@@ -103,6 +105,9 @@ public class DataReader extends DataConstants
 
                 JSONArray commentsJSON = (JSONArray)taskJSON.get(TASK_COMMENTS);
                 // TODO load comments
+
+                JSONArray editsJSON = (JSONArray)taskJSON.get(TASK_EDITS);
+                // TODO load editHistory
 
                 // Add new task to the list of tasks.
                 tasks.add(newTask);
