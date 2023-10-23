@@ -18,4 +18,11 @@ public abstract class DataConstants
     // Projects.json
 
     // Tasks.json
+    protected static final String TASKS_FILE = "json/Tasks.json";
+    protected static final String TASK_ID = "tUUID";
+    protected static final String TASK_TYPE = "type";
+    protected static final String TASK_NAME = "name";
+    protected static final String TASK_PRIORITY = "priority";
+    protected static final String TASK_COMMENTS = "comments";
+    protected static final String TASK_EDITS = "editHistory";
 }
