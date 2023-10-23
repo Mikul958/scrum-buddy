@@ -49,7 +49,11 @@ public class ProjectManager
         //TODO How are we going to track progress?
         return 0.0;
     }
-    
+    /**
+     * 
+     * @param title is the string name of the project
+     * @return T/F if a project with the same name is contained within the list.
+     */
     public boolean containsProject(String title){
         for(int i = 0; i < projects.size(); i++){
             Project temp = projects.get(i);
