@@ -2,7 +2,6 @@ package src;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * A comment made on a project or project task.
