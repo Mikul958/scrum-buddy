@@ -52,11 +52,13 @@ public class DataWriter extends DataConstants
         }
     }
 
-    public boolean saveProjects()
+    public static boolean saveProjects()
     {
+        // TODO
+        
         try
         {
-            return false; // Will change back to true when method is finished
+            return true;
         }
         catch (Exception e)
         {

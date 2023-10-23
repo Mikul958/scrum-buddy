@@ -11,17 +11,41 @@ public class ScrumSystem {
     public ScrumSystem()
     {
         accountManager = AccountManager.getInstance();
+        // TODO all project stuff
     }
 
-    public void login(String username, String password)
+    public Account getCurrentUser()
     {
-        currentUser = accountManager.login(username, password);
+        return this.currentUser;
+    }
+    public Project getCurrentProject()
+    {
+        return this.currentProject;
+    }
+
+    public boolean saveData()
+    {
+        if (DataWriter.saveAccounts() && DataWriter.saveProjects())
+            return true;
+        return false;
+    }
+    public boolean login(String username, String password)
+    {
+        Account temp = accountManager.login(username, password);
+        if (temp == null)
+            return false;
+        currentUser = temp;
+        return true;
+    }
+    public void logout()
+    {
+        currentUser = null;
     }
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
         return accountManager.createAccount(username, password, email, firstName, lastName);
     }
-    private Account getAccount(String username)
+    private Account getAccountByUsername(String username)
     {
         return accountManager.getAccountByUsername(username);
     }
@@ -29,7 +53,7 @@ public class ScrumSystem {
     {
         return null;
     }
-    public Project getProject(String id)
+    public Project getProjectByID(String id)
     {
         return null;
     }
