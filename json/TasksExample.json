@@ -11,13 +11,11 @@
                 "user": "RandomUser1",
                 "dateTime": "8 October 2022",
                 "content": "Amazing!",
-                "replies": []
             },
             {
                 "user": "RandomUser2",
                 "dateTime": "5 April 2023",
                 "content": "This sucks",
-                "replies": []
             }
         ],
         "editHistory": [
