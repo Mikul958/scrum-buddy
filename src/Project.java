@@ -170,4 +170,11 @@ public class Project
         }
         return false;
     }
+    /**
+     * NEEDS TO BE ADDED TO THE UML *
+     * @return the title of the project.
+     */
+    public String getTitle(){
+        return this.title;
+    }
 }
