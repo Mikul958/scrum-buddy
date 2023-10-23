@@ -13,7 +13,6 @@ public class Account
     private String email;
     private String firstName;
     private String lastName;
-    private boolean isVerified;
     private ArrayList<Project> projects;
 
     /**
@@ -23,16 +22,14 @@ public class Account
      * @param email The email address associated with the account.
      * @param firstName The account user's real first name.
      * @param lastName The account user's real last name.
-     * @param isVerified Whether or not the account has been verified by the user.
      */
-    public Account(String username, String password, String email, String firstName, String lastName, boolean isVerified)
+    public Account(String username, String password, String email, String firstName, String lastName)
     {
         this.username = username;  // Uniqueness must be checked externally.
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isVerified = isVerified;
         this.projects = new ArrayList<Project>();
     }
 
@@ -57,10 +54,6 @@ public class Account
     {
         return this.lastName;
     }
-    public boolean getIsVerified()
-    {
-        return this.isVerified;
-    }
     public void setUsername(String username)
     {
         this.username = username;
@@ -80,13 +73,6 @@ public class Account
     }
 
     /**
-     * Sets the value of isVerified to true.
-     */
-    public void verifyAccount()
-    {
-        this.isVerified = true;
-    }
-    /**
      * Creates a string containing all account information except for the password.
      * @return A string containing account information.
      */
@@ -94,8 +80,7 @@ public class Account
     {
         return "Username: " + username
         + "\nEmail: " + email
-        + "\nName: " + firstName + " " + lastName
-        + "\nIs User Verified: " + isVerified;
+        + "\nName: " + firstName + " " + lastName;
     }
     /**
      * Checks if this account and the specified account are equivalent via their usernames.

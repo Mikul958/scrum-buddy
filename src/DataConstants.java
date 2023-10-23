@@ -13,7 +13,6 @@ public abstract class DataConstants
     protected static final String EMAIL = "email";
     protected static final String FIRST_NAME = "firstName";
     protected static final String LAST_NAME = "lastName";
-    protected static final String IS_VERIFIED = "isVerified";
 
     // Projects.json
 

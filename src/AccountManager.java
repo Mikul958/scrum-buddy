@@ -83,7 +83,7 @@ public class AccountManager
             if (username.equals(accounts.get(i).getUsername()))
                 return false;
         }
-        Account newAccount = new Account(username, password, email, firstName, lastName, false);
+        Account newAccount = new Account(username, password, email, firstName, lastName);
         accounts.add(newAccount);
         return true;
     }

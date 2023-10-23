@@ -35,9 +35,8 @@ public class DataReader extends DataConstants
                 String email = (String)accountJSON.get(EMAIL);
                 String firstName = (String)accountJSON.get(FIRST_NAME);
                 String lastName = (String)accountJSON.get(LAST_NAME);
-                boolean isVerified = (boolean)accountJSON.get(IS_VERIFIED);
 
-                Account newAccount = new Account(username, password, email, firstName, lastName, isVerified);
+                Account newAccount = new Account(username, password, email, firstName, lastName);
                 accounts.add(newAccount);
             }
             return accounts;
