@@ -22,10 +22,19 @@ public abstract class DataConstants
     protected static final String TASK_TYPE = "type";
     protected static final String TASK_NAME = "name";
     protected static final String TASK_PRIORITY = "priority";
-    protected static final String TASK_COMMENTS = "comments";
     protected static final String TASK_EDITS = "editHistory";
+    protected static final String EDIT_EDITOR = "editor";
+    protected static final String EDIT_DESCRIPTION = "description";
     protected static final String BUG_TESTER = "tester";
     protected static final String BUG_REPRO_STEPS = "reproSteps";
     protected static final String NEW_FEATURE_REASONING = "reasoning";
     protected static final String NEW_FEATURE_TODO = "todoList";
+
+    // Comments (for both project and task)
+    protected static final String COMMENTS = "comments";
+    protected static final String COMMENT_USER = "user";
+    protected static final String COMMENT_CONTENT = "content";
+
+    // Comments and edits
+    protected static final String TIME = "dateTime";
 }

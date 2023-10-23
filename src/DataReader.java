@@ -3,6 +3,8 @@ package src;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -60,7 +62,8 @@ public class DataReader extends DataConstants
     public static ArrayList<Task> loadTasks()
     {
         ArrayList<Task> tasks = new ArrayList<Task>();
-
+        AccountManager manager = AccountManager.getInstance();
+        
         try
         {
             FileReader reader = new FileReader(TASKS_FILE);
@@ -81,7 +84,6 @@ public class DataReader extends DataConstants
                 if(type.equalsIgnoreCase("Bug"))
                 {
                     // Find tester's account based on username.
-                    AccountManager manager = AccountManager.getInstance();
                     String testerName = (String)taskJSON.get(BUG_TESTER);
                     Account tester = manager.getAccountByUsername(testerName);
 
@@ -116,18 +118,32 @@ public class DataReader extends DataConstants
                     continue;   // Something is very wrong with this entry, skip it.
                 }
 
-                JSONArray commentsJSON = (JSONArray)taskJSON.get(TASK_COMMENTS);
+                // Load and add newTask's comments.
+                JSONArray commentsJSON = (JSONArray)taskJSON.get(COMMENTS);
                 for (int j=0; j<commentsJSON.size(); j++)
                 {
-                    JSONObject newComment = (JSONObject)commentsJSON.get(j);
-                    // TODO figure out dateTime
+                    JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
+                    LocalDateTime dateTime = null;                                     // TODO figure out dateTime
+                    String username = (String)newCommentJSON.get(COMMENT_USER);
+                    Account user = manager.getAccountByUsername(username);
+                    String content = (String)newCommentJSON.get(COMMENT_CONTENT);
+
+                    Comment newComment = new Comment(dateTime, user, content);
+                    newTask.addComment(newComment);
                 }
 
+                // Load and add newTask's edit history.
                 JSONArray editsJSON = (JSONArray)taskJSON.get(TASK_EDITS);
                 for (int j=0; j<editsJSON.size(); j++)
                 {
-                    JSONObject newEdit = (JSONObject)editsJSON.get(j);
-                    // TODO figure out dateTime
+                    JSONObject newEditJSON = (JSONObject)editsJSON.get(j);
+                    LocalDateTime dateTime = null;                                     // TODO figure out dateTime
+                    String editorName = (String)newEditJSON.get(EDIT_EDITOR);
+                    Account editor = manager.getAccountByUsername(editorName);
+                    String description = (String)newEditJSON.get(EDIT_DESCRIPTION);
+
+                    Edit newEdit = new Edit(dateTime, editor, description);
+                    newTask.addEdit(newEdit);
                 }
 
                 // Add new task to the list of tasks.

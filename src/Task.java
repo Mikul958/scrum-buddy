@@ -47,6 +47,10 @@ public abstract class Task
         Comment newComment = new Comment(user, content);
         comments.add(newComment);
     }
+    public void addComment(Comment comment)
+    {
+        comments.add(comment);
+    }
     public boolean deleteComment(Comment comment)
     {
         return comments.remove(comment);
@@ -55,5 +59,9 @@ public abstract class Task
     {
         Edit newEdit = new Edit(editor, description);
         editHistory.add(newEdit);
+    }
+    public void addEdit(Edit edit)
+    {
+        editHistory.add(edit);
     }
 }
