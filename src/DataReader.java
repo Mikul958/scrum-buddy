@@ -82,29 +82,39 @@ public class DataReader extends DataConstants
                 Task newTask;
                 if(type.equalsIgnoreCase("Bug"))
                 {
-                    // TODO load and link testers and fix null, load reprosteps.
-                    newTask = new Bug(id, name, priority, null);
+                    // Find tester's account based on username.
+                    AccountManager manager = AccountManager.getInstance();
+                    String testerName = (String)taskJSON.get(BUG_TESTER);
+                    Account tester = manager.getAccountByUsername(testerName);
+
+                    newTask = new Bug(id, name, priority, tester);
+
+                    // TODO load reproSteps
                 }
                 else if (type.equalsIgnoreCase("NewFeature"))
                 {
-                    // TODO load reasoning and fix null, load todolist
-                    newTask = new NewFeature(id, name, priority, null);
+                    String reasoning = (String)taskJSON.get(NEW_FEATURE_REASONING);
+                    newTask = new NewFeature(id, name, priority, reasoning);
+
+                    // TODO load todoList
                 }
                 else
                 {
                     continue;   // Something is very wrong with this entry, skip it.
                 }
 
-                // Load comments TODO
                 JSONArray commentsJSON = (JSONArray)taskJSON.get(TASK_COMMENTS);
+                // TODO load comments
 
                 // Add new task to the list of tasks.
                 tasks.add(newTask);
             }
+            return tasks;
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        return null;
     }
 }

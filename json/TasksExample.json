@@ -4,6 +4,8 @@
         "type": "NewFeature",
         "name": "Add Manager Class",
         "priority": 2,
+        "reasoning": "Because I said so.",
+        "todoList": [],
         "comments": [
             {
                 "user": "RandomUser1",
@@ -31,6 +33,8 @@
         "type": "Bug",
         "name": "Fix Reply System",
         "priority": 1,
+        "tester": "MPikula1",
+        "reproSteps": [],
         "comments": [],
         "editHistory": []
     }

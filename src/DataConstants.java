@@ -25,4 +25,8 @@ public abstract class DataConstants
     protected static final String TASK_PRIORITY = "priority";
     protected static final String TASK_COMMENTS = "comments";
     protected static final String TASK_EDITS = "editHistory";
+    protected static final String BUG_TESTER = "tester";
+    protected static final String BUG_REPRO_STEPS = "reproSteps";
+    protected static final String NEW_FEATURE_REASONING = "reasoning";
+    protected static final String NEW_FEATURE_TODO = "todoList";
 }
