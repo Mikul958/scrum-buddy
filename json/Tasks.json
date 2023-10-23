@@ -1,0 +1,41 @@
+[
+    {
+        "tUUID": "d33c8aee-63ef-4154-b3a5-75372717c393",
+        "type": "NewFeature",
+        "name": "Add Manager Class",
+        "priority": 2,
+        "reasoning": "Because I said so.",
+        "todoList": [],
+        "comments": [
+            {
+                "user": "MPikula1",
+                "dateTime": "8 October 2022",
+                "content": "Amazing!",
+                "replies": []
+            },
+            {
+                "user": "CadeAP",
+                "dateTime": "5 April 2023",
+                "content": "This sucks",
+                "replies": []
+            }
+        ],
+        "editHistory": [
+            {
+                "editor": "MPikula1",
+                "dateTime": "7 May 2021",
+                "description": "Changed task name"
+            }
+        ]
+    },
+    {
+        "tUUID": "9b5e15d1-22e6-463b-ace1-4a637d445c7e",
+        "type": "Bug",
+        "name": "Fix Reply System",
+        "priority": 1,
+        "tester": "APacicco",
+        "reproSteps": [],
+        "comments": [],
+        "editHistory": []
+    }
+]

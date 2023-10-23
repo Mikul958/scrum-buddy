@@ -52,7 +52,6 @@ public class DataReader extends DataConstants
     {
         // Load in tasks first, then load in projects.
 
-
         // Link projects to tasks based on UUID, then projects to accounts based on username
         // Then, link accounts BACK to projects based on project UUID. (This part may be handled by external method).
 
@@ -72,10 +71,10 @@ public class DataReader extends DataConstants
             {
                 // Load basic task information.
                 JSONObject taskJSON = (JSONObject)tasksJSON.get(i);
-                UUID id = (UUID)taskJSON.get(TASK_ID);
+                UUID id = UUID.fromString((String)taskJSON.get(TASK_ID));
                 String type = (String)taskJSON.get(TASK_TYPE);
                 String name = (String)taskJSON.get(TASK_NAME);
-                int priority = (int)taskJSON.get(TASK_PRIORITY);
+                int priority = (int)(long)taskJSON.get(TASK_PRIORITY);
 
                 // Determine data type and load unique information.
                 Task newTask;
@@ -115,5 +114,13 @@ public class DataReader extends DataConstants
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args)
+    {
+        ArrayList<Task> tasks = loadTasks();
+
+        for (int i=0; i<tasks.size(); i++)
+            System.out.println("------------------------\n" + tasks.get(i));
     }
 }
