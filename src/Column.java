@@ -63,4 +63,10 @@ public class Column
             title += "\n" + tasks.get(i);
         return out;
     }
+    /**
+     * @return the title of the category.
+     */
+    public String getTitle(){
+        return this.title;
+    }
 }
