@@ -211,6 +211,7 @@ public class DataReader extends DataConstants
      */
     public static void linkAccountsToProject(JSONArray accountsJSON, Project project)
     {
+        // TODO having issues with nullPointerException.
         for (int i=0; i<accountsJSON.size(); i++)
         {
             String contributorName = (String)accountsJSON.get(i);
@@ -258,21 +259,11 @@ public class DataReader extends DataConstants
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED
     public static void main(String[] args)
     {
-        ArrayList<Task> tasks = loadTasks();
+        ArrayList<Project> projects = loadProjects();
 
-        for (int i=0; i<tasks.size(); i++)
+        for (int i=0; i<projects.size(); i++)
         {
-            System.out.println("--------------------------------------------------------\n" + tasks.get(i));
-
-            System.out.println("-----\nCOMMENTS:");
-            ArrayList<Comment> comments = tasks.get(i).getComments();
-            for (int j=0; j<comments.size(); j++)
-                System.out.println("- " + comments.get(j));
-            
-            System.out.println("-----\nEDIT HISTORY:");
-            ArrayList<Edit> edits = tasks.get(i).getEditHistory();
-            for (int j=0; j<edits.size(); j++)
-                System.out.println("- " + edits.get(j));
+            System.out.println(projects.get(i).getTitle());
         }
     }
 }
