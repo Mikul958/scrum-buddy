@@ -80,7 +80,7 @@ public class DataReader extends DataConstants
                 Account owner = manager.getAccountByUsername(ownerName);
 
                 // TODO Undefined constructor error but constructor is defined???
-                Project newProject = new Project(id, title, category, owner);
+                //Project newProject = new Project(id, title, category, owner);
 
                 JSONArray contributors = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 // TODO make method to link all contributors both ways

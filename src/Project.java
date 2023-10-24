@@ -84,8 +84,22 @@ public class Project
      */
     public boolean removeContributor(Account account)
     {
-        // TODO override .equals(Object o) method for Account, project, and task so that it works with other methods.
         return contributors.remove(account);
+    }
+    /**
+     * Checks to see if the specified account is in the list of contributors.
+     * @param account Account to be added.
+     * @return true if the specified account is in the list.
+     */
+    public boolean isContributor(Account account)
+    {       
+        for(int i=0; i<contributors.size(); i++)
+        {   
+            Account temp = contributors.get(i);         
+            if (temp.equals(account))
+                return true;
+        }
+        return false;
     }
     /**
      * Adds a column to the project
@@ -141,22 +155,6 @@ public class Project
     public void orderTask(Task task, int Priority)
     {
 
-    }
-    /**
-     * NEEDS TO BE ADDED TO UML *
-     * @param userName of specified account
-     * @return T/F if username was discovered 
-     * in current list of contributors on this project.
-     */
-    public boolean isContributor(Account account)
-    {       
-        for(int i=0; i<contributors.size(); i++)
-        {   
-            Account temp = contributors.get(i);         
-            if (temp.equals(account))
-                return true;
-        }
-        return false;
     }
     /**
      * NEEDS TO BE ADDED TO UML *

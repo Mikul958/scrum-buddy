@@ -45,6 +45,12 @@ public class ScrumSystem {
     {
         return accountManager.createAccount(username, password, email, firstName, lastName);
     }
+    public boolean deleteAccount(Account account)
+    {
+        if (currentUser.equals(account))
+            logout();
+        return accountManager.deleteAccount(account);
+    }
     private Account getAccountByUsername(String username)
     {
         return accountManager.getAccountByUsername(username);
