@@ -63,6 +63,11 @@ public class Column
             title += "\n" + tasks.get(i);
         return out;
     }
+    public boolean equals(Object column)
+    {
+        return column != null && this.getClass() == column.getClass()
+            && this.getTitle().equals(((Column)column).getTitle());
+    }
     /**
      * @return the title of the category.
      */
