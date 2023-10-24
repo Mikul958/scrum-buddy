@@ -260,6 +260,8 @@ public class DataReader extends DataConstants
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED
     public static void main(String[] args)
     {
+        // TESTING PROJECT LOADING AND ACCOUNT-TO-PROJECT LINKING
+        
         ArrayList<Project> projects = loadProjects();
         String indent = "    ";
         System.out.println("-------------------------------------------");
@@ -308,5 +310,47 @@ public class DataReader extends DataConstants
 
             System.out.println("-------------------------------------------");
         }
+
+
+        // TESTING LOGINS AND PROJECT-TO-ACCOUNT LINKING
+
+        // Test an account login, then print the names of all their projects.
+        ScrumSystem system = new ScrumSystem();
+        system.login("CadeAP", "Password123!?");
+        Account currentUser = system.getCurrentUser();
+        ArrayList<Project> currentProjects = currentUser.getProjects();
+
+        System.out.println("Current user:\n" + currentUser);
+        System.out.println("Their projects:");
+        for (int i=0; i<currentProjects.size(); i++)
+            System.out.println("  - " + currentProjects.get(i).getTitle());
+        
+        system.logout();
+
+        // Test again with another account.
+        system.login("APacicco", "123Password!");
+        currentUser = system.getCurrentUser();
+        currentProjects = currentUser.getProjects();
+
+        System.out.println("\nCurrent user:\n" + currentUser);
+        System.out.println("Their projects:");
+        for (int i=0; i<currentProjects.size(); i++)
+            System.out.println("  - " + currentProjects.get(i).getTitle());
+        
+        system.logout();
+
+        // Test one last time with another account, this one should also have Cade's project as it contributes.
+        system.login("MPikula1", "Apple456##");
+        currentUser = system.getCurrentUser();
+        currentProjects = currentUser.getProjects();
+
+        System.out.println("\nCurrent user:\n" + currentUser);
+        System.out.println("Their projects:");
+        for (int i=0; i<currentProjects.size(); i++)
+            System.out.println("  - " + currentProjects.get(i).getTitle());
+        
+        system.logout();
+
+        // Everything works! Will remove main method later when I'm sure it won't be needed anymore.
     }
 }

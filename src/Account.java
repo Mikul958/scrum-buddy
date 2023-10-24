@@ -54,6 +54,10 @@ public class Account
     {
         return this.lastName;
     }
+    public ArrayList<Project> getProjects()
+    {
+        return this.projects;
+    }
     public void setUsername(String username)
     {
         this.username = username;
@@ -71,7 +75,6 @@ public class Account
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
     public void addProject(Project project)
     {
         projects.add(project);
@@ -80,6 +83,7 @@ public class Account
     {
         return projects.remove(project);
     }
+
     /**
      * Creates a string containing all account information except for the password.
      * @return A string containing account information.
