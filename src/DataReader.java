@@ -52,10 +52,13 @@ public class DataReader extends DataConstants
 
     public static ArrayList<Project> loadProjects()
     {
-        // Load in tasks first, then load in projects.
+        ArrayList<Task> tasks = loadTasks();
 
-        // Link projects to tasks based on UUID, then projects to accounts based on username
-        // Then, link accounts BACK to projects based on project UUID. (This part may be handled by external method).
+        // TODO load in projects
+
+        // TODO link accounts to projects AND projects to accounts by username
+
+        // TODO link tasks to projects by UUID
 
         return null;
     }
