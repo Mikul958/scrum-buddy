@@ -14,7 +14,26 @@ public abstract class DataConstants
     protected static final String FIRST_NAME = "firstName";
     protected static final String LAST_NAME = "lastName";
 
+
     // Projects.json
+    protected static final String PROJECTS_FILE = "json/Projects.json";
+    protected static final String PROJECT_ID = "pUUID";
+    protected static final String PROJECT_TITLE = "title";
+    protected static final String PROJECT_CATEGORY = "category";
+    protected static final String PROJECT_OWNER = "owner";
+    protected static final String PROJECT_CONTRIBUTORS = "contributors";
+    protected static final String PROJECT_COLUMNS = "columns";
+    protected static final String COLUMN_TITLE = "columnTitle";
+    protected static final String COLUMN_TASKS = "tasks";
+
+    // Comments (Shared between Projects and Tasks)
+    protected static final String COMMENTS = "comments";
+    protected static final String COMMENT_USER = "user";
+    protected static final String COMMENT_CONTENT = "content";
+
+    // Shared between Comments and Edits
+    protected static final String TIME = "dateTime";
+
 
     // Tasks.json
     protected static final String TASKS_FILE = "json/Tasks.json";
@@ -29,12 +48,4 @@ public abstract class DataConstants
     protected static final String BUG_REPRO_STEPS = "reproSteps";
     protected static final String NEW_FEATURE_REASONING = "reasoning";
     protected static final String NEW_FEATURE_TODO = "todoList";
-
-    // Comments (for both project and task)
-    protected static final String COMMENTS = "comments";
-    protected static final String COMMENT_USER = "user";
-    protected static final String COMMENT_CONTENT = "content";
-
-    // Comments and edits
-    protected static final String TIME = "dateTime";
 }

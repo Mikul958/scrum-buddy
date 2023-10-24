@@ -7,11 +7,11 @@
         "contributors": ["CadeAP", "MPikula"],
         "columns": [
             {
-                "title": "To-Do",
+                "columnTitle": "To-Do",
                 "tasks": ["d33c8aee-63ef-4154-b3a5-75372717c393","2986b97c-08f6-4004-a135-6efd147e8404"]
             },
             {
-                "title": "Done",
+                "columnTitle": "Done",
                 "tasks": ["9b5e15d1-22e6-463b-ace1-4a637d445c7e", "b7e3634d-c8af-4e40-a43e-4bdbea83ad55"]
             }
         ],
@@ -36,7 +36,7 @@
         "contributors": ["Apacicco", "MWedeking"],
         "columns": [
             {
-                "title": "Backlog",
+                "columnTitle": "Backlog",
                 "tasks": ["3d632899-c2e4-4b82-8c23-457104bfdda9", "4d0ae7fe-386a-45e3-8ecc-c8ec6dffebeb"]
             }
         ],

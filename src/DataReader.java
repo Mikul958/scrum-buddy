@@ -50,22 +50,58 @@ public class DataReader extends DataConstants
         return null;
     }
 
+    // Okay to use while loading projects because Accounts are loaded in its constructor and have no dependencies.
+    private static AccountManager manager = AccountManager.getInstance();
+
     public static ArrayList<Project> loadProjects()
     {
+        // Load in tasks to link later.
         ArrayList<Task> tasks = loadTasks();
 
-        // TODO load in projects
+        // Load in projects
+        ArrayList<Project> projects = new ArrayList<Project>();
 
-        // TODO link accounts to projects AND projects to accounts by username
+        try
+        {
+            FileReader reader = new FileReader(PROJECTS_FILE);
+            JSONParser parser = new JSONParser();
+            JSONArray projectsJSON = (JSONArray)(parser.parse(reader));
 
-        // TODO link tasks to projects by UUID
+            for (int i=0; i<projectsJSON.size(); i++)
+            {
+                JSONObject projectJSON = (JSONObject)projectsJSON.get(i);
+                UUID id = UUID.fromString((String)projectJSON.get(PROJECT_ID));             // Might not be needed?
+                String title = (String)projectJSON.get(PROJECT_TITLE);
 
+                String categoryName = (String)projectJSON.get(PROJECT_CATEGORY);
+                Category category = stringToCategory(categoryName);
+
+                String ownerName = (String)projectJSON.get(PROJECT_OWNER);
+                Account owner = manager.getAccountByUsername(ownerName);
+
+                // TODO Undefined constructor error but constructor is defined???
+                Project newProject = new Project(id, title, category, owner);
+
+                JSONArray contributors = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
+                // TODO make method to link all contributors both ways
+                
+                JSONArray columns = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
+                // TODO make method to link tasks to columns and add columns
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return null;
     }
+    /**
+     * Reads all tasks from Tasks.json and adds them to a system-wide ArrayList.
+     * @return The list of all Tasks system-wide.
+     */
     public static ArrayList<Task> loadTasks()
     {
         ArrayList<Task> tasks = new ArrayList<Task>();
-        AccountManager manager = AccountManager.getInstance();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
         
         try
@@ -168,6 +204,20 @@ public class DataReader extends DataConstants
             e.printStackTrace();
         }
         return null;
+    }
+    /**
+     * Takes in a string and returns its corresponding category.
+     * @param category A string representing a project category.
+     * @return A category corresponding to the input string. Returns Category.OTHER if no matches.
+     */
+    public static Category stringToCategory(String category)
+    {
+        for (Category i : Category.values())
+        {
+            if (i.description.equalsIgnoreCase(category))
+                return i;
+        }
+        return Category.OTHER;
     }
 
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED
