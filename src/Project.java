@@ -129,12 +129,12 @@ public class Project
         else
             System.out.println("Column could not be removed.");     //Temp 
     }
-    public void addTask(Column column, String name, int priority)
+    public void addTask(Task task, Column column, String name, int priority)
     {
         for(int i = 0; i < columns.size(); i++){
             Column temp = columns.get(i);
             if(temp.getTitle().equals(column.getTitle())){
-
+                //left off here.
             }                                                           
         }
     }
