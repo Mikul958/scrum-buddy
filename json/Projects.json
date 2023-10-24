@@ -33,7 +33,7 @@
         "title": "Al's Project",
         "category": "BUSINESS",
         "owner": "APacicco",
-        "contributors": ["APacicco", "WedekingM"],
+        "contributors": ["APacicco", "WedekingM", "MPikula1"],
         "columns": [
             {
                 "columnTitle": "Backlog",

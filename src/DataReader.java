@@ -339,7 +339,7 @@ public class DataReader extends DataConstants
         
         system.logout();
 
-        // Test one last time with another account, this one should also have Cade's project as it contributes.
+        // Test one last time with another account, this one should have Cade and Al's projects as it is a contributor to both.
         system.login("MPikula1", "Apple456##");
         currentUser = system.getCurrentUser();
         currentProjects = currentUser.getProjects();
