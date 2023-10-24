@@ -72,6 +72,14 @@ public class Account
         this.lastName = lastName;
     }
 
+    public void addProject(Project project)
+    {
+        projects.add(project);
+    }
+    public boolean removeProject(Project project)
+    {
+        return projects.remove(project);
+    }
     /**
      * Creates a string containing all account information except for the password.
      * @return A string containing account information.
