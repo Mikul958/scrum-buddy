@@ -69,6 +69,7 @@ public class DataReader extends DataConstants
 
             for (int i=0; i<projectsJSON.size(); i++)
             {
+                // Load basic information and create new project.
                 JSONObject projectJSON = (JSONObject)projectsJSON.get(i);
                 UUID id = UUID.fromString((String)projectJSON.get(PROJECT_ID));
                 String title = (String)projectJSON.get(PROJECT_TITLE);
@@ -81,11 +82,11 @@ public class DataReader extends DataConstants
 
                 Project newProject = new Project(id, title, category, owner);
 
-                JSONArray contributors = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
-                // TODO make method to link all contributors both ways
+                // TODO run through list of accounts and link all users.
+                JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 
-                JSONArray columns = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
-                // TODO make method to link tasks to columns and add columns
+                // TODO populate each column with information and add to project.
+                JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
             }
         }
         catch (Exception e)
@@ -217,6 +218,15 @@ public class DataReader extends DataConstants
                 return i;
         }
         return Category.OTHER;
+    }
+    /**
+     * Add accounts to a project's list of contributors based on username, and adds the project to that user's list of projects.
+     * @param array A JSONArray countaining account usernames.
+     * @param project The project to add contributors to.
+     */
+    public static void linkAccountsToProject(JSONArray array, Project project)
+    {
+
     }
 
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED
