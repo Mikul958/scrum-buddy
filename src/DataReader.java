@@ -84,12 +84,11 @@ public class DataReader extends DataConstants
 
                 Project newProject = new Project(id, title, category, owner);
 
-                // TODO run through list of accounts and link all users.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 linkAccountsToProject(contributorsJSON, newProject);
                 
-                // TODO populate each column with information and add to project.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
+                // TODO populate each column with information and add to project.
 
                 // Load and add newProject's comments.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
@@ -108,7 +107,9 @@ public class DataReader extends DataConstants
                     Comment newComment = new Comment(dateTime, user, content);
                     newProject.addComment(newComment);
                 }
+                projects.add(newProject);
             }
+            return projects;
         }
         catch (Exception e)
         {
