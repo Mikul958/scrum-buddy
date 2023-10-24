@@ -121,43 +121,7 @@ public class DataReader extends DataConstants
                 int priority = (int)(long)taskJSON.get(TASK_PRIORITY);
 
                 // Determine data type and load unique information.
-                Task newTask;
-                if(type.equalsIgnoreCase("Bug"))
-                {
-                    // Find tester's account based on username.
-                    String testerName = (String)taskJSON.get(BUG_TESTER);
-                    Account tester = manager.getAccountByUsername(testerName);
-
-                    Bug newBug = new Bug(id, name, priority, tester);
-
-                    // Add all reproduction steps, convert newBug into a Task.
-                    JSONArray reproStepsJSON = (JSONArray)taskJSON.get(BUG_REPRO_STEPS);
-                    for (int j=0; j<reproStepsJSON.size(); j++)
-                    {
-                        String newStep = (String)reproStepsJSON.get(j);
-                        newBug.addReproStep(newStep);
-                    }
-                    newTask = (Task)newBug;
-                }
-                else if (type.equalsIgnoreCase("NewFeature"))
-                {
-                    String reasoning = (String)taskJSON.get(NEW_FEATURE_REASONING);
-
-                    NewFeature newFeature = new NewFeature(id, name, priority, reasoning);
-
-                    // Add all to-dos, convert newFeature into a Task
-                    JSONArray todoListJSON = (JSONArray)taskJSON.get(NEW_FEATURE_TODO);
-                    for (int j=0; j<todoListJSON.size(); j++)
-                    {
-                        String newTodo = (String)todoListJSON.get(j);
-                        newFeature.addTodo(newTodo);
-                    }
-                    newTask = (Task)newFeature;
-                }
-                else
-                {
-                    continue;   // Something is very wrong with this entry, skip it.
-                }
+                Task newTask = new Task(id, name, priority);
 
                 // Load and add newTask's comments.
                 JSONArray commentsJSON = (JSONArray)taskJSON.get(COMMENTS);

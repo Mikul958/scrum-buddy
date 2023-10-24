@@ -27,21 +27,10 @@ public class Column
      * @param priority The feature's relative priority.
      * @param reasoning The reasoning for the feature to be added.
      */
-    public void addNewFeature(String name, int priority, String reasoning)
+    public void addTask(String name, int priority)
     {
-        Task newFeature = new NewFeature(name, priority, reasoning);
+        Task newFeature = new Task(name, priority);
         tasks.add(newFeature);
-    }
-    /**
-     * Adds a task of the Bug type to the column.
-     * @param name The name of the bug.
-     * @param priority The bug's relative priority.
-     * @param tester The user that found the bug and is responsible for testing it.
-     */
-    public void addBug(String name, int priority, Account tester)
-    {
-        Task newBug = new Bug(name, priority, tester);
-        tasks.add(newBug);
     }
     /**
      * Removes the specified task from the column.

@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * @author Al Pacicco, Michael Pikula
  */
-public abstract class Task
+public class Task
 {
     protected UUID id;
     protected String name;
@@ -14,7 +14,7 @@ public abstract class Task
     protected ArrayList<Comment> comments;
     protected ArrayList<Edit> editHistory;
 
-    protected Task(String name, int priority)
+    public Task(String name, int priority)
     {
         this.id = UUID.randomUUID();
         this.name = name;
@@ -22,7 +22,7 @@ public abstract class Task
         comments = new ArrayList<Comment>();
         editHistory = new ArrayList<Edit>();
     }
-    protected Task(UUID id, String name, int priority)
+    public Task(UUID id, String name, int priority)
     {
         this.id = id;
         this.name = name;
@@ -44,7 +44,10 @@ public abstract class Task
         return editHistory;
     }
 
-    public abstract String toString();
+    public String toString()
+    {
+        return "Name: " + name + "\nPriority: " + priority;
+    }
 
     @Override
     public boolean equals(Object task)
