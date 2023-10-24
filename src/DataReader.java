@@ -211,11 +211,12 @@ public class DataReader extends DataConstants
      */
     public static void linkAccountsToProject(JSONArray accountsJSON, Project project)
     {
-        // TODO having issues with nullPointerException.
         for (int i=0; i<accountsJSON.size(); i++)
         {
             String contributorName = (String)accountsJSON.get(i);
             Account contributor = manager.getAccountByUsername(contributorName);
+            if (contributor == null)
+                continue;
             project.addContributor(contributor);
             contributor.addProject(project);
         }
