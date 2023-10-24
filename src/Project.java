@@ -2,9 +2,10 @@ package src;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
+import java.util.Locale.Category;
 /**
  * @author Miles Wedeking
+ *
  */
 public class Project
 {
@@ -16,19 +17,15 @@ public class Project
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
 
-    public Project(String title, Category category, Account owner)
+    public Project(String title, src.Category category2, Account owner)
     {
         this.id = UUID.randomUUID();
         this.title = title;
-        this.category = category;
+        this.category = category2;
         this.owner = owner;
         contributors = new ArrayList<Account>();
         columns = new ArrayList<Column>();
         comments = new ArrayList<Comment>();
-    }
-    public Project(UUID id, String title, Account owner)
-    {
-
     }
     public Project(UUID id, String title, Category category, Account owner)
     {
@@ -136,16 +133,8 @@ public class Project
     {
         for(int i = 0; i < columns.size(); i++){
             Column temp = columns.get(i);
-            if(temp == column){
-                //TODO Left off here
-                //Not sure if we want to use a parameter to define type???
-                //Otherwise,
-                //How can I access column[i].tasks[j] etc. (pseudo)
-                //Aiming for something like what is below:
-                //
-                //If(temp == column){
-                //  columns.get(i).addTask(name, priority);
-                //}
+            if(temp.getTitle().equals(column.getTitle())){
+
             }                                                           
         }
     }
