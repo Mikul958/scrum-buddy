@@ -261,10 +261,52 @@ public class DataReader extends DataConstants
     public static void main(String[] args)
     {
         ArrayList<Project> projects = loadProjects();
+        String indent = "    ";
+        System.out.println("-------------------------------------------");
 
+        // Test project loading, prints all loaded projects.
         for (int i=0; i<projects.size(); i++)
         {
-            System.out.println(projects.get(i).getTitle());
+            // Prints basic project information
+            Project currentProject = projects.get(i);
+            System.out.println("PROJECT " + (i+1));
+            System.out.println("pID: " + currentProject.getID());
+            System.out.println("Title: " + currentProject.getTitle());
+            System.out.println("Category: " + currentProject.getCategory());
+            System.out.println("Owner: " + currentProject.getOwner().getUsername());
+
+            // Prints usernames of all contributors
+            ArrayList<Account> projContributors = currentProject.getContributors();
+            System.out.println("CONTRIBUTORS:");
+            for (int j=0; j<projContributors.size(); j++)
+                System.out.println("  - " + projContributors.get(j).getUsername());
+            
+            // Prints columns and the basic information of all their tasks.
+            ArrayList<Column> projColumns = currentProject.getColumns();
+            System.out.println("PROJECT COLUMNS:");
+            for (int j=0; j<projColumns.size(); j++)
+            {
+                System.out.println("COLUMN " + (j+1));
+                System.out.println(indent + "Title: " + projColumns.get(j).getTitle());
+
+                ArrayList<Task> colTasks = projColumns.get(j).getTasks();
+                System.out.println(indent + "TASKS: ");
+                for (int k=0; k<colTasks.size(); k++)
+                {
+                    System.out.println(indent + "TASK " + (k+1));
+                    System.out.println(indent + indent + "tID: " + colTasks.get(k).getID());
+                    System.out.println(indent + indent + "Name: " + colTasks.get(k).getName());
+                    System.out.println(indent + indent + "Priority: " + colTasks.get(k).getPriority());
+                }
+            }
+
+            // Prints out comments in full.
+            ArrayList<Comment> projComments = currentProject.getComments();
+            System.out.println("COMMENTS:");
+            for (int j=0; j<projComments.size(); j++)
+                System.out.println("  - " + projComments.get(j));
+
+            System.out.println("-------------------------------------------");
         }
     }
 }
