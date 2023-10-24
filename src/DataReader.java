@@ -167,23 +167,24 @@ public class DataReader extends DataConstants
         return null;
     }
 
+    // FOR TESTING PURPOSES: DELETE WHEN FINISHED
     public static void main(String[] args)
     {
         ArrayList<Task> tasks = loadTasks();
 
         for (int i=0; i<tasks.size(); i++)
         {
-            System.out.println("------------------------\n" + tasks.get(i));
+            System.out.println("--------------------------------------------------------\n" + tasks.get(i));
 
             System.out.println("-----\nCOMMENTS:");
             ArrayList<Comment> comments = tasks.get(i).getComments();
             for (int j=0; j<comments.size(); j++)
-                System.out.println("- " + comments.get(i));
+                System.out.println("- " + comments.get(j));
             
             System.out.println("-----\nEDIT HISTORY:");
             ArrayList<Edit> edits = tasks.get(i).getEditHistory();
             for (int j=0; j<edits.size(); j++)
-                System.out.println("- " + edits.get(i));
+                System.out.println("- " + edits.get(j));
         }
     }
 }
