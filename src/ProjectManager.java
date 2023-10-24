@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 /**
  * ProjectManager class
  * @author Miles Wedeking

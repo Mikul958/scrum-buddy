@@ -2,10 +2,9 @@ package src;
 
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.Locale.Category;
+
 /**
  * @author Miles Wedeking
- *
  */
 public class Project
 {
@@ -26,6 +25,10 @@ public class Project
         contributors = new ArrayList<Account>();
         columns = new ArrayList<Column>();
         comments = new ArrayList<Comment>();
+    }
+    public Project(UUID id, String title, Account owner)
+    {
+
     }
     public Project(UUID id, String title, Category category, Account owner)
     {

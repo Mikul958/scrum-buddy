@@ -70,7 +70,7 @@ public class DataReader extends DataConstants
             for (int i=0; i<projectsJSON.size(); i++)
             {
                 JSONObject projectJSON = (JSONObject)projectsJSON.get(i);
-                UUID id = UUID.fromString((String)projectJSON.get(PROJECT_ID));             // Might not be needed?
+                UUID id = UUID.fromString((String)projectJSON.get(PROJECT_ID));
                 String title = (String)projectJSON.get(PROJECT_TITLE);
 
                 String categoryName = (String)projectJSON.get(PROJECT_CATEGORY);
@@ -79,8 +79,7 @@ public class DataReader extends DataConstants
                 String ownerName = (String)projectJSON.get(PROJECT_OWNER);
                 Account owner = manager.getAccountByUsername(ownerName);
 
-                // TODO Undefined constructor error but constructor is defined???
-                //Project newProject = new Project(id, title, category, owner);
+                Project newProject = new Project(id, title, category, owner);
 
                 JSONArray contributors = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 // TODO make method to link all contributors both ways
