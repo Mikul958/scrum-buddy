@@ -33,7 +33,7 @@
         "title": "Project2",
         "category": "BUSINESS",
         "owner": "APacicco",
-        "contributors": ["Apacicco", "WedekingM"],
+        "contributors": ["APacicco", "WedekingM"],
         "columns": [
             {
                 "columnTitle": "Backlog",
