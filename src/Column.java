@@ -29,8 +29,12 @@ public class Column
      */
     public void addTask(String name, int priority)
     {
-        Task newFeature = new Task(name, priority);
-        tasks.add(newFeature);
+        Task newTask = new Task(name, priority);
+        tasks.add(newTask);
+    }
+    public void addTask(Task task)
+    {
+        tasks.add(task);
     }
     /**
      * Removes the specified task from the column.

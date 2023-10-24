@@ -112,7 +112,10 @@ public class Project
         Column temp = new Column(name);
         columns.add(temp);
     }
-
+    public void addColumn(Column column)
+    {
+        columns.add(column);
+    }
     public void moveColumnAfter(Column column)
     {
         //TODO

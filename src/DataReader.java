@@ -56,11 +56,10 @@ public class DataReader extends DataConstants
 
     public static ArrayList<Project> loadProjects()
     {
+        ArrayList<Project> projects = new ArrayList<Project>();
+
         // Load in tasks to link later.
         ArrayList<Task> tasks = loadTasks();
-
-        // Load in projects
-        ArrayList<Project> projects = new ArrayList<Project>();
 
         try
         {
@@ -84,11 +83,13 @@ public class DataReader extends DataConstants
 
                 Project newProject = new Project(id, title, category, owner);
 
+                // Load and link newProject's contributors.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 linkAccountsToProject(contributorsJSON, newProject);
-                
+
+                // Get the list of columns from JSON and call method to populate each column with tasks and add it to newProject.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
-                // TODO populate each column with information and add to project.
+                buildProject(tasks, columnsJSON, newProject);
 
                 // Load and add newProject's comments.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
@@ -204,7 +205,7 @@ public class DataReader extends DataConstants
         return Category.OTHER;
     }
     /**
-     * Add accounts to a project's list of contributors based on username, and adds the project to that user's list of projects.
+     * Add accounts to a project's list of contributors based on username, and adds the project to each contributor's list of projects.
      * @param array A JSONArray countaining account usernames.
      * @param project The project to add contributors to.
      */
@@ -218,7 +219,13 @@ public class DataReader extends DataConstants
             contributor.addProject(project);
         }
     }
-    public static void linkTasksToProject(JSONArray columnsJSON, Project project)
+    /**
+     * Adds each column in a JSONArray to a project's list of columns after populating the column with tasks.
+     * @param tasks The system-wide list of tasks.
+     * @param columnsJSON A JSONArray containing JSONObjects with Column information.
+     * @param project The project to have columns added to.
+     */
+    public static void buildProject(ArrayList<Task> tasks, JSONArray columnsJSON, Project project)
     {
         for (int i=0; i<columnsJSON.size(); i++)
         {
@@ -227,12 +234,24 @@ public class DataReader extends DataConstants
             String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
             Column newColumn = new Column(columnTitle);
             
-            // Get UUIDs of tasks in column and add all tasks with correponding UUIDs.
+            // Get the current column's task UUIDs and populate column with tasks that have matching UUIDs.
             JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
-            for (int j=0; i<columnTasksJSON.size(); j++)
+            for (int j=0; j<columnTasksJSON.size(); j++)
             {
-                // TODO pick up here.
+                // Loop through tasks, find task with UUID equal to current UUID, add task.
+                UUID taskID = UUID.fromString((String)columnTasksJSON.get(j));
+                for (int k=0; k<tasks.size(); k++)
+                {
+                    Task currentTask = tasks.get(k);
+                    if (taskID.equals(currentTask.getID()))
+                    {
+                        newColumn.addTask(currentTask);
+                        break;
+                    }
+                }
             }
+            // Add the finished column to the project.
+            project.addColumn(newColumn);
         }
     }
 
