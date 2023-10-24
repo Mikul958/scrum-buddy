@@ -33,28 +33,36 @@ public class Task
 
     public UUID getID()
     {
-        return id;
+        return this.id;
+    }
+    public String getName()
+    {
+        return this.name;
+    }
+    public int getPriority()
+    {
+        return this.priority;
     }
     public ArrayList<Comment> getComments()
     {
-        return comments;
+        return this.comments;
     }
     public ArrayList<Edit> getEditHistory()
     {
-        return editHistory;
+        return this.editHistory;
     }
 
     public String toString()
     {
         return "Name: " + name + "\nPriority: " + priority;
     }
-
     @Override
     public boolean equals(Object task)
     {
         return task != null && this.getClass() == task.getClass()
             && id.equals(((Task)task).getID());
     }
+
     public void addComment(Account user, String content)
     {
         Comment newComment = new Comment(user, content);

@@ -21,6 +21,15 @@ public class Column
         tasks = new ArrayList<Task>();
     }
 
+    public String getTitle()
+    {
+        return this.title;
+    }
+    public ArrayList<Task> getTasks()
+    {
+        return this.tasks;
+    }
+
     /**
      * Adds a task of the NewFeature type to the column.
      * @param name The name of the new feature.
@@ -60,11 +69,5 @@ public class Column
     {
         return column != null && this.getClass() == column.getClass()
             && this.getTitle().equals(((Column)column).getTitle());
-    }
-    /**
-     * @return the title of the category.
-     */
-    public String getTitle(){
-        return this.title;
     }
 }

@@ -46,6 +46,26 @@ public class Project
     {
         return this.title;
     }
+    public Category getCategory()
+    {
+        return this.category;
+    }
+    public Account getOwner()
+    {
+        return this.owner;
+    }
+    public ArrayList<Account> getContributors()
+    {
+        return this.contributors;
+    }
+    public ArrayList<Column> getColumns()
+    {
+        return this.columns;
+    }
+    public ArrayList<Comment> getComments()
+    {
+        return this.comments;
+    }
 
     @Override
     public boolean equals(Object project)
