@@ -46,9 +46,11 @@ public abstract class Task
 
     public abstract String toString();
 
-    public boolean equals(Task task)
+    @Override
+    public boolean equals(Object task)
     {
-        return task != null && id.equals(task.getID());
+        return task != null && this.getClass() == task.getClass()
+            && id.equals(((Task)task).getID());
     }
     public void addComment(Account user, String content)
     {

@@ -47,9 +47,11 @@ public class Project
         return this.title;
     }
 
-    public boolean equals(Project project)
+    @Override
+    public boolean equals(Object project)
     {
-        return project != null && id.equals(project.getID());
+        return project != null && this.getClass() == project.getClass()
+            && id.equals(((Project)project).getID());
     }
     public void setCategory(Category category)
     {
