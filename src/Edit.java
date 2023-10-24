@@ -46,6 +46,6 @@ public class Edit
      */
     public String toString()
     {
-        return "Edit on " + dateFormat.format(dateTime) + " by " + editor + ":\n" + description;
+        return "Edit on " + dateFormat.format(dateTime) + " by " + editor.getUsername() + ":\n" + description;
     }
 }

@@ -63,6 +63,7 @@ public class DataReader extends DataConstants
     {
         ArrayList<Task> tasks = new ArrayList<Task>();
         AccountManager manager = AccountManager.getInstance();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
         
         try
         {
@@ -123,9 +124,13 @@ public class DataReader extends DataConstants
                 for (int j=0; j<commentsJSON.size(); j++)
                 {
                     JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
-                    LocalDateTime dateTime = null;                                     // TODO figure out dateTime
+
+                    String timeString = (String)newCommentJSON.get(TIME);
+                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
+
                     String username = (String)newCommentJSON.get(COMMENT_USER);
                     Account user = manager.getAccountByUsername(username);
+
                     String content = (String)newCommentJSON.get(COMMENT_CONTENT);
 
                     Comment newComment = new Comment(dateTime, user, content);
@@ -137,9 +142,13 @@ public class DataReader extends DataConstants
                 for (int j=0; j<editsJSON.size(); j++)
                 {
                     JSONObject newEditJSON = (JSONObject)editsJSON.get(j);
-                    LocalDateTime dateTime = null;                                     // TODO figure out dateTime
+
+                    String timeString = (String)newEditJSON.get(TIME);
+                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
+
                     String editorName = (String)newEditJSON.get(EDIT_EDITOR);
                     Account editor = manager.getAccountByUsername(editorName);
+
                     String description = (String)newEditJSON.get(EDIT_DESCRIPTION);
 
                     Edit newEdit = new Edit(dateTime, editor, description);
@@ -163,6 +172,18 @@ public class DataReader extends DataConstants
         ArrayList<Task> tasks = loadTasks();
 
         for (int i=0; i<tasks.size(); i++)
+        {
             System.out.println("------------------------\n" + tasks.get(i));
+
+            System.out.println("-----\nCOMMENTS:");
+            ArrayList<Comment> comments = tasks.get(i).getComments();
+            for (int j=0; j<comments.size(); j++)
+                System.out.println("- " + comments.get(i));
+            
+            System.out.println("-----\nEDIT HISTORY:");
+            ArrayList<Edit> edits = tasks.get(i).getEditHistory();
+            for (int j=0; j<edits.size(); j++)
+                System.out.println("- " + edits.get(i));
+        }
     }
 }

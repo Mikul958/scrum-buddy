@@ -49,7 +49,7 @@ public class Comment
         String out = "User: ";
 
         if (user != null)
-            out += user;
+            out += user.getUsername();
         else
             out += "anonymous";
 

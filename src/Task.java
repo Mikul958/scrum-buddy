@@ -35,6 +35,14 @@ public abstract class Task
     {
         return id;
     }
+    public ArrayList<Comment> getComments()
+    {
+        return comments;
+    }
+    public ArrayList<Edit> getEditHistory()
+    {
+        return editHistory;
+    }
 
     public abstract String toString();
 
