@@ -135,7 +135,6 @@ public class DataReader extends DataConstants
                 // Load basic task information.
                 JSONObject taskJSON = (JSONObject)tasksJSON.get(i);
                 UUID id = UUID.fromString((String)taskJSON.get(TASK_ID));
-                String type = (String)taskJSON.get(TASK_TYPE);
                 String name = (String)taskJSON.get(TASK_NAME);
                 int priority = (int)(long)taskJSON.get(TASK_PRIORITY);
 

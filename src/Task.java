@@ -8,11 +8,11 @@ import java.util.UUID;
  */
 public class Task
 {
-    protected UUID id;
-    protected String name;
-    protected int priority;
-    protected ArrayList<Comment> comments;
-    protected ArrayList<Edit> editHistory;
+    private UUID id;
+    private String name;
+    private int priority;
+    private ArrayList<Comment> comments;
+    private ArrayList<Edit> editHistory;
 
     public Task(String name, int priority)
     {
