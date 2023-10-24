@@ -95,8 +95,10 @@ public class Account
      * @param account The account to be compared to.
      * @return true if the accounts are equivalent.
      */
-    public boolean equals(Account account)
+    @Override
+    public boolean equals(Object account)
     {
-        return account != null && username.equals(account.getUsername());
+        return account != null && this.getClass() == account.getClass()
+            && username.equals(((Account)account).getUsername());
     }
 }
