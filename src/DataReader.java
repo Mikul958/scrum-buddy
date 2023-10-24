@@ -52,6 +52,7 @@ public class DataReader extends DataConstants
 
     // Okay to use while loading projects because Accounts are loaded in its constructor and have no dependencies.
     private static AccountManager manager = AccountManager.getInstance();
+    private static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
 
     public static ArrayList<Project> loadProjects()
     {
@@ -71,6 +72,7 @@ public class DataReader extends DataConstants
             {
                 // Load basic information and create new project.
                 JSONObject projectJSON = (JSONObject)projectsJSON.get(i);
+
                 UUID id = UUID.fromString((String)projectJSON.get(PROJECT_ID));
                 String title = (String)projectJSON.get(PROJECT_TITLE);
 
@@ -88,6 +90,24 @@ public class DataReader extends DataConstants
                 
                 // TODO populate each column with information and add to project.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
+
+                // Load and add newProject's comments.
+                JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
+                for (int j=0; j<commentsJSON.size(); j++)
+                {
+                    JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
+
+                    String timeString = (String)newCommentJSON.get(TIME);
+                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
+
+                    String username = (String)newCommentJSON.get(COMMENT_USER);
+                    Account user = manager.getAccountByUsername(username);
+
+                    String content = (String)newCommentJSON.get(COMMENT_CONTENT);
+
+                    Comment newComment = new Comment(dateTime, user, content);
+                    newProject.addComment(newComment);
+                }
             }
         }
         catch (Exception e)
@@ -103,7 +123,6 @@ public class DataReader extends DataConstants
     public static ArrayList<Task> loadTasks()
     {
         ArrayList<Task> tasks = new ArrayList<Task>();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
         
         try
         {

@@ -129,6 +129,14 @@ public class Project
         else
             System.out.println("Column could not be removed.");     //Temp 
     }
+    public void addComment(Comment comment)
+    {
+        comments.add(comment);
+    }
+    public void removeComment(Comment comment)
+    {
+        comments.remove(comment);
+    }
     public void addTask(Task task, Column column, String name, int priority)
     {
         for(int i = 0; i < columns.size(); i++){

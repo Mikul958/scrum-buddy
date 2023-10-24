@@ -40,6 +40,19 @@ public class Comment
         this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     }
 
+    public LocalDateTime getDateTime()
+    {
+        return this.dateTime;
+    }
+    public Account getUser()
+    {
+        return this.user;
+    }
+    public String getContent()
+    {
+        return this.content;
+    }
+
     /**
      * Creates a string representation of the comment.
      * @return A string containing the user, time, and content of the comment.
@@ -55,5 +68,12 @@ public class Comment
 
         out += "\nDate: " + dateFormat.format(dateTime) + "\nContent: " + content;
         return out;
+    }
+    public boolean equals(Object comment)
+    {
+        return comment != null && this.getClass() == comment.getClass()
+            && this.dateTime.equals(((Comment)comment).getDateTime())
+            && this.user.equals(((Comment)comment).getUser())
+            && this.content.equals(((Comment)comment).getContent());
     }
 }
