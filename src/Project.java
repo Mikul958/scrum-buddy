@@ -38,6 +38,19 @@ public class Project
         comments = new ArrayList<Comment>();
     }
 
+    public UUID getID()
+    {
+        return this.id;
+    }
+    public String getTitle()
+    {
+        return this.title;
+    }
+
+    public boolean equals(Project project)
+    {
+        return project != null && id.equals(project.getID());
+    }
     public void setCategory(Category category)
     {
         this.category = category;       //Good?
@@ -53,37 +66,26 @@ public class Project
         return false;
     }
     /**
-     * Add an account as a contributor to a project.
-     * @param account to be added to the list of contributors assigned on this project. 
-     * If the account is not already on the list of contributors assigned to this project
-     * then the account is added to the list of contributors.
-     * 
-     * If it is already on the list for any reason, 
-     * then an error message is printed to the user.
+     * Add the specified account as a contributor to a project if account is not already a contributor.
+     * @param account Account to be added.
+     * @return true if the specified account was added successfully.
      */
-    public void addAccount(Account account)
+    public boolean addContributor(Account account)
     {
-        if(containsUser(account.getUsername())){    
-            contributors.add(account);              
-        }
-        else
-            System.out.println("Account could not be added.");
+        if (isContributor(account))
+            return false;
+        contributors.add(account);
+        return true;
     }
     /**
-     * Remove an account as a contributor from a project.
-     * @param account to be removed from the list of contributors assigned on this project. 
-     *
-     * Loops through the current list on contributors on this project.
-     * If the specified account exists on the list of contributors, then it is removed.
-     * Otherwise, if it is not on the list. Then an error message is printed for the user.
+     * Remove the specified account as a contributor from a project.
+     * @param account Account to be removed.
+     * @return true if the specified account was in the list of contributors.
      */
-    public void removeAccount(Account account)
+    public boolean removeContributor(Account account)
     {
-        if(containsUser(account.getUsername())){
-            contributors.remove(account);
-        }
-        else    
-            System.out.println("Account could not be removed.");    //Temp
+        // TODO override .equals(Object o) method for Account, project, and task so that it works with other methods.
+        return contributors.remove(account);
     }
     /**
      * Adds a column to the project
@@ -146,12 +148,13 @@ public class Project
      * @return T/F if username was discovered 
      * in current list of contributors on this project.
      */
-    public boolean containsUser(String userName){       
-        for(int i = 0; i < contributors.size(); i++){   
+    public boolean isContributor(Account account)
+    {       
+        for(int i=0; i<contributors.size(); i++)
+        {   
             Account temp = contributors.get(i);         
-            if(temp.getUsername().equals(userName)){
+            if (temp.equals(account))
                 return true;
-            }
         }
         return false;
     }
@@ -169,12 +172,5 @@ public class Project
             }
         }
         return false;
-    }
-    /**
-     * NEEDS TO BE ADDED TO THE UML *
-     * @return the title of the project.
-     */
-    public String getTitle(){
-        return this.title;
     }
 }
