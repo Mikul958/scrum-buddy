@@ -43,10 +43,15 @@ public class ProjectManager
         //
         //That way, removeProject and addProject can function similarly??
     }
+   
+   
+   //Al Pacicco is working on this 
     public double viewProjectProgress(Project project)
     {
-        //TODO How are we going to track progress?
-        return 0.0;
+        //I'm thinking we track progress by 
+        int totalTasks;
+        int taskNum;
+
     }
     /**
      * 

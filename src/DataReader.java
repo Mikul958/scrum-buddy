@@ -84,6 +84,7 @@ public class DataReader extends DataConstants
 
                 // TODO run through list of accounts and link all users.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
+                linkAccountsToProject(contributorsJSON, newProject);
                 
                 // TODO populate each column with information and add to project.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
@@ -226,7 +227,13 @@ public class DataReader extends DataConstants
      */
     public static void linkAccountsToProject(JSONArray array, Project project)
     {
-
+        for (int i=0; i<array.size(); i++)
+        {
+            String contributorName = (String)array.get(i);
+            Account contributor = manager.getAccountByUsername(contributorName);
+            project.addContributor(contributor);
+            contributor.addProject(project);
+        }
     }
 
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED
