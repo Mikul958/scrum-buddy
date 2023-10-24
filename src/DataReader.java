@@ -208,14 +208,31 @@ public class DataReader extends DataConstants
      * @param array A JSONArray countaining account usernames.
      * @param project The project to add contributors to.
      */
-    public static void linkAccountsToProject(JSONArray array, Project project)
+    public static void linkAccountsToProject(JSONArray accountsJSON, Project project)
     {
-        for (int i=0; i<array.size(); i++)
+        for (int i=0; i<accountsJSON.size(); i++)
         {
-            String contributorName = (String)array.get(i);
+            String contributorName = (String)accountsJSON.get(i);
             Account contributor = manager.getAccountByUsername(contributorName);
             project.addContributor(contributor);
             contributor.addProject(project);
+        }
+    }
+    public static void linkTasksToProject(JSONArray columnsJSON, Project project)
+    {
+        for (int i=0; i<columnsJSON.size(); i++)
+        {
+            // Get column title and create a new column.
+            JSONObject columnJSON = (JSONObject)columnsJSON.get(i);
+            String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
+            Column newColumn = new Column(columnTitle);
+            
+            // Get UUIDs of tasks in column and add all tasks with correponding UUIDs.
+            JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
+            for (int j=0; i<columnTasksJSON.size(); j++)
+            {
+                // TODO pick up here.
+            }
         }
     }
 
