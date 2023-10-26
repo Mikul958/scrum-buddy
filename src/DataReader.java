@@ -87,18 +87,19 @@ public class DataReader extends DataConstants
                 if (owner == null)
                     continue;
 
-                // Load and link newProject's contributors.
+                // Load project contributors and store them in an ArrayList.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
                 ArrayList<Account> contributors = loadContributors(contributorsJSON);
 
-                // Get the list of columns from JSON and call method to populate each column with tasks and add it to newProject.
+                // Get list of columns from JSON, send to method to populate columns with information, and store them in an ArrayList.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
                 ArrayList<Column> columns = buildColumns(columnsJSON, tasks);
 
-                // Load and add newProject's comments.
+                // Load project comments and store them in an ArrayList.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
                 ArrayList<Comment> comments = loadComments(commentsJSON);
 
+                // Create new project with above information and add it to the list of projects (account linking is handled already).
                 Project newProject = new Project(id, title, category, owner, contributors, columns, comments);
                 projects.add(newProject);
             }
