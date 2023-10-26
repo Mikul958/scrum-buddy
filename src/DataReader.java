@@ -84,6 +84,8 @@ public class DataReader extends DataConstants
 
                 String ownerName = (String)projectJSON.get(PROJECT_OWNER);
                 Account owner = manager.getAccountByUsername(ownerName);
+                if (owner == null)
+                    continue;
 
                 // Load and link newProject's contributors.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
