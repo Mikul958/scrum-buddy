@@ -3,6 +3,9 @@ package src;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -24,13 +27,13 @@ public class DataWriter extends DataConstants
         // Populate a JSONObject with account details and add object to JSONArray for all accounts.
         for (int i=0; i<accounts.size(); i++)
         {
-            Account currentAcc = accounts.get(i);
+            Account currentAccount = accounts.get(i);
             JSONObject accountJSON = new JSONObject();
-            accountJSON.put(USERNAME, currentAcc.getUsername());
-            accountJSON.put(PASSWORD, currentAcc.getPassword());
-            accountJSON.put(EMAIL, currentAcc.getEmail());
-            accountJSON.put(FIRST_NAME, currentAcc.getFirstName());
-            accountJSON.put(LAST_NAME, currentAcc.getLastName());
+            accountJSON.put(USERNAME, currentAccount.getUsername());
+            accountJSON.put(PASSWORD, currentAccount.getPassword());
+            accountJSON.put(EMAIL, currentAccount.getEmail());
+            accountJSON.put(FIRST_NAME, currentAccount.getFirstName());
+            accountJSON.put(LAST_NAME, currentAccount.getLastName());
 
             accountsJSON.add(accountJSON);
         }
@@ -53,13 +56,48 @@ public class DataWriter extends DataConstants
 
     public static boolean saveProjects()
     {
-        // TODO
-        
+        ProjectManager manager = ProjectManager.getInstance();
+        ArrayList<Project> projects = manager.getProjects();
+        JSONArray projectsJSON = new JSONArray();
+
+        for (int i=0; i<projects.size(); i++)
+        {
+            // Create a JSONObject for the current project.
+            Project currentProject = projects.get(i);
+            JSONObject projectJSON = new JSONObject();
+
+            // Get the ID, convert to String, and add to JSONObject
+            String pID = currentProject.getID().toString();
+            projectJSON.put(PROJECT_ID, pID);
+
+            projectJSON.put(PROJECT_TITLE, currentProject.getTitle());
+            
+            // Get the category's description and add to JSONObject
+            String category = currentProject.getCategory().description;
+            projectJSON.put(PROJECT_CATEGORY, category);
+
+            // Get the username of the owner and add to JSONObject
+            String ownerName = currentProject.getOwner().getUsername();
+            projectJSON.put(PROJECT_OWNER, ownerName);
+
+            // TODO contributors
+            // TODO columns
+            // TODO comments
+
+            // Add finished JSONObject to the outer JSONArray.
+            projectsJSON.add(projectJSON);
+        }
+
         try
         {
+            FileWriter writer = new FileWriter(PROJECTS_FILE_TEMP);
+
+            writer.write(projectsJSON.toJSONString());
+            writer.flush();
+            writer.close();
             return true;
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             e.printStackTrace();
             return false;

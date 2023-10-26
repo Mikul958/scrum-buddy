@@ -17,6 +17,7 @@ public abstract class DataConstants
 
     // Projects.json
     protected static final String PROJECTS_FILE = "json/Projects.json";
+    protected static final String PROJECTS_FILE_TEMP = "json/Projects-tmp.json";  // TODO delete when done
     protected static final String PROJECT_ID = "pUUID";
     protected static final String PROJECT_TITLE = "title";
     protected static final String PROJECT_CATEGORY = "category";

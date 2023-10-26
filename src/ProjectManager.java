@@ -24,9 +24,14 @@ public class ProjectManager
      */
     public static ProjectManager getInstance()
     {
-        if(projectManager == null)
+        if (projectManager == null)
             projectManager = new ProjectManager();
-        return null;
+        return projectManager;
+    }
+
+    public ArrayList<Project> getProjects()
+    {
+        return this.projects;
     }
    
     public void addProject(String title, Category category, Account owner)
