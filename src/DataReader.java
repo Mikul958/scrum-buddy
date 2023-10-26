@@ -53,7 +53,11 @@ public class DataReader extends DataConstants
     // Okay to use AccountManager while loading projects because Accounts are loaded in its constructor and have no dependencies.
     private static AccountManager manager = AccountManager.getInstance();
     private static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
-
+    
+    /**
+     * Reads all projects from Projects.json, builds them, and adds them to a system-wide ArrayList.
+     * @return The list of all projects system-wide.
+     */
     public static ArrayList<Project> loadProjects()
     {
         ArrayList<Project> projects = new ArrayList<Project>();
