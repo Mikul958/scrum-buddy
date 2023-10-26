@@ -58,7 +58,7 @@ public class DataReader extends DataConstants
     {
         ArrayList<Project> projects = new ArrayList<Project>();
 
-        // Load in tasks to link later.
+        // Load in tasks to build columns later.
         ArrayList<Task> tasks = loadTasks();
 
         try
@@ -81,18 +81,17 @@ public class DataReader extends DataConstants
                 String ownerName = (String)projectJSON.get(PROJECT_OWNER);
                 Account owner = manager.getAccountByUsername(ownerName);
 
-                Project newProject = new Project(id, title, category, owner);
-
                 // Load and link newProject's contributors.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
-                linkAccountsToProject(contributorsJSON, newProject);
+                ArrayList<Account> contributors = loadContributors(contributorsJSON);
 
                 // Get the list of columns from JSON and call method to populate each column with tasks and add it to newProject.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
-                buildProject(tasks, columnsJSON, newProject);
+                ArrayList<Column> columns = buildColumns(columnsJSON, tasks);
 
                 // Load and add newProject's comments.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
+                ArrayList<Comment> comments = new ArrayList<Comment>();
                 for (int j=0; j<commentsJSON.size(); j++)
                 {
                     JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
@@ -106,8 +105,9 @@ public class DataReader extends DataConstants
                     String content = (String)newCommentJSON.get(COMMENT_CONTENT);
 
                     Comment newComment = new Comment(dateTime, user, content);
-                    newProject.addComment(newComment);
+                    comments.add(newComment);
                 }
+                Project newProject = new Project(id, title, category, owner, contributors, columns, comments);
                 projects.add(newProject);
             }
             return projects;
@@ -204,38 +204,35 @@ public class DataReader extends DataConstants
         }
         return Category.OTHER;
     }
-    /**
-     * Add accounts to a project's list of contributors based on username, and adds the project to each contributor's list of projects.
-     * @param array A JSONArray countaining account usernames.
-     * @param project The project to add contributors to.
-     */
-    public static void linkAccountsToProject(JSONArray accountsJSON, Project project)
+    public static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
     {
-        for (int i=0; i<accountsJSON.size(); i++)
+        ArrayList<Account> contributors = new ArrayList<Account>();
+        for (int i=0; i<contributorsJSON.size(); i++)
         {
-            String contributorName = (String)accountsJSON.get(i);
+            String contributorName = (String)contributorsJSON.get(i);
             Account contributor = manager.getAccountByUsername(contributorName);
             if (contributor == null)
                 continue;
-            project.addContributor(contributor);
-            contributor.addProject(project);
+            contributors.add(contributor);
         }
+        return contributors;
     }
     /**
-     * Adds each column in a JSONArray to a project's list of columns after populating the column with tasks.
-     * @param tasks The system-wide list of tasks.
-     * @param columnsJSON A JSONArray containing JSONObjects with Column information.
-     * @param project The project to have columns added to.
+     * Builds all the columns of a project based on a JSONArray of columns.
+     * @param columnsJSON A JSONArray of columns, containing objects with a title and a JSONArray of task UUIDs.
+     * @param tasks The system-wide list of tasks, obtained via DataReader.loadTasks().
+     * @return An ArrayList containing all of a project's columns.
      */
-    public static void buildProject(ArrayList<Task> tasks, JSONArray columnsJSON, Project project)
+    public static ArrayList<Column> buildColumns(JSONArray columnsJSON, ArrayList<Task> tasks)
     {
+        ArrayList<Column> columns = new ArrayList<Column>();
         for (int i=0; i<columnsJSON.size(); i++)
         {
             // Get column title and create a new column.
             JSONObject columnJSON = (JSONObject)columnsJSON.get(i);
             String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
-            Column newColumn = new Column(columnTitle);
-            
+            ArrayList<Task> columnTasks = new ArrayList<Task>();
+
             // Get the current column's task UUIDs and populate column with tasks that have matching UUIDs.
             JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
             for (int j=0; j<columnTasksJSON.size(); j++)
@@ -247,14 +244,15 @@ public class DataReader extends DataConstants
                     Task currentTask = tasks.get(k);
                     if (taskID.equals(currentTask.getID()))
                     {
-                        newColumn.addTask(currentTask);
+                        columnTasks.add(currentTask);
                         break;
                     }
                 }
             }
-            // Add the finished column to the project.
-            project.addColumn(newColumn);
+            Column newColumn = new Column(columnTitle, columnTasks);
+            columns.add(newColumn);
         }
+        return columns;
     }
 
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED

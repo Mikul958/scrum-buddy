@@ -18,7 +18,12 @@ public class Column
     public Column(String title)
     {
         this.title = title;
-        tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
+    }
+    public Column(String title, ArrayList<Task> tasks)
+    {
+        this.title = title;
+        this.tasks = tasks;
     }
 
     public String getTitle()
