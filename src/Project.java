@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * @author Miles Wedeking
+ * @author Miles Wedeking and Al Pacicco
  *
  */
 public class Project
@@ -146,9 +146,19 @@ public class Project
     {
         columns.add(column);
     }
-    public void moveColumnAfter(Column column)
+    public boolean moveColumn(int from, int to)
     {
-        //TODO
+        if(from < 0 || from > columns.size() -1 || to > columns.size()-1 || to < 0)
+        {
+            return false;
+        }else {
+            
+            Column temp = columns.get(from);
+            temp = columns.get(to);
+            columns.remove(from);
+            columns.set(to, temp);
+            return true;
+        }
     }
     /**
      * Removes a column from the project
