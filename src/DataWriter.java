@@ -53,8 +53,15 @@ public class DataWriter extends DataConstants
         }
     }
 
+    /**
+     * Saves the system-wide list of projects and tasks to Projects.json and Tasks.json.
+     * @return true if projects and tasks were successfully written.
+     */
     public static boolean saveProjects()
     {
+        // List to keep track of tasks as projects are saved, will be saved at the end of this method.
+        ArrayList<Task> tasksToSave = new ArrayList<Task>();
+        
         ProjectManager manager = ProjectManager.getInstance();
         ArrayList<Project> projects = manager.getProjects();
         JSONArray projectsJSON = new JSONArray();
@@ -85,8 +92,10 @@ public class DataWriter extends DataConstants
             JSONArray contributorsJSON = saveContributors(contributors);
             projectJSON.put(PROJECT_CONTRIBUTORS, contributorsJSON);
 
-            // TODO columns
+            // Puts all project columns into a JSONArray and adds to JSONObject and adds each task to the tasksToSave list.
             ArrayList<Column> columns = currentProject.getColumns();
+            JSONArray columnsJSON = saveColumns(columns, tasksToSave);
+            projectJSON.put(PROJECT_COLUMNS, columnsJSON);
 
             // Put all comments on the project into a JSONArray and add to JSONObject.
             ArrayList<Comment> comments = currentProject.getComments();
@@ -99,18 +108,29 @@ public class DataWriter extends DataConstants
 
         try
         {
-            FileWriter writer = new FileWriter(PROJECTS_FILE_TEMP);
+            FileWriter writer = new FileWriter(PROJECTS_FILE_TEMP);  // TODO
 
             writer.write(projectsJSON.toJSONString());
             writer.flush();
             writer.close();
-            return true;
         }
         catch (IOException e)
         {
             e.printStackTrace();
             return false;
         }
+        
+        // Saves the list of tasks accumulated throughout all projects to Tasks.json.
+        return saveTasks(tasksToSave);
+    }
+    /**
+     * Takes in the system-wide list of tasks and saves it to Tasks.json.
+     * @param tasks The system-wide list of tasks.
+     * @return true if tasks were successfully written.
+     */
+    private static boolean saveTasks(ArrayList<Task> tasks)
+    {
+        return true; // TODO
     }
     /**
      * Takes in a list of contributors and returns a JSONArray of their usernames.
@@ -130,20 +150,39 @@ public class DataWriter extends DataConstants
     /**
      * Builds a JSONArray of columns containing a title and a JSONArray of Java UUID corresponding to tasks.
      * @param columns The list of columns for a given project.
+     * @param tasksToSave A list of tasks that keeps track of all tasks encountered while saving projects.
      * @return A JSONArray containing JSONObjects with each column's information for a given project.
      */
-    private static JSONArray saveColumns(ArrayList<Column> columns)
+    private static JSONArray saveColumns(ArrayList<Column> columns, ArrayList<Task> tasksToSave)
     {
-        return null;
-    }
-    /**
-     * Takes in the system-wide list of tasks and returns it as a JSONArray.
-     * @param tasks The system-wide list of tasks.
-     * @return A JSONArray containing JSONObjects with every task's information.
-     */
-    private static JSONArray saveTasks(ArrayList<Task> tasks)
-    {
-        return null;
+        JSONArray columnsJSON = new JSONArray();
+        for (int i=0; i<columns.size(); i++)
+        {
+            Column currentColumn = columns.get(i);
+            JSONObject columnJSON = new JSONObject();
+
+            // Add column title to column JSONObject
+            columnJSON.put(COLUMN_TITLE, currentColumn.getTitle());
+
+            // Loop through all tasks in column, get UUIDs, and add corresponding string to JSONArray of task UUIDs.
+            ArrayList<Task> columnTasks = currentColumn.getTasks();
+            JSONArray columnTasksJSON = new JSONArray();
+            for (int j=0; j<columnTasks.size(); j++)
+            {
+                Task currentTask = columnTasks.get(j);
+                String idString = currentTask.getID().toString();
+                columnTasksJSON.add(idString);
+
+                // Adds the current task to a system-wide list that will be saved later.
+                tasksToSave.add(currentTask);
+            }
+            // Add JSONArray of task UUIDs to column JSONObject.
+            columnJSON.put(COLUMN_TASKS, columnTasksJSON);
+
+            // Add finished JSONObject to outer JSONArray.
+            columnsJSON.add(columnJSON);
+        }
+        return columnsJSON;
     }
     /**
      * Builds a JSONArray of comments containing a dateTime, user, and content.
@@ -158,14 +197,18 @@ public class DataWriter extends DataConstants
             Comment currentComment = comments.get(i);
             JSONObject commentJSON = new JSONObject();
 
+            // Put dateTime in specified format and add resulting string to JSONObject
             String timeString = dateFormat.format(currentComment.getDateTime());
             commentJSON.put(TIME, timeString);
 
+            // Get commenter's username and add to comment JSONObject.
             String username = currentComment.getUser().getUsername();
             commentJSON.put(COMMENT_USER, username);
 
+            // Add comment content to JSONObject.
             commentJSON.put(COMMENT_CONTENT, currentComment.getContent());
 
+            // Add finished JSONObject to outer JSONArray.
             commentsJSON.add(commentJSON);
         }
         return commentsJSON;
@@ -177,6 +220,6 @@ public class DataWriter extends DataConstants
      */
     private static JSONArray saveEdits(ArrayList<Edit> edits)
     {
-        return null;
+        return null; // TODO
     }
 }
