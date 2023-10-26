@@ -91,22 +91,8 @@ public class DataReader extends DataConstants
 
                 // Load and add newProject's comments.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
-                ArrayList<Comment> comments = new ArrayList<Comment>();
-                for (int j=0; j<commentsJSON.size(); j++)
-                {
-                    JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
+                ArrayList<Comment> comments = loadComments(commentsJSON);
 
-                    String timeString = (String)newCommentJSON.get(TIME);
-                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
-
-                    String username = (String)newCommentJSON.get(COMMENT_USER);
-                    Account user = manager.getAccountByUsername(username);
-
-                    String content = (String)newCommentJSON.get(COMMENT_CONTENT);
-
-                    Comment newComment = new Comment(dateTime, user, content);
-                    comments.add(newComment);
-                }
                 Project newProject = new Project(id, title, category, owner, contributors, columns, comments);
                 projects.add(newProject);
             }
@@ -140,46 +126,16 @@ public class DataReader extends DataConstants
                 String name = (String)taskJSON.get(TASK_NAME);
                 int priority = (int)(long)taskJSON.get(TASK_PRIORITY);
 
-                // Determine data type and load unique information.
-                Task newTask = new Task(id, name, priority);
-
-                // Load and add newTask's comments.
+                // Load comments.
                 JSONArray commentsJSON = (JSONArray)taskJSON.get(COMMENTS);
-                for (int j=0; j<commentsJSON.size(); j++)
-                {
-                    JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
+                ArrayList<Comment> comments = loadComments(commentsJSON);
 
-                    String timeString = (String)newCommentJSON.get(TIME);
-                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
-
-                    String username = (String)newCommentJSON.get(COMMENT_USER);
-                    Account user = manager.getAccountByUsername(username);
-
-                    String content = (String)newCommentJSON.get(COMMENT_CONTENT);
-
-                    Comment newComment = new Comment(dateTime, user, content);
-                    newTask.addComment(newComment);
-                }
-
-                // Load and add newTask's edit history.
+                // Load edit history.
                 JSONArray editsJSON = (JSONArray)taskJSON.get(TASK_EDITS);
-                for (int j=0; j<editsJSON.size(); j++)
-                {
-                    JSONObject newEditJSON = (JSONObject)editsJSON.get(j);
-
-                    String timeString = (String)newEditJSON.get(TIME);
-                    LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
-
-                    String editorName = (String)newEditJSON.get(EDIT_EDITOR);
-                    Account editor = manager.getAccountByUsername(editorName);
-
-                    String description = (String)newEditJSON.get(EDIT_DESCRIPTION);
-
-                    Edit newEdit = new Edit(dateTime, editor, description);
-                    newTask.addEdit(newEdit);
-                }
+                ArrayList<Edit> edits = loadEdits(editsJSON);
 
                 // Add new task to the list of tasks.
+                Task newTask = new Task(id, name, priority, comments, edits);
                 tasks.add(newTask);
             }
             return tasks;
@@ -253,6 +209,47 @@ public class DataReader extends DataConstants
             columns.add(newColumn);
         }
         return columns;
+    }
+    public static ArrayList<Comment> loadComments(JSONArray commentsJSON)
+    {
+        ArrayList<Comment> comments = new ArrayList<Comment>();
+        for (int i=0; i<commentsJSON.size(); i++)
+        {
+            JSONObject newCommentJSON = (JSONObject)commentsJSON.get(i);
+            
+            // Load time string and parse it using custom DateTimeFormatter.
+            String timeString = (String)newCommentJSON.get(TIME);
+            LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
+
+            String username = (String)newCommentJSON.get(COMMENT_USER);
+            Account user = manager.getAccountByUsername(username);
+
+            String content = (String)newCommentJSON.get(COMMENT_CONTENT);
+
+            Comment newComment = new Comment(dateTime, user, content);
+            comments.add(newComment);
+        }
+        return comments;
+    }
+    public static ArrayList<Edit> loadEdits(JSONArray editsJSON)
+    {
+        ArrayList<Edit> edits = new ArrayList<Edit>();
+        for (int i=0; i<editsJSON.size(); i++)
+        {
+            JSONObject newEditJSON = (JSONObject)editsJSON.get(i);
+
+            String timeString = (String)newEditJSON.get(TIME);
+            LocalDateTime dateTime = LocalDateTime.parse(timeString, dateFormat);
+
+            String username = (String)newEditJSON.get(EDIT_EDITOR);
+            Account user = manager.getAccountByUsername(username);
+
+            String description = (String)newEditJSON.get(EDIT_DESCRIPTION);
+
+            Edit newEdit = new Edit(dateTime, user, description);
+            edits.add(newEdit);
+        }
+        return edits;
     }
 
     // FOR TESTING PURPOSES: DELETE WHEN FINISHED

@@ -19,16 +19,16 @@ public class Task
         this.id = UUID.randomUUID();
         this.name = name;
         this.priority = priority;
-        comments = new ArrayList<Comment>();
-        editHistory = new ArrayList<Edit>();
+        this.comments = new ArrayList<Comment>();
+        this.editHistory = new ArrayList<Edit>();
     }
-    public Task(UUID id, String name, int priority)
+    public Task(UUID id, String name, int priority, ArrayList<Comment> comments, ArrayList<Edit> editHistory)
     {
         this.id = id;
         this.name = name;
         this.priority = priority;
-        comments = new ArrayList<Comment>();
-        editHistory = new ArrayList<Edit>();
+        this.comments = comments;
+        this.editHistory = editHistory;
     }
 
     public UUID getID()
