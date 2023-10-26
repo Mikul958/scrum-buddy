@@ -50,7 +50,7 @@ public class DataReader extends DataConstants
         return null;
     }
 
-    // Okay to use while loading projects because Accounts are loaded in its constructor and have no dependencies.
+    // Okay to use AccountManager while loading projects because Accounts are loaded in its constructor and have no dependencies.
     private static AccountManager manager = AccountManager.getInstance();
     private static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
 
@@ -160,6 +160,11 @@ public class DataReader extends DataConstants
         }
         return Category.OTHER;
     }
+    /**
+     * Takes in a JSONArray of contributor usernames and returns the list of corresponding accounts.
+     * @param contributorsJSON A JSONArray containing the usernames of accounts contributing to a project.
+     * @return An ArrayList of Accounts that are contributors to a project.
+     */
     public static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
     {
         ArrayList<Account> contributors = new ArrayList<Account>();
@@ -210,6 +215,11 @@ public class DataReader extends DataConstants
         }
         return columns;
     }
+    /**
+     * Builds comments based on a JSONArray of comments and returns them in an ArrayList.
+     * @param commentsJSON A JSONArray of comments, containing objects with a dateTime, user, and content.
+     * @return An ArrayList of comments on a given task or project.
+     */
     public static ArrayList<Comment> loadComments(JSONArray commentsJSON)
     {
         ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -231,6 +241,11 @@ public class DataReader extends DataConstants
         }
         return comments;
     }
+    /**
+     * Builds task edit history based on a JSONArray of edits and returns them in an ArrayList.
+     * @param editsJSON A JSONArray of edits, containing objects with a dateTime, editor, and description.
+     * @return An ArrayList of edits on a given task.
+     */
     public static ArrayList<Edit> loadEdits(JSONArray editsJSON)
     {
         ArrayList<Edit> edits = new ArrayList<Edit>();
