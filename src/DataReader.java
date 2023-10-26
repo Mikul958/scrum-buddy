@@ -112,7 +112,7 @@ public class DataReader extends DataConstants
      * Reads all tasks from Tasks.json and adds them to a system-wide ArrayList.
      * @return The list of all Tasks system-wide.
      */
-    public static ArrayList<Task> loadTasks()
+    private static ArrayList<Task> loadTasks()
     {
         ArrayList<Task> tasks = new ArrayList<Task>();
         
@@ -155,7 +155,7 @@ public class DataReader extends DataConstants
      * @param category A string representing a project category.
      * @return A category corresponding to the input string. Returns Category.OTHER if no matches.
      */
-    public static Category stringToCategory(String category)
+    private static Category stringToCategory(String category)
     {
         for (Category i : Category.values())
         {
@@ -169,7 +169,7 @@ public class DataReader extends DataConstants
      * @param contributorsJSON A JSONArray containing the usernames of accounts contributing to a project.
      * @return An ArrayList of Accounts that are contributors to a project.
      */
-    public static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
+    private static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
     {
         ArrayList<Account> contributors = new ArrayList<Account>();
         for (int i=0; i<contributorsJSON.size(); i++)
@@ -188,7 +188,7 @@ public class DataReader extends DataConstants
      * @param tasks The system-wide list of tasks, obtained via DataReader.loadTasks().
      * @return An ArrayList containing all of a project's columns.
      */
-    public static ArrayList<Column> buildColumns(JSONArray columnsJSON, ArrayList<Task> tasks)
+    private static ArrayList<Column> buildColumns(JSONArray columnsJSON, ArrayList<Task> tasks)
     {
         ArrayList<Column> columns = new ArrayList<Column>();
         for (int i=0; i<columnsJSON.size(); i++)
@@ -224,7 +224,7 @@ public class DataReader extends DataConstants
      * @param commentsJSON A JSONArray of comments, containing objects with a dateTime, user, and content.
      * @return An ArrayList of comments on a given task or project.
      */
-    public static ArrayList<Comment> loadComments(JSONArray commentsJSON)
+    private static ArrayList<Comment> loadComments(JSONArray commentsJSON)
     {
         ArrayList<Comment> comments = new ArrayList<Comment>();
         for (int i=0; i<commentsJSON.size(); i++)
@@ -250,7 +250,7 @@ public class DataReader extends DataConstants
      * @param editsJSON A JSONArray of edits, containing objects with a dateTime, editor, and description.
      * @return An ArrayList of edits on a given task.
      */
-    public static ArrayList<Edit> loadEdits(JSONArray editsJSON)
+    private static ArrayList<Edit> loadEdits(JSONArray editsJSON)
     {
         ArrayList<Edit> edits = new ArrayList<Edit>();
         for (int i=0; i<editsJSON.size(); i++)
