@@ -67,22 +67,30 @@ public class DataWriter extends DataConstants
             JSONObject projectJSON = new JSONObject();
 
             // Get the ID, convert to String, and add to JSONObject
-            String pID = currentProject.getID().toString();
-            projectJSON.put(PROJECT_ID, pID);
+            String idString = currentProject.getID().toString();
+            projectJSON.put(PROJECT_ID, idString);
 
+            // Add title to JSONObject
             projectJSON.put(PROJECT_TITLE, currentProject.getTitle());
             
             // Get the category's description and add to JSONObject
-            String category = currentProject.getCategory().description;
-            projectJSON.put(PROJECT_CATEGORY, category);
+            String categoryName = currentProject.getCategory().description;
+            projectJSON.put(PROJECT_CATEGORY, categoryName);
 
             // Get the username of the owner and add to JSONObject
             String ownerName = currentProject.getOwner().getUsername();
             projectJSON.put(PROJECT_OWNER, ownerName);
 
-            // TODO contributors
+            // Put the usernames of all contributors into a JSONArray and add to JSONObject.
+            ArrayList<Account> contributors = currentProject.getContributors();
+            JSONArray contributorsJSON = saveContributors(contributors);
+            projectJSON.put(PROJECT_CONTRIBUTORS, contributorsJSON);
+
             // TODO columns
+            ArrayList<Column> columns = currentProject.getColumns();
+
             // TODO comments
+            ArrayList<Comment> comments = currentProject.getComments();
 
             // Add finished JSONObject to the outer JSONArray.
             projectsJSON.add(projectJSON);
@@ -102,5 +110,20 @@ public class DataWriter extends DataConstants
             e.printStackTrace();
             return false;
         }
+    }
+    /**
+     * Takes in a list of contributors and returns a JSONArray of their usernames.
+     * @param contributors A list of contributors for a given project.
+     * @return A JSONArray containing the usernames of project contributors.
+     */
+    private static JSONArray saveContributors(ArrayList<Account> contributors)
+    {
+        JSONArray contributorsJSON = new JSONArray();
+        for (int i=0; i<contributors.size(); i++)
+        {
+            String contributorName = contributors.get(i).getUsername();
+            contributorsJSON.add(contributorName);
+        }
+        return contributorsJSON;
     }
 }

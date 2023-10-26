@@ -1,6 +1,8 @@
 package src;
 
+import java.util.UUID;
 import java.util.ArrayList;
+
 /**
  * ProjectManager class
  * @author Miles Wedeking
@@ -32,6 +34,15 @@ public class ProjectManager
     public ArrayList<Project> getProjects()
     {
         return this.projects;
+    }
+    public Project getProjectByID(UUID id)
+    {
+        for (int i=0; i<projects.size(); i++)
+        {
+            if (id.equals(projects.get(i).getID()))
+                return projects.get(i);
+        }
+        return null;
     }
    
     public void addProject(String title, Category category, Account owner)

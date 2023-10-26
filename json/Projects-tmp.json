@@ -2,12 +2,21 @@
     {
         "owner": "CadeAP",
         "pUUID": "2abdfb60-8ef2-4bbb-82eb-20321a406d3c",
+        "contributors": [
+            "CadeAP",
+            "MPikula1"
+        ],
         "title": "Cade's Project",
         "category": "Education"
     },
     {
         "owner": "APacicco",
         "pUUID": "c69ef17b-7fe1-4771-9488-64b671643a81",
+        "contributors": [
+            "APacicco",
+            "WedekingM",
+            "MPikula1"
+        ],
         "title": "Al's Project",
         "category": "Business"
     }

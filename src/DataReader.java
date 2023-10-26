@@ -368,6 +368,8 @@ public class DataReader extends DataConstants
         
         system.logout();
 
-        // Everything works! Will remove main method later when I'm sure it won't be needed anymore.
+
+        // TESTING PROJECT SAVING
+        DataWriter.saveProjects();
     }
 }
