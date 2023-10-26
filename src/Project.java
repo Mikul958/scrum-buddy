@@ -17,25 +17,35 @@ public class Project
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
 
-    public Project(String title, src.Category category2, Account owner)
+    public Project(String title, Category category2, Account owner)
     {
         this.id = UUID.randomUUID();
         this.title = title;
         this.category = category2;
         this.owner = owner;
         contributors = new ArrayList<Account>();
+        
+        // Add owner to list of contributors and this project to owner's project list.
+        contributors.add(owner);
+        owner.addProject(this);
+
         columns = new ArrayList<Column>();
         comments = new ArrayList<Comment>();
     }
-    public Project(UUID id, String title, Category category, Account owner)
+    public Project(UUID id, String title, Category category, Account owner, ArrayList<Account> contributors, ArrayList<Column> columns, ArrayList<Comment> comments)
     {
         this.id = id;
         this.title = title;
         this.category = category;
         this.owner = owner;
-        contributors = new ArrayList<Account>();
-        columns = new ArrayList<Column>();
-        comments = new ArrayList<Comment>();
+
+        // Link contributors with project.
+        this.contributors = contributors;
+        for (int i=0; i<contributors.size(); i++)
+            contributors.get(i).addProject(this);
+
+        this.columns = columns;
+        this.comments = comments;
     }
 
     public UUID getID()
