@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -52,7 +51,6 @@ public class DataReader extends DataConstants
 
     // Okay to use AccountManager while loading projects because Accounts are loaded in its constructor and have no dependencies.
     private static AccountManager manager = AccountManager.getInstance();
-    private static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     
     /**
      * Reads all projects from Projects.json, builds them, and adds them to a system-wide ArrayList.

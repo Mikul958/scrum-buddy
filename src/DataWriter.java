@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -89,8 +88,10 @@ public class DataWriter extends DataConstants
             // TODO columns
             ArrayList<Column> columns = currentProject.getColumns();
 
-            // TODO comments
+            // Put all comments on the project into a JSONArray and add to JSONObject.
             ArrayList<Comment> comments = currentProject.getComments();
+            JSONArray commentsJSON = saveComments(comments);
+            projectJSON.put(COMMENTS, commentsJSON);
 
             // Add finished JSONObject to the outer JSONArray.
             projectsJSON.add(projectJSON);
@@ -125,5 +126,57 @@ public class DataWriter extends DataConstants
             contributorsJSON.add(contributorName);
         }
         return contributorsJSON;
+    }
+    /**
+     * Builds a JSONArray of columns containing a title and a JSONArray of Java UUID corresponding to tasks.
+     * @param columns The list of columns for a given project.
+     * @return A JSONArray containing JSONObjects with each column's information for a given project.
+     */
+    private static JSONArray saveColumns(ArrayList<Column> columns)
+    {
+        return null;
+    }
+    /**
+     * Takes in the system-wide list of tasks and returns it as a JSONArray.
+     * @param tasks The system-wide list of tasks.
+     * @return A JSONArray containing JSONObjects with every task's information.
+     */
+    private static JSONArray saveTasks(ArrayList<Task> tasks)
+    {
+        return null;
+    }
+    /**
+     * Builds a JSONArray of comments containing a dateTime, user, and content.
+     * @param comments The list of comments for a given project or task.
+     * @return A JSONArray containing JSONObjects with each comment's information.
+     */
+    private static JSONArray saveComments(ArrayList<Comment> comments)
+    {
+        JSONArray commentsJSON = new JSONArray();
+        for (int i=0; i<comments.size(); i++)
+        {
+            Comment currentComment = comments.get(i);
+            JSONObject commentJSON = new JSONObject();
+
+            String timeString = dateFormat.format(currentComment.getDateTime());
+            commentJSON.put(TIME, timeString);
+
+            String username = currentComment.getUser().getUsername();
+            commentJSON.put(COMMENT_USER, username);
+
+            commentJSON.put(COMMENT_CONTENT, currentComment.getContent());
+
+            commentsJSON.add(commentJSON);
+        }
+        return commentsJSON;
+    }
+    /**
+     * Builds a JSONArray of comments containing a dateTime, editor, and description.
+     * @param edits The edit history for a given task.
+     * @return A JSONArray contanining JSONObjects with each edit's information.
+     */
+    private static JSONArray saveEdits(ArrayList<Edit> edits)
+    {
+        return null;
     }
 }

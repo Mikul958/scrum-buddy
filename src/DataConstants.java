@@ -1,11 +1,16 @@
 package src;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * A class containing constants for DataReader and DataWriter.
  * @author Michael Pikula
  */
 public abstract class DataConstants
 {
+    // Formatter for displaying/parsing time.
+    protected static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
+    
     // Accounts.json
     protected static final String ACCOUNTS_FILE = "json/Accounts.json";
     protected static final String USERNAME = "username";
