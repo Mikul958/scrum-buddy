@@ -17,11 +17,17 @@ public class Project
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
 
-    public Project(String title, Category category2, Account owner)
+    /**
+     * Creates a fresh project with the specified basic information and handles Account-Project linking.
+     * @param title The title of the new project.
+     * @param category The category of the new project.
+     * @param owner The account creating the new project.
+     */
+    public Project(String title, Category category, Account owner)
     {
         this.id = UUID.randomUUID();
         this.title = title;
-        this.category = category2;
+        this.category = category;
         this.owner = owner;
         contributors = new ArrayList<Account>();
         
@@ -32,6 +38,16 @@ public class Project
         columns = new ArrayList<Column>();
         comments = new ArrayList<Comment>();
     }
+    /**
+     * Creates a project with existing contributors, columns, and comments and handles Account-Project linking. Used when loading project from file.
+     * @param id The Java UUID of the project.
+     * @param title The title of the project.
+     * @param category The category of the project.
+     * @param owner The account that created the project.
+     * @param contributors The list of all contributors to the project, including the owner.
+     * @param columns The list of all of the project's columns.
+     * @param comments The list of all comments on the project.
+     */
     public Project(UUID id, String title, Category category, Account owner, ArrayList<Account> contributors, ArrayList<Column> columns, ArrayList<Comment> comments)
     {
         this.id = id;
