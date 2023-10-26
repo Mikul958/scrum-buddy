@@ -81,18 +81,17 @@ public class DataReader extends DataConstants
                 String ownerName = (String)projectJSON.get(PROJECT_OWNER);
                 Account owner = manager.getAccountByUsername(ownerName);
 
-                Project newProject = new Project(id, title, category, owner);
-
                 // Load and link newProject's contributors.
                 JSONArray contributorsJSON = (JSONArray)projectJSON.get(PROJECT_CONTRIBUTORS);
-                linkAccountsToProject(contributorsJSON, newProject);
+                ArrayList<Account> contributors = loadContributors(contributorsJSON);
 
                 // Get the list of columns from JSON and call method to populate each column with tasks and add it to newProject.
                 JSONArray columnsJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
-                buildProject(tasks, columnsJSON, newProject);
+                ArrayList<Column> columns = buildColumns(tasks, columnsJSON);
 
                 // Load and add newProject's comments.
                 JSONArray commentsJSON = (JSONArray)projectJSON.get(COMMENTS);
+                ArrayList<Comment> comments = new ArrayList<Comment>();
                 for (int j=0; j<commentsJSON.size(); j++)
                 {
                     JSONObject newCommentJSON = (JSONObject)commentsJSON.get(j);
@@ -106,8 +105,9 @@ public class DataReader extends DataConstants
                     String content = (String)newCommentJSON.get(COMMENT_CONTENT);
 
                     Comment newComment = new Comment(dateTime, user, content);
-                    newProject.addComment(newComment);
+                    comments.add(newComment);
                 }
+                Project newProject = new Project(id, title, category, owner, contributors, columns, comments);
                 projects.add(newProject);
             }
             return projects;
@@ -204,6 +204,19 @@ public class DataReader extends DataConstants
         }
         return Category.OTHER;
     }
+    public static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
+    {
+        ArrayList<Account> contributors = new ArrayList<Account>();
+        for (int i=0; i<contributorsJSON.size(); i++)
+        {
+            String contributorName = (String)contributorsJSON.get(i);
+            Account contributor = manager.getAccountByUsername(contributorName);
+            if (contributor == null)
+                continue;
+            contributors.add(contributor);
+        }
+        return contributors;
+    }
     /**
      * Add accounts to a project's list of contributors based on username, and adds the project to each contributor's list of projects.
      * @param array A JSONArray countaining account usernames.
@@ -220,6 +233,36 @@ public class DataReader extends DataConstants
             project.addContributor(contributor);
             contributor.addProject(project);
         }
+    }
+    public static ArrayList<Column> buildColumns(ArrayList<Task> tasks, JSONArray columnsJSON)
+    {
+        ArrayList<Column> columns = new ArrayList<Column>();
+        for (int i=0; i<columnsJSON.size(); i++)
+        {
+            // Get column title and create a new column.
+            JSONObject columnJSON = (JSONObject)columnsJSON.get(i);
+            String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
+            Column newColumn = new Column(columnTitle);
+
+            // Get the current column's task UUIDs and populate column with tasks that have matching UUIDs.
+            JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
+            for (int j=0; j<columnTasksJSON.size(); j++)
+            {
+                // Loop through tasks, find task with UUID equal to current UUID, add task.
+                UUID taskID = UUID.fromString((String)columnTasksJSON.get(j));
+                for (int k=0; k<tasks.size(); k++)
+                {
+                    Task currentTask = tasks.get(k);
+                    if (taskID.equals(currentTask.getID()))
+                    {
+                        newColumn.addTask(currentTask);
+                        break;
+                    }
+                }
+            }
+            columns.add(newColumn);
+        }
+        return columns;
     }
     /**
      * Adds each column in a JSONArray to a project's list of columns after populating the column with tasks.
