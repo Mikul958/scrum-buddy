@@ -234,7 +234,7 @@ public class DataReader extends DataConstants
             
             // Load time string and parse it using custom DateTimeFormatter.
             String timeString = (String)newCommentJSON.get(TIME);
-            LocalDateTime dateTime = LocalDateTime.parse(timeString, DATE_FORMAT);
+            LocalDateTime dateTime = LocalDateTime.parse(timeString, TIME_FORMAT);
 
             String username = (String)newCommentJSON.get(COMMENT_USER);
             Account user = manager.getAccountByUsername(username);
@@ -259,7 +259,7 @@ public class DataReader extends DataConstants
             JSONObject newEditJSON = (JSONObject)editsJSON.get(i);
 
             String timeString = (String)newEditJSON.get(TIME);
-            LocalDateTime dateTime = LocalDateTime.parse(timeString, DATE_FORMAT);
+            LocalDateTime dateTime = LocalDateTime.parse(timeString, TIME_FORMAT);
 
             String username = (String)newEditJSON.get(EDIT_EDITOR);
             Account user = manager.getAccountByUsername(username);

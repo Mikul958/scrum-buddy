@@ -241,7 +241,7 @@ public class DataWriter extends DataConstants
             JSONObject commentJSON = new JSONObject();
 
             // Put dateTime in specified format and add resulting string to JSONObject
-            String timeString = DATE_FORMAT.format(currentComment.getDateTime());
+            String timeString = TIME_FORMAT.format(currentComment.getDateTime());
             commentJSON.put(TIME, timeString);
 
             // Get commenter's username and add to comment JSONObject.
@@ -269,7 +269,7 @@ public class DataWriter extends DataConstants
             Edit currentEdit = edits.get(i);
             JSONObject editJSON = new JSONObject();
 
-            String timeString = DATE_FORMAT.format(currentEdit.getDateTime());
+            String timeString = TIME_FORMAT.format(currentEdit.getDateTime());
             editJSON.put(TIME, timeString);
 
             String username = currentEdit.getEditor().getUsername();
