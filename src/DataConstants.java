@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public abstract class DataConstants
 {
     // Formatter for displaying/parsing time.
-    protected static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
+    protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     
     // Accounts.json
     protected static final String ACCOUNTS_FILE = "json/Accounts.json";
