@@ -43,6 +43,7 @@ public abstract class DataConstants
 
     // Tasks.json
     protected static final String TASKS_FILE = "json/Tasks.json";
+    protected static final String TASKS_FILE_TEMP = "json/Tasks-tmp.json";  // TODO delete when done
     protected static final String TASK_ID = "tUUID";
     protected static final String TASK_TYPE = "type";
     protected static final String TASK_NAME = "name";

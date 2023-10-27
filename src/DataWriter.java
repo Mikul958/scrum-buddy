@@ -19,6 +19,7 @@ public class DataWriter extends DataConstants
      */
     public static boolean saveAccounts()
     {
+        // Get system-wide list of accounts and initialize outer JSONArray.
         AccountManager manager = AccountManager.getInstance();
         ArrayList<Account> accounts = manager.getAccounts();
         JSONArray accountsJSON = new JSONArray();
@@ -53,6 +54,8 @@ public class DataWriter extends DataConstants
         }
     }
 
+    // TODO figure out how to save empty square brackets instead of "null";
+
     /**
      * Saves the system-wide list of projects and tasks to Projects.json and Tasks.json.
      * @return true if projects and tasks were successfully written.
@@ -62,6 +65,7 @@ public class DataWriter extends DataConstants
         // List to keep track of tasks as projects are saved, will be saved at the end of this method.
         ArrayList<Task> tasksToSave = new ArrayList<Task>();
         
+        // Get system-wide list of projects and initalize outer JSONArray.
         ProjectManager manager = ProjectManager.getInstance();
         ArrayList<Project> projects = manager.getProjects();
         JSONArray projectsJSON = new JSONArray();
@@ -130,7 +134,46 @@ public class DataWriter extends DataConstants
      */
     private static boolean saveTasks(ArrayList<Task> tasks)
     {
-        return true; // TODO
+        JSONArray tasksJSON = new JSONArray();
+        for (int i=0; i<tasks.size(); i++)
+        {
+            Task currentTask = tasks.get(i);
+            JSONObject taskJSON = new JSONObject();
+
+            // Add basic task information to JSONObject.
+            String idString = currentTask.getID().toString();
+            taskJSON.put(TASK_ID, idString);
+            taskJSON.put(TASK_NAME, currentTask.getName());
+            taskJSON.put(TASK_PRIORITY, currentTask.getPriority());
+
+            // Add JSONArray of task comments to JSONObject, saveComments() works for both projects and tasks.
+            ArrayList<Comment> comments = currentTask.getComments();
+            JSONArray commentsJSON = saveComments(comments);
+            taskJSON.put(COMMENTS, commentsJSON);
+
+            // Add JSONArray of task edits to JSONObject
+            ArrayList<Edit> edits = currentTask.getEditHistory();
+            JSONArray editsJSON = saveEdits(edits);
+            taskJSON.put(TASK_EDITS, editsJSON);
+
+            // Add finished JSONObject to the outer JSONArray
+            tasksJSON.add(taskJSON);
+        }
+
+        try
+        {
+            FileWriter writer = new FileWriter(TASKS_FILE_TEMP); // TODO
+
+            writer.write(tasksJSON.toJSONString());
+            writer.flush();
+            writer.close();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
     /**
      * Takes in a list of contributors and returns a JSONArray of their usernames.
@@ -148,7 +191,7 @@ public class DataWriter extends DataConstants
         return contributorsJSON;
     }
     /**
-     * Builds a JSONArray of columns containing a title and a JSONArray of Java UUID corresponding to tasks.
+     * Builds a JSONArray of columns containing a title and a JSONArray of Java UUIDs corresponding to tasks.
      * @param columns The list of columns for a given project.
      * @param tasksToSave A list of tasks that keeps track of all tasks encountered while saving projects.
      * @return A JSONArray containing JSONObjects with each column's information for a given project.
@@ -220,6 +263,10 @@ public class DataWriter extends DataConstants
      */
     private static JSONArray saveEdits(ArrayList<Edit> edits)
     {
-        return null; // TODO
+        JSONArray editsJSON = new JSONArray();
+
+        // TODO
+
+        return editsJSON;
     }
 }
