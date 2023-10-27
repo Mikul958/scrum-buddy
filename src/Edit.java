@@ -40,6 +40,19 @@ public class Edit
         this.dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd 'at' HH:mm:ss");
     }
 
+    public LocalDateTime getDateTime()
+    {
+        return this.dateTime;
+    }
+    public Account getEditor()
+    {
+        return this.editor;
+    }
+    public String getDescription()
+    {
+        return this.description;
+    }
+
     /**
      * Creates a string representation of this edit.
      * @return A string containing the date and time, editor, and description of this edit.

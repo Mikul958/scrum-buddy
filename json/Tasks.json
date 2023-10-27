@@ -42,7 +42,7 @@
             },
             {
                 "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
+                "dateTime": "2021/03/06 at 14:22:23",
                 "description": "Moved to column In Progress"
             }
         ]
@@ -54,20 +54,20 @@
         "comments": [
             {
                 "user": "APacicco",
-                "dateTime": "2020/01/01 at 00:00:02",
-                "content": "Happy New Year!"
+                "dateTime": "2019/12/25 at 00:00:02",
+                "content": "Merry Christmas!"
             }
         ],
         "editHistory": [
             {
                 "editor": "WedekingM",
-                "dateTime": "2021/03/03 at 13:45:00",
-                "description": "Assigned task to MPikula1"
+                "dateTime": "2020/02/02 at 12:12:12",
+                "description": "Completed task"
             },
             {
                 "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
-                "description": "Moved to column In Progress"
+                "dateTime": "2020/02/05 at 00:30:43",
+                "description": "Reopened issue"
             }
         ]
     },
@@ -78,21 +78,10 @@
         "comments": [
             {
                 "user": "APacicco",
-                "dateTime": "2020/01/01 at 00:00:02",
-                "content": "Happy New Year!"
+                "dateTime": "2020/02/14 at 00:00:02",
+                "content": "Happy Valentine's Day!"
             }
         ],
-        "editHistory": [
-            {
-                "editor": "WedekingM",
-                "dateTime": "2021/03/03 at 13:45:00",
-                "description": "Assigned task to MPikula1"
-            },
-            {
-                "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
-                "description": "Moved to column In Progress"
-            }
-        ]
+        "editHistory": []
     }
 ]

@@ -24,7 +24,7 @@
         ]
     },
     {
-        "tUUID": "9b5e15d1-22e6-463b-ace1-4a637d445c7e",
+        "tUUID": "3d632899-c2e4-4b82-8c23-457104bfdda9",
         "name": "Fix Reply System",
         "priority": 1,
         "comments": [
@@ -42,32 +42,32 @@
             },
             {
                 "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
+                "dateTime": "2021/03/06 at 14:22:23",
                 "description": "Moved to column In Progress"
             }
         ]
     },
     {
-        "tUUID": "2986b97c-08f6-4004-a135-6efd147e8404",
+        "tUUID": "9b5e15d1-22e6-463b-ace1-4a637d445c7e",
         "name": "Test, Should be in Project 1 Col 2",
         "priority": 3,
         "comments": [
             {
                 "user": "APacicco",
-                "dateTime": "2020/01/01 at 00:00:02",
-                "content": "Happy New Year!"
+                "dateTime": "2019/12/25 at 00:00:02",
+                "content": "Merry Christmas!"
             }
         ],
         "editHistory": [
             {
                 "editor": "WedekingM",
-                "dateTime": "2021/03/03 at 13:45:00",
-                "description": "Assigned task to MPikula1"
+                "dateTime": "2020/02/02 at 12:12:12",
+                "description": "Completed task"
             },
             {
                 "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
-                "description": "Moved to column In Progress"
+                "dateTime": "2020/02/05 at 00:30:43",
+                "description": "Reopened issue"
             }
         ]
     },
@@ -78,21 +78,10 @@
         "comments": [
             {
                 "user": "APacicco",
-                "dateTime": "2020/01/01 at 00:00:02",
-                "content": "Happy New Year!"
+                "dateTime": "2020/02/14 at 00:00:02",
+                "content": "Happy Valentine's Day!"
             }
         ],
-        "editHistory": [
-            {
-                "editor": "WedekingM",
-                "dateTime": "2021/03/03 at 13:45:00",
-                "description": "Assigned task to MPikula1"
-            },
-            {
-                "editor": "CadeAP",
-                "dateTime": "2021/03/03 at 14:22:23",
-                "description": "Moved to column In Progress"
-            }
-        ]
+        "editHistory": []
     }
 ]

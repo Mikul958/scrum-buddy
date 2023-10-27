@@ -264,9 +264,21 @@ public class DataWriter extends DataConstants
     private static JSONArray saveEdits(ArrayList<Edit> edits)
     {
         JSONArray editsJSON = new JSONArray();
+        for (int i=0; i<edits.size(); i++)
+        {
+            Edit currentEdit = edits.get(i);
+            JSONObject editJSON = new JSONObject();
 
-        // TODO
+            String timeString = dateFormat.format(currentEdit.getDateTime());
+            editJSON.put(TIME, timeString);
 
+            String username = currentEdit.getEditor().getUsername();
+            editJSON.put(EDIT_EDITOR, username);
+
+            editJSON.put(EDIT_DESCRIPTION, currentEdit.getDescription());
+
+            editsJSON.add(editJSON);
+        }
         return editsJSON;
     }
 }
