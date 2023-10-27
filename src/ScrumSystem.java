@@ -11,7 +11,7 @@ public class ScrumSystem {
     public ScrumSystem()
     {
         accountManager = AccountManager.getInstance();
-        // TODO all project stuff
+        projectManager = ProjectManager.getInstance();
     }
 
     public Account getCurrentUser()

@@ -1,51 +1,65 @@
 [
     {
-        "pUUID": "2abdfb60-8ef2-4bbb-82eb-20321a406d3c",
-        "title": "Cade's Project",
-        "category": "EDUCATION",
         "owner": "CadeAP",
-        "contributors": ["CadeAP", "MPikula1"],
-        "columns": [
-            {
-                "columnTitle": "To-Do",
-                "tasks": ["d33c8aee-63ef-4154-b3a5-75372717c393"]
-            },
-            {
-                "columnTitle": "Done",
-                "tasks": ["9b5e15d1-22e6-463b-ace1-4a637d445c7e"]
-            }
-        ],
         "comments": [
             {
+                "dateTime": "2022\/09\/04 at 18:24:24",
                 "user": "CadeAP",
-                "dateTime": "2022/09/04 at 18:24:24",
                 "content": "Wow!"
             },
             {
+                "dateTime": "2023\/03\/05 at 11:11:11",
                 "user": "MPikula1",
-                "dateTime": "2023/03/05 at 11:11:11",
                 "content": "This doesn't work."
             }
-        ]
+        ],
+        "columns": [
+            {
+                "columnTitle": "To-Do",
+                "tasks": [
+                    "d33c8aee-63ef-4154-b3a5-75372717c393"
+                ]
+            },
+            {
+                "columnTitle": "Done",
+                "tasks": [
+                    "9b5e15d1-22e6-463b-ace1-4a637d445c7e"
+                ]
+            }
+        ],
+        "pUUID": "2abdfb60-8ef2-4bbb-82eb-20321a406d3c",
+        "contributors": [
+            "CadeAP",
+            "MPikula1"
+        ],
+        "title": "Cade's Project",
+        "category": "Education"
     },
     {
-        "pUUID": "c69ef17b-7fe1-4771-9488-64b671643a81",
-        "title": "Al's Project",
-        "category": "BUSINESS",
         "owner": "APacicco",
-        "contributors": ["APacicco", "WedekingM", "MPikula1"],
+        "comments": [
+            {
+                "dateTime": "2019\/08\/08 at 23:59:59",
+                "user": "WedekingM",
+                "content": "It is almost August 9th"
+            }
+        ],
         "columns": [
             {
                 "columnTitle": "Backlog",
-                "tasks": ["3d632899-c2e4-4b82-8c23-457104bfdda9", "4d0ae7fe-386a-45e3-8ecc-c8ec6dffebeb"]
+                "tasks": [
+                    "3d632899-c2e4-4b82-8c23-457104bfdda9",
+                    "4d0ae7fe-386a-45e3-8ecc-c8ec6dffebeb"
+                ]
             }
         ],
-        "comments": [
-            {
-                "user": "WedekingM",
-                "dateTime": "2019/08/08 at 23:59:59",
-                "content": "It is almost August 9th"
-            }
-        ]
+        "pUUID": "c69ef17b-7fe1-4771-9488-64b671643a81",
+        "contributors": [
+            "APacicco",
+            "WedekingM",
+            "MPikula1"
+        ],
+        "title": "Al's Project",
+        "category": "Business"
     }
 ]

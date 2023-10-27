@@ -54,8 +54,6 @@ public class DataWriter extends DataConstants
         }
     }
 
-    // TODO figure out how to save empty square brackets instead of "null";
-
     /**
      * Saves the system-wide list of projects and tasks to Projects.json and Tasks.json.
      * @return true if projects and tasks were successfully written.
@@ -112,7 +110,7 @@ public class DataWriter extends DataConstants
 
         try
         {
-            FileWriter writer = new FileWriter(PROJECTS_FILE_TEMP);  // TODO
+            FileWriter writer = new FileWriter(PROJECTS_FILE);
 
             writer.write(projectsJSON.toJSONString());
             writer.flush();
@@ -162,7 +160,7 @@ public class DataWriter extends DataConstants
 
         try
         {
-            FileWriter writer = new FileWriter(TASKS_FILE_TEMP); // TODO
+            FileWriter writer = new FileWriter(TASKS_FILE);
 
             writer.write(tasksJSON.toJSONString());
             writer.flush();
