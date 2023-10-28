@@ -241,7 +241,7 @@ public class Project
     }
     public void orderTask(String taskName, int taskPriority)
     {
-        //TODO
+        //TODO Should this go into the column class??
     }
     /**
      * NEEDS TO BE ADDED TO UML *
