@@ -196,16 +196,18 @@ public class Project
     {
         comments.remove(comment);
     }
-    public void addTask(Task task, Column column, String name, int priority)
+    /**
+     * Add a task too a project.
+     * See findColumn method below.
+     * @param columnName the user wants add the task too.
+     * @param taskName the name of the new task.
+     * @param taskPriority of the new task.
+     */
+    public void addTask(String columnName, String taskName, int taskPriority)
     {
-        for(int i = 0; i < columns.size(); i++){
-            Column temp = columns.get(i);
-            if(temp.getTitle().equals(column.getTitle())){
-                //left off here.
-            }                                                           
-        }
+        findColumn(columnName).addTask(taskName, taskPriority);
     }
-    public void removeTask(Column column, Task task)
+    public void removeTask(String columnName, String taskName)
     {
 
     }
@@ -231,5 +233,20 @@ public class Project
             }
         }
         return false;
+    }
+    /**
+     * @author Miles Wedeking
+     * Made this to help with uniformity of adding and removing tasks.
+     * @param columnName of column that task will be added too.
+     * @return the column object that the task will be added to.
+     */
+    public Column findColumn(String columnName){
+        for(int i = 0; i < columns.size(); i++){ //Loop the list of columns.
+            Column temp = columns.get(i);        //Temp column for ea. index.
+            if(temp.getTitle().equals(columnName)){ //If temp == our desired column name.
+                return temp;                        //Then return it.
+            }
+        }
+        return null;                            //Otherwise return nothing.
     }
 }
