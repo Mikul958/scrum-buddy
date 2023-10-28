@@ -16,6 +16,7 @@ public class Project
     private ArrayList<Account> contributors;
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
+    private boolean isComplete = false;     //Labels the project as "incomplete"
 
     /**
      * Creates a fresh project with the specified basic information and handles Account-Project linking.
@@ -219,7 +220,7 @@ public class Project
         findColumn(columnName).removeTask(taskName, taskPriority);
     }
     /**
-     * 
+     * This class uses the column object add/remove functions.
      * @param task the object task that is to be moved.
      * @param columnNameTo name of the destination column.
      * @param columnNameFrom name of the origination column.
@@ -262,5 +263,11 @@ public class Project
             }
         }
         return null;                            //Otherwise return nothing.
+    }
+    /**
+     * In order to label a projct as "complete"
+     */
+    public void completeProject(){
+        this.isComplete = true;
     }
 }
