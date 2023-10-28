@@ -17,6 +17,7 @@ public class Project
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
     private boolean isComplete = false;     //Labels the project as "incomplete"
+    private int totalProjectTasks;
 
     /**
      * Creates a fresh project with the specified basic information and handles Account-Project linking.
@@ -232,7 +233,7 @@ public class Project
     }
     public void orderTask(String taskName, int taskPriority)
     {
-
+        //TODO
     }
     /**
      * NEEDS TO BE ADDED TO UML *
@@ -269,5 +270,18 @@ public class Project
      */
     public void completeProject(){
         this.isComplete = true;
+    }
+    /**
+     * Counts the total number of tasks that exist within the project.
+     * Does so, by looping throuh each column,
+     * then, it loops that column and counts each task.
+     */
+    public void countTotalTasks(){
+        for(int i = 0; i < columns.size(); i++){    //for each column
+            Column temp = columns.get(i);           //current temp column
+           for(int j = 0; j < temp.countTotalTasks(); j++){ //each task of that column
+                totalProjectTasks++;
+           }
+        }
     }
 }

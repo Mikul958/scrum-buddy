@@ -10,6 +10,7 @@ public class Column
 {
     private String title;
     private ArrayList<Task> tasks;
+    private int totalColumnTasks;
 
     /**
      * Creates a column with the specified title and initializes its list of tasks.
@@ -85,5 +86,15 @@ public class Column
     {
         return column != null && this.getClass() == column.getClass()
             && this.getTitle().equals(((Column)column).getTitle());
+    }
+    /**
+     * Counts up how many tasks are in this column of a project.
+     * @return
+     */
+    public int countTotalTasks(){
+        for(int i = 0; i < tasks.size(); i++){
+            totalColumnTasks++;
+        }
+        return totalColumnTasks;
     }
 }
