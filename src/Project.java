@@ -207,9 +207,16 @@ public class Project
     {
         findColumn(columnName).addTask(taskName, taskPriority);
     }
-    public void removeTask(String columnName, String taskName)
+    /**
+     * Remove a task from a project.
+     * See findColumn method below.
+     * @param columnName the user wants to add the task too.
+     * @param taskName the name of the new task.
+     * @param taskPriority the priority of the new task.
+     */
+    public void removeTask(String columnName, String taskName, int taskPriority)
     {
-
+        findColumn(columnName).removeTask(taskName, taskPriority);
     }
     public void moveTask(Task task, Column column)
     {

@@ -51,6 +51,17 @@ public class Column
         tasks.add(task);
     }
     /**
+     * @author Miles Wedeking
+     * This was needed for the project class.
+     * @param name of the task.
+     * @param priority of the task.
+     */
+    public void removeTask(String name, int priority)
+    {
+        Task newTask = new Task(name, priority);
+        tasks.remove(newTask);
+    }
+    /**
      * Removes the specified task from the column.
      * @param task The task to be removed from the column.
      * @return true if the specified task exists in the column.
