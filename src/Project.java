@@ -105,15 +105,23 @@ public class Project
     {
         this.category = category;       //Good?
     }
-    public double viewProgress()
+    /**
+     * Prints and displays progression.
+     */
+    public void viewProgress()
     {
-        //TODO See below...
-        return 0.0;
+        System.out.println("There are currently "+totalProjectTasks+" associated with this project.");
     }
+    /**
+     * Returns T/F depending if the project is labeled as complete.
+     * @return T/F depending if project is completed.
+     */
     public boolean isProjectDone()
     {
-        //TODO How are we going to track progress?
-        return false;
+        if(isComplete == true)
+            return true;
+        else
+            return false;
     }
     /**
      * Add the specified account as a contributor to a project if account is not already a contributor.
