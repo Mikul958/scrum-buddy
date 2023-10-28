@@ -110,7 +110,8 @@ public class Project
      */
     public void viewProgress()
     {
-        System.out.println("There are currently "+totalProjectTasks+" associated with this project.");
+        System.out.println("There are currently "+totalProjectTasks+
+        " associated with this project.");
     }
     /**
      * Returns T/F depending if the project is labeled as complete.
