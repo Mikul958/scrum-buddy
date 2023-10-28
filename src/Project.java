@@ -218,11 +218,18 @@ public class Project
     {
         findColumn(columnName).removeTask(taskName, taskPriority);
     }
-    public void moveTask(Task task, Column column)
+    /**
+     * 
+     * @param task the object task that is to be moved.
+     * @param columnNameTo name of the destination column.
+     * @param columnNameFrom name of the origination column.
+     */
+    public void moveTask(Task task, String columnNameTo, String columnNameFrom)
     {
-
+        findColumn(columnNameFrom).removeTask(task);    
+        findColumn(columnNameTo).addTask(task);
     }
-    public void orderTask(Task task, int Priority)
+    public void orderTask(String taskName, int taskPriority)
     {
 
     }
