@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * @author Miles Wedeking and Al Pacicco
- *
+ * 
+ * @author Miles Wedeking, Al Pacicco, Michael Pikula
  */
 public class Project
 {
@@ -16,8 +16,6 @@ public class Project
     private ArrayList<Account> contributors;
     private ArrayList<Column> columns;
     private ArrayList<Comment> comments;
-    private boolean isComplete = false;     //Labels the project as "incomplete"
-    private int totalProjectTasks;
 
     /**
      * Creates a fresh project with the specified basic information and handles Account-Project linking.
@@ -65,64 +63,39 @@ public class Project
         this.columns = columns;
         this.comments = comments;
     }
-    /**
-     * Get the UUID of a project.
-     * @return project UUID.
-     */
+
     public UUID getID()
     {
         return this.id;
     }
-    /**
-     * Get the title of a project
-     * @return project title.
-     */
     public String getTitle()
     {
         return this.title;
     }
-    /**
-     * Get the category of a project.
-     * @return project category.
-     */
     public Category getCategory()
     {
         return this.category;
     }
-    /**
-     * Get the owner of a project.
-     * @return the owner of the project.
-     */
     public Account getOwner()
     {
         return this.owner;
     }
-    /**
-     * Get a list of all contributors associated with a project.
-     * @return the list of contributors of this project.
-     */
     public ArrayList<Account> getContributors()
     {
         return this.contributors;
     }
-    /**
-     * Get a list of all columns on a project.
-     * @return this list of columns for this project.
-     */
     public ArrayList<Column> getColumns()
     {
         return this.columns;
     }
-    /**
-     * Get a list of comments associated with a project
-     * @return list of comments associated with this project.
-     */
     public ArrayList<Comment> getComments()
     {
         return this.comments;
     }
+
     /**
-     * Retruns T/F depending on if two projects are identical.
+     * Checks if this project and the specified project are equivalent via their UUIDs.
+     * @return true if the project IDs are equal.
      */
     @Override
     public boolean equals(Object project)
@@ -180,35 +153,75 @@ public class Project
     }
     /**
      * Checks to see if the specified account is in the list of contributors.
-     * @param account Account to be added.
+     * @param account Account to be checked.
      * @return true if the specified account is in the list.
      */
     public boolean isContributor(Account account)
     {       
         for(int i=0; i<contributors.size(); i++)
         {   
-            Account temp = contributors.get(i);         
-            if (temp.equals(account))
+            Account currentAccount = contributors.get(i);         
+            if (currentAccount.equals(account))
                 return true;
         }
         return false;
     }
     /**
-     * Adds a column to the project
-     * @param name of the project.
+     * Adds a column to the project with the specified title if a column with this title is not already in the project.
+     * @param title Title of the new column.
+     * @return true if the column was successfully added.
      */
-    public void addColumn(String name)
+    public boolean addColumn(String title)
     {
-        Column temp = new Column(name);
-        columns.add(temp);
+        for (int i=0; i<columns.size(); i++)
+        {
+            String currentColumnTitle = columns.get(i).getTitle();
+            if (currentColumnTitle.equals(title))
+                return false;
+        }
+        Column newColumn = new Column(title);
+        columns.add(newColumn);
+        return true;
     }
     /**
-     * Add a column to a project.
-     * @param column to be added to the project.
+     * Add a column to a project after checking to make sure a column with that title is not already in the project.
+     * @param column Column to be added to the project.
+     * @return true if the column was successfully added.
      */
-    public void addColumn(Column column)
+    public boolean addColumn(Column column)
     {
+        for (int i=0; i<columns.size(); i++)
+        {
+            String currentColumnTitle = columns.get(i).getTitle();
+            if (currentColumnTitle.equals(column.getTitle()))
+                return false;
+        }
         columns.add(column);
+        return true;
+    }
+    /**
+     * Removes the column with the specified title from the project.
+     * @param title Title of the column to be removed.
+     * @return true if a column with the specified title existed in the project.
+     */
+    public boolean removeColumn(String title)
+    {
+        for (int i=0; i<columns.size(); i++)
+        {
+            Column currentColumn = columns.get(i);
+            if (title.equals(currentColumn.getTitle()))
+                return columns.remove(currentColumn);
+        }
+        return false;
+    }
+    /**
+     * Removes the specified column from the project.
+     * @param column Column to be removed.
+     * @return true if the specified column existed in the project.
+     */
+    public boolean removeColumn(Column column)
+    {
+        return columns.remove(column);
     }
     /**
      * Move a column's location
@@ -217,30 +230,16 @@ public class Project
      * @return T/F
      */
     public boolean moveColumn(int from, int to)
-    {
-        if(from < 0 || from > columns.size() -1 || to > columns.size()-1 || to < 0)
-        {
+    {  
+        // TODO needs work.
+        if (from < 0 || from >= columns.size() || to < 0 || to >= columns.size())
             return false;
-        }else {
-            
-            Column temp = columns.get(from);
-            temp = columns.get(to);
-            columns.remove(from);
-            columns.set(to, temp);
-            return true;
-        }
-    }
-    /**
-     * Removes a column from the project
-     * @param column column to be removed
-     */
-    public void removeColumn(Column column)
-    {
-        if(containsColumn(column.getTitle())){
-            columns.remove(column);
-        }
-        else
-            System.out.println("Column could not be removed.");     //Temp 
+
+        Column temp = columns.get(from);
+        temp = columns.get(to);
+        columns.remove(from);
+        columns.set(to, temp);
+        return true;
     }
     /**
      * Add a comment to a project.
