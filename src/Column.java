@@ -10,8 +10,6 @@ public class Column
 {
     private String title;
     private ArrayList<Task> tasks;
-    private ArrayList<Task> sortedTasks;
-    private int totalColumnTasks;
 
     /**
      * Creates a column with the specified title and initializes its list of tasks.
@@ -91,41 +89,29 @@ public class Column
         return tasks.remove(task);
     }
     /**
-     * Order's the tasks in alphabetical order,
-     * in a particular column of tasks.
-     * 
-     * Tasks the current list of tasks, and passes them all to an array.
-     * The array is sorted using bubble sort.
-     * Then, the sortedArray is then passed back into a list called sortedTasks
+     * Sorts all tasks in this column alphabetically.
      */
-     public void orderTasks(){
-        Task[] taskArray = new Task[tasks.size()];  // Add each task to an Array
-        Task tempTask;
-        for(int i = 0; i < tasks.size(); i++){
-            tempTask = tasks.get(i);
-            taskArray[i] = tempTask;
-        }
-        //Bubble sort
-        boolean swapped = false;
-        for(int i = 0; i < taskArray.length; i++){      // Sort the array.
-            if(taskArray[i].getName().charAt(0) >
-            taskArray[i+1].getName().charAt(0)){
-                //swapping
-                tempTask = taskArray[i];
-                taskArray[i] = taskArray[i+1];
-                taskArray[i+1] = tempTask;
-                swapped = true;
+    public void orderTasks()
+    {
+        // Selection sort.
+        for (int i=0; i<tasks.size()-1; i++)
+        {
+            int minIndex = i;
+            for (int j=i+1; j<tasks.size(); j++)
+            {
+                // Get names of tasks and use Java's compareTo method.
+                String currentTask = tasks.get(j).getName();
+                String minTask = tasks.get(minIndex).getName();
+                int compareValue = currentTask.compareTo(minTask);
+
+                // Set currentTask as new min if it comes before minTask alphabetically.
+                if (compareValue > 0)
+                    minIndex = j;
             }
-            else{
-                if(swapped == false){
-                    break;
-                }
-            }
-        }
-        //Transfer sorted tasks from taskArray, and pass back to a list.
-        for(int i = 0; i < taskArray.length; i++){
-            Task temp = taskArray[i];
-            sortedTasks.add(temp);
+            // Swap tasks at i and minIndex.
+            Task temp = tasks.get(i);
+            tasks.set(i, tasks.get(minIndex));
+            tasks.set(minIndex, temp);
         }
     }
 }
