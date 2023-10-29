@@ -4,9 +4,8 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 /**
- * ProjectManager class
- * @author Miles Wedeking
- * 
+ * A class responsible for the creation, deletion, or other handling of projects for the application.
+ * @author Michael Pikula, Miles Wedeking.
  */
 public class ProjectManager
 {
@@ -30,18 +29,16 @@ public class ProjectManager
             projectManager = new ProjectManager();
         return projectManager;
     }
-    /**
-     * Get current list of projects.
-     * @return the list of current projects.
-     */
+
+    // Accessors
     public ArrayList<Project> getProjects()
     {
         return this.projects;
     }
     /**
-     * Return a project based on it's UUID.
-     * @param id of the project you are looking for.
-     * @return object which has the same UUID as provided.
+     * Retrieves the project with the specified UUID.
+     * @param id Java UUID of the project to be retrieved.
+     * @return The project retrieved (null if no accounts with the ID exist).
      */
     public Project getProjectByID(UUID id)
     {
@@ -52,6 +49,9 @@ public class ProjectManager
         }
         return null;
     }
+
+    // Project functionality
+    
     /**
      * If project does not contain a project with the same title then,
      * add a new project using the parameters.
@@ -74,14 +74,6 @@ public class ProjectManager
        if(containsProject(projectName)){
         projects.remove(findProject(projectName));
        }
-    }
-    /**
-     * Displays progress report for the user.
-     * @param project to see progress report for.
-     */
-    public void viewProjectProgress(Project project)
-    {
-        System.out.println("There are "+project.getTotalProjectTasks()+" remaining tasks.");
     }
     /**
      * Does a project 
