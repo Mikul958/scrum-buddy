@@ -180,6 +180,7 @@ public class DataReader extends DataConstants
             if (contributor == null)
                 continue;
             contributors.add(contributor);
+            System.out.println("Added" + contributor.getUsername());
         }
         return contributors;
     }
@@ -276,8 +277,10 @@ public class DataReader extends DataConstants
     public static void main(String[] args)
     {
         // TESTING PROJECT LOADING AND ACCOUNT-TO-PROJECT LINKING
-        
-        ArrayList<Project> projects = loadProjects();
+
+        // Changed so that it does not directly call loadProjects (caused problems with duplicate account linking when ProjectManager was initialized later)
+        ProjectManager manager = ProjectManager.getInstance();
+        ArrayList<Project> projects = manager.getProjects();
         String indent = "    ";
         System.out.println("-------------------------------------------");
 
