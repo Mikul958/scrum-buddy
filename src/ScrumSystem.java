@@ -63,4 +63,20 @@ public class ScrumSystem {
     {
         return null;
     }
+
+    // TODO moved this from ProjectManager as project names are not meant to be unique, would likely work on a particular USER'S list of projects.
+    /**
+     * Retrieves a project from the list based on the entered name.
+     * @param title Title of the account to be retrieved.
+     * @return The project retrieved (null if no projects with the name exist).
+     */
+    public Project findProject(String projectName){
+        for(int i = 0; i < projects.size(); i++){
+            Project temp = projects.get(i);
+            if(temp.getTitle().equals(projectName)){
+                return temp;
+            }
+        }
+        return null;
+    }
 }

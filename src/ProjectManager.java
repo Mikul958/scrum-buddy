@@ -75,20 +75,4 @@ public class ProjectManager
     {
         return projects.remove(project);
     }
-    
-    /**
-     * Find a project based on name.
-     * @param title name of the project your are looking for.
-     * @return the apropriate project object.
-     */
-    // TODO figure out if this is necessary at all
-    public Project findProject(String projectName){
-        for(int i = 0; i < projects.size(); i++){
-            Project temp = projects.get(i);
-            if(temp.getTitle().equals(projectName)){
-                return temp;
-            }
-        }
-        return null;
-    }
 }
