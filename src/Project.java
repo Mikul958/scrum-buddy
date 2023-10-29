@@ -240,10 +240,6 @@ public class Project
         findColumn(columnNameFrom).removeTask(task);    
         findColumn(columnNameTo).addTask(task);
     }
-    public void orderTask(String taskName, int taskPriority)
-    {
-        //TODO Should this go into the column class??
-    }
     /**
      * NEEDS TO BE ADDED TO UML *
      * @param columnName of specified column

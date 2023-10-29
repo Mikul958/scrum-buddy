@@ -30,11 +30,19 @@ public class ProjectManager
             projectManager = new ProjectManager();
         return projectManager;
     }
-
+    /**
+     * Get current list of projects.
+     * @return the list of current projects.
+     */
     public ArrayList<Project> getProjects()
     {
         return this.projects;
     }
+    /**
+     * Return a project based on it's UUID.
+     * @param id of the project you are looking for.
+     * @return object which has the same UUID as provided.
+     */
     public Project getProjectByID(UUID id)
     {
         for (int i=0; i<projects.size(); i++)
@@ -44,37 +52,42 @@ public class ProjectManager
         }
         return null;
     }
-   
+    /**
+     * If project does not contain a project with the same title then,
+     * add a new project using the parameters.
+     * @param title you want to name the project
+     * @param category the project will be
+     * @param owner tied to the creation of the project
+     */
     public void addProject(String title, Category category, Account owner)
     {
-        if(!containsProject(title)){        //If project does not contain a project with the same title then,
-            projects.add(new Project(title, category, owner));  //add a new project using the parameters.
+        if(!containsProject(title)){        
+            projects.add(new Project(title, category, owner)); 
         }
     }
-    public void removeProject(Project project)
+    /**
+     * Revove a particular project from the current list of projects.
+     * @param projectName of the project to be removed
+     */
+    public void removeProject(String projectName)
     {
-       
+       if(containsProject(projectName)){
+        projects.remove(findProject(projectName));
+       }
     }
-   
-   
-   //Al Pacicco is working on this 
-    public double viewProjectProgress(Project project)
+    public void viewProjectProgress()
     {
-        //I'm thinking we track progress by 
-        int totalTasks;
-        int taskNum;
-
-        return 0;
+        //TODO
     }
     /**
-     * 
+     * Does a project 
      * @param title is the string name of the project
      * @return T/F if a project with the same name is contained within the list.
      */
-    public boolean containsProject(String title){
+    public boolean containsProject(String projectName){
         for(int i = 0; i < projects.size(); i++){
             Project temp = projects.get(i);
-            if(temp.getTitle().equals(title)){
+            if(temp.getTitle().equals(projectName)){
                 return true;
             }
         }
@@ -83,12 +96,12 @@ public class ProjectManager
     /**
      * Find a project based on name.
      * @param title name of the project your are looking for.
-     * @return the apropriate project.
+     * @return the apropriate project object.
      */
-    public Project findProject(String title){
+    public Project findProject(String projectName){
         for(int i = 0; i < projects.size(); i++){
             Project temp = projects.get(i);
-            if(temp.getTitle().equals(title)){
+            if(temp.getTitle().equals(projectName)){
                 return temp;
             }
         }
