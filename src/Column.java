@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A column of the Scrum Board within a specified project.
- * @author Al Pacicco & Michael Pikula
+ * @author Al Pacicco & Michael Pikula & Miles Wedeking
  */
 public class Column
 {
@@ -22,16 +22,28 @@ public class Column
         this.title = title;
         this.tasks = new ArrayList<Task>();
     }
+    /**
+     * Creates a column with the specified parameters.
+     * @param title name of the column.
+     * @param tasks provided list of tasks to be added to the column
+     */
     public Column(String title, ArrayList<Task> tasks)
     {
         this.title = title;
         this.tasks = tasks;
     }
-
+    /**
+     * Get the name of a column.
+     * @return the name of the column.
+     */
     public String getTitle()
     {
         return this.title;
     }
+    /**
+     * Get a list of tasks within a column of a project.
+     * @return the list of tasks of this column.
+     */
     public ArrayList<Task> getTasks()
     {
         return this.tasks;
@@ -48,6 +60,10 @@ public class Column
         Task newTask = new Task(name, priority);
         tasks.add(newTask);
     }
+    /**
+     * Overloaded for object.
+     * @param task object to be added to the column.
+     */
     public void addTask(Task task)
     {
         tasks.add(task);
@@ -83,6 +99,9 @@ public class Column
             title += "\n" + tasks.get(i);
         return out;
     }
+    /**
+     * Returns T/F depeing on if two columns are identical.
+     */
     public boolean equals(Object column)
     {
         return column != null && this.getClass() == column.getClass()

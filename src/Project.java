@@ -65,42 +65,75 @@ public class Project
         this.columns = columns;
         this.comments = comments;
     }
-
+    /**
+     * Get the UUID of a project.
+     * @return project UUID.
+     */
     public UUID getID()
     {
         return this.id;
     }
+    /**
+     * Get the title of a project
+     * @return project title.
+     */
     public String getTitle()
     {
         return this.title;
     }
+    /**
+     * Get the category of a project.
+     * @return project category.
+     */
     public Category getCategory()
     {
         return this.category;
     }
+    /**
+     * Get the owner of a project.
+     * @return the owner of the project.
+     */
     public Account getOwner()
     {
         return this.owner;
     }
+    /**
+     * Get a list of all contributors associated with a project.
+     * @return the list of contributors of this project.
+     */
     public ArrayList<Account> getContributors()
     {
         return this.contributors;
     }
+    /**
+     * Get a list of all columns on a project.
+     * @return this list of columns for this project.
+     */
     public ArrayList<Column> getColumns()
     {
         return this.columns;
     }
+    /**
+     * Get a list of comments associated with a project
+     * @return list of comments associated with this project.
+     */
     public ArrayList<Comment> getComments()
     {
         return this.comments;
     }
-
+    /**
+     * Retruns T/F depending on if two projects are identical.
+     */
     @Override
     public boolean equals(Object project)
     {
         return project != null && this.getClass() == project.getClass()
             && id.equals(((Project)project).getID());
     }
+    /**
+     * Set the categy of a project.
+     * @param category desired to be changed.
+     */
     public void setCategory(Category category)
     {
         this.category = category;       //Good?
@@ -169,10 +202,20 @@ public class Project
         Column temp = new Column(name);
         columns.add(temp);
     }
+    /**
+     * Add a column to a project.
+     * @param column to be added to the project.
+     */
     public void addColumn(Column column)
     {
         columns.add(column);
     }
+    /**
+     * Move a column's location
+     * @param from index
+     * @param to index
+     * @return T/F
+     */
     public boolean moveColumn(int from, int to)
     {
         if(from < 0 || from > columns.size() -1 || to > columns.size()-1 || to < 0)
@@ -199,10 +242,18 @@ public class Project
         else
             System.out.println("Column could not be removed.");     //Temp 
     }
+    /**
+     * Add a comment to a project.
+     * @param comment desired to be added.
+     */
     public void addComment(Comment comment)
     {
         comments.add(comment);
     }
+    /**
+     * Remove a comment from a project.
+     * @param comment desired to be removed.
+     */
     public void removeComment(Comment comment)
     {
         comments.remove(comment);
@@ -288,5 +339,12 @@ public class Project
                 totalProjectTasks++;
            }
         }
+    }
+    /**
+     * Get the total number of tasks associated with this project.
+     * @return total number of tasks.
+     */
+    public int getTotalProjectTasks(){
+        return this.totalProjectTasks;
     }
 }

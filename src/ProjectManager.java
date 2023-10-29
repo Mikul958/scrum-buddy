@@ -75,9 +75,13 @@ public class ProjectManager
         projects.remove(findProject(projectName));
        }
     }
-    public void viewProjectProgress()
+    /**
+     * Displays progress report for the user.
+     * @param project to see progress report for.
+     */
+    public void viewProjectProgress(Project project)
     {
-        //TODO
+        System.out.println("There are "+project.getTotalProjectTasks()+" remaining tasks.");
     }
     /**
      * Does a project 
