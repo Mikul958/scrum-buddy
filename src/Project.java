@@ -64,6 +64,8 @@ public class Project
         this.comments = comments;
     }
 
+    // Accessors
+
     public UUID getID()
     {
         return this.id;
@@ -92,6 +94,35 @@ public class Project
     {
         return this.comments;
     }
+    /**
+     * Counts the total number of tasks in this project.
+     * @return The total number of tasks.
+     */
+    public int getTotalTasks()
+    {
+        int total = 0;
+
+        // Loop through project columns, get task list for each column, add its size to total.
+        for (int i=0; i<columns.size(); i++)
+            total += columns.get(i).getTasks().size();
+        return total;
+    }
+    /**
+     * Gets the column from this project with the specified title.
+     * @param columnTitle The title of the column to be returned.
+     * @return The column with the specified title (null if none found).
+     */
+    public Column getColumnByTitle(String columnTitle)
+    {
+        for(int i=0; i<columns.size(); i++)
+        {
+            Column currentColumn = columns.get(i);
+            if(currentColumn.getTitle().equals(columnTitle))
+                return currentColumn;
+        }
+        return null;
+    }
+    
 
     /**
      * Checks if this project and the specified project are equivalent via their UUIDs.
@@ -103,14 +134,10 @@ public class Project
         return project != null && this.getClass() == project.getClass()
             && id.equals(((Project)project).getID());
     }
-    /**
-     * Set the categy of a project.
-     * @param category desired to be changed.
-     */
-    public void setCategory(Category category)
-    {
-        this.category = category;       //Good?
-    }
+
+    // Project progress
+    // TODO this whole section lol
+
     /**
      * Prints and displays progression.
      */
@@ -130,6 +157,15 @@ public class Project
         else
             return false;
     }
+    /**
+     * In order to label a projct as "complete"
+     */
+    public void completeProject(){
+        this.isComplete = true;
+    }
+
+    // Contributors
+
     /**
      * Add the specified account as a contributor to a project if account is not already a contributor.
      * @param account Account to be added.
@@ -166,6 +202,9 @@ public class Project
         }
         return false;
     }
+
+    // Columns and tasks
+
     /**
      * Adds a column to the project with the specified title if a column with this title is not already in the project.
      * @param title Title of the new column.
@@ -241,22 +280,9 @@ public class Project
         columns.set(to, temp);
         return true;
     }
-    /**
-     * Add a comment to a project.
-     * @param comment desired to be added.
-     */
-    public void addComment(Comment comment)
-    {
-        comments.add(comment);
-    }
-    /**
-     * Remove a comment from a project.
-     * @param comment desired to be removed.
-     */
-    public void removeComment(Comment comment)
-    {
-        comments.remove(comment);
-    }
+
+    // TODO anything below here to comments.
+
     /**
      * Add a task too a project.
      * See findColumn method below.
@@ -305,45 +331,24 @@ public class Project
         }
         return false;
     }
+
+    // Project comments
+
     /**
-     * @author Miles Wedeking
-     * Made this to help with uniformity of adding and removing tasks.
-     * @param columnName of column that task will be added too.
-     * @return the column object that the task will be added to.
+     * Add a comment to a project.
+     * @param comment desired to be added.
      */
-    public Column findColumn(String columnName){
-        for(int i = 0; i < columns.size(); i++){ //Loop the list of columns.
-            Column temp = columns.get(i);        //Temp column for ea. index.
-            if(temp.getTitle().equals(columnName)){ //If temp == our desired column name.
-                return temp;                        //Then return it.
-            }
-        }
-        return null;                            //Otherwise return nothing.
+    public void addComment(Account user, String content)
+    {
+        Comment newComment = new Comment(user, content);
+        comments.add(newComment);
     }
     /**
-     * In order to label a projct as "complete"
+     * Remove a comment from a project.
+     * @param comment desired to be removed.
      */
-    public void completeProject(){
-        this.isComplete = true;
-    }
-    /**
-     * Counts the total number of tasks that exist within the project.
-     * Does so, by looping throuh each column,
-     * then, it loops that column and counts each task.
-     */
-    public void countTotalTasks(){
-        for(int i = 0; i < columns.size(); i++){    //for each column
-            Column temp = columns.get(i);           //current temp column
-           for(int j = 0; j < temp.countTotalTasks(); j++){ //each task of that column
-                totalProjectTasks++;
-           }
-        }
-    }
-    /**
-     * Get the total number of tasks associated with this project.
-     * @return total number of tasks.
-     */
-    public int getTotalProjectTasks(){
-        return this.totalProjectTasks;
+    public void removeComment(Comment comment)
+    {
+        comments.remove(comment);
     }
 }
