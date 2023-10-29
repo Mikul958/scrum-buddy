@@ -64,8 +64,7 @@ public class Project
         this.comments = comments;
     }
 
-    // Accessors
-
+    // Accessors and mutators
     public UUID getID()
     {
         return this.id;
@@ -122,7 +121,14 @@ public class Project
         }
         return null;
     }
-    
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+    public void setCategory(Category category)
+    {
+        this.category = category;
+    }
 
     /**
      * Checks if this project and the specified project are equivalent via their UUIDs.
@@ -133,35 +139,6 @@ public class Project
     {
         return project != null && this.getClass() == project.getClass()
             && id.equals(((Project)project).getID());
-    }
-
-    // Project progress
-    // TODO this whole section lol
-
-    /**
-     * Prints and displays progression.
-     */
-    public void viewProgress()
-    {
-        System.out.println("There are currently "+totalProjectTasks+
-        " associated with this project.");
-    }
-    /**
-     * Returns T/F depending if the project is labeled as complete.
-     * @return T/F depending if project is completed.
-     */
-    public boolean isProjectDone()
-    {
-        if(isComplete == true)
-            return true;
-        else
-            return false;
-    }
-    /**
-     * In order to label a projct as "complete"
-     */
-    public void completeProject(){
-        this.isComplete = true;
     }
 
     // Contributors
@@ -263,21 +240,21 @@ public class Project
         return columns.remove(column);
     }
     /**
-     * Move a column's location
-     * @param from index
-     * @param to index
-     * @return T/F
+     * Move a column to a different position.
+     * @param from The index of the column to be moved.
+     * @param after The index that the column will be moved after.
+     * @return true if the column was successfully moved.
      */
     public boolean moveColumn(int from, int to)
     {  
-        // TODO needs work.
+        // Check entered indices are not out of bounds.
         if (from < 0 || from >= columns.size() || to < 0 || to >= columns.size())
             return false;
 
-        Column temp = columns.get(from);
-        temp = columns.get(to);
+        // Store column at from and remove it, add stored column at to.
+        Column movedColumn = columns.get(from);
         columns.remove(from);
-        columns.set(to, temp);
+        columns.add(to, movedColumn);
         return true;
     }
 
