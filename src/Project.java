@@ -180,7 +180,7 @@ public class Project
         return false;
     }
 
-    // Columns and tasks
+    // Columns
 
     /**
      * Adds a column to the project with the specified title if a column with this title is not already in the project.
@@ -251,62 +251,80 @@ public class Project
         if (from < 0 || from >= columns.size() || to < 0 || to >= columns.size())
             return false;
 
-        // Store column at from and remove it, add stored column at to.
+        // Store column at from and remove it, add stored column at to (and shift everything after to the right).
         Column movedColumn = columns.get(from);
         columns.remove(from);
         columns.add(to, movedColumn);
         return true;
     }
 
-    // TODO anything below here to comments.
+    // Tasks
 
     /**
-     * Add a task too a project.
+     * Adds a task to the specified column, with the specified name and priority, if the column exists.
      * See findColumn method below.
-     * @param columnName the user wants add the task too.
-     * @param taskName the name of the new task.
-     * @param taskPriority of the new task.
+     * @param columnTitle Title of the column to add task to.
+     * @param name The name of the new task.
+     * @param priority The priority of the new task.
+     * @return true if the specified column existed.
      */
-    public void addTask(String columnName, String taskName, int taskPriority)
+    public boolean addTask(String columnTitle, String name, int priority)
     {
-        findColumn(columnName).addTask(taskName, taskPriority);
+        Column addTo = getColumnByTitle(columnTitle);
+        if (addTo == null)
+            return false;
+        addTo.addTask(name, priority);
+        return true;
     }
     /**
-     * Remove a task from a project.
-     * See findColumn method below.
-     * @param columnName the user wants to add the task too.
-     * @param taskName the name of the new task.
-     * @param taskPriority the priority of the new task.
+     * Removes the first task with the specified name from the specified column.
+     * @param columnTitle Title of the column to remove task from.
+     * @param taskName The name of the task to be removed.
+     * @return true if the column exists and the task exists in that column.
      */
-    public void removeTask(String columnName, String taskName, int taskPriority)
+    public boolean removeTask(String columnTitle, String name)
     {
-        findColumn(columnName).removeTask(taskName, taskPriority);
+        Column removeFrom = getColumnByTitle(columnTitle);
+        if (removeFrom == null)
+            return false;
+        Task toRemove = removeFrom.getTaskByName(name);
+        if (toRemove == null)
+            return false;
+        return removeFrom.removeTask(toRemove);
     }
     /**
-     * This class uses the column object add/remove functions.
-     * @param task the object task that is to be moved.
-     * @param columnNameTo name of the destination column.
-     * @param columnNameFrom name of the origination column.
+     * Removes the specified task from the specified column.
+     * @param columnTitle The title of the column to remove task from.
+     * @param task The task to be removed.
+     * @return true if the column exists and the task exists in that column.
      */
-    public void moveTask(Task task, String columnNameTo, String columnNameFrom)
+    public boolean removeTask(String columnTitle, Task task)
     {
-        findColumn(columnNameFrom).removeTask(task);    
-        findColumn(columnNameTo).addTask(task);
+        Column removeFrom = getColumnByTitle(columnTitle);
+        if (removeFrom == null)
+            return false;
+        return removeFrom.removeTask(task);
+        
     }
     /**
-     * NEEDS TO BE ADDED TO UML *
-     * @param columnName of specified column
-     * @return T/F if username was discovered  
-     * in current list of columns on this project.
+     * Moves a task from one specified column to another.
+     * @param task The task to be moved.
+     * @param columnNameFrom Title of the original column.
+     * @param columnNameTo Title of the destination column.
+     * @return true if both columns exist and the specified task exists in columnTitleFrom
      */
-    public boolean containsColumn(String columnName){
-        for(int i = 0; i < columns.size(); i++){
-            Column temp = columns.get(i);
-            if(temp.getTitle().equals(columnName)){
-                return true;
-            }
-        }
-        return false;
+    public boolean moveTask(Task task, String columnTitleFrom, String columnTitleTo)
+    {
+        Column fromColumn = getColumnByTitle(columnTitleFrom);
+        Column toColumn = getColumnByTitle(columnTitleTo);
+        if (fromColumn == null || toColumn == null)
+            return false;
+        boolean taskRemoved = fromColumn.removeTask(task);
+        if (!taskRemoved)
+            return false;
+        toColumn.addTask(task);
+        return true;
+        
     }
 
     // Project comments

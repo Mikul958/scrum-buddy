@@ -42,6 +42,21 @@ public class Column
     }
 
     /**
+     * Retrieve a task from this column with the specified name.
+     * @param name The name of the task to be retrieved.
+     * @return The task retrieved (null if no tasks with the name exist in the column).
+     */
+    public Task getTaskByName(String name)
+    {
+        for (int i=0; i<tasks.size(); i++)
+        {
+            if (name.equals(tasks.get(i).getName()))
+                return tasks.get(i);
+        }
+        return null;
+    }
+
+    /**
      * Returns a string representation of the column.
      * @return A string containing the column's title and all of its tasks.
      */
@@ -82,7 +97,7 @@ public class Column
     /**
      * Removes the specified task from the column.
      * @param task The task to be removed from the column.
-     * @return true if the specified task exists in the column.
+     * @return true if the specified task existed in the column.
      */
     public boolean removeTask(Task task)
     {
