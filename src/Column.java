@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A column of the Scrum Board within a specified project.
- * @author Al Pacicco & Michael Pikula & Miles Wedeking
+ * @author Michael Pikula, Miles Wedeking
  */
 public class Column
 {
@@ -32,62 +32,17 @@ public class Column
         this.title = title;
         this.tasks = tasks;
     }
-    /**
-     * Get the name of a column.
-     * @return the name of the column.
-     */
+    
+    // Accessors
     public String getTitle()
     {
         return this.title;
     }
-    /**
-     * Get a list of tasks within a column of a project.
-     * @return the list of tasks of this column.
-     */
     public ArrayList<Task> getTasks()
     {
         return this.tasks;
     }
 
-    /**
-     * Adds a task of the NewFeature type to the column.
-     * @param name The name of the new feature.
-     * @param priority The feature's relative priority.
-     * @param reasoning The reasoning for the feature to be added.
-     */
-    public void addTask(String name, int priority)
-    {
-        Task newTask = new Task(name, priority);
-        tasks.add(newTask);
-    }
-    /**
-     * Overloaded for object.
-     * @param task object to be added to the column.
-     */
-    public void addTask(Task task)
-    {
-        tasks.add(task);
-    }
-    /**
-     * @author Miles Wedeking
-     * This was needed for the project class.
-     * @param name of the task.
-     * @param priority of the task.
-     */
-    public void removeTask(String name, int priority)
-    {
-        Task newTask = new Task(name, priority);
-        tasks.remove(newTask);
-    }
-    /**
-     * Removes the specified task from the column.
-     * @param task The task to be removed from the column.
-     * @return true if the specified task exists in the column.
-     */
-    public boolean removeTask(Task task)
-    {
-        return tasks.remove(task);
-    }
     /**
      * Returns a string representation of the column.
      * @return A string containing the column's title and all of its tasks.
@@ -100,7 +55,8 @@ public class Column
         return out;
     }
     /**
-     * Returns T/F depeing on if two columns are identical.
+     * Checks if this column and the specified column are equivalent via their titles.
+     * @return true if the column titles are equal.
      */
     public boolean equals(Object column)
     {
@@ -108,14 +64,31 @@ public class Column
             && this.getTitle().equals(((Column)column).getTitle());
     }
     /**
-     * Counts up how many tasks are in this column of a project.
-     * @return
+     * Adds a new Task to this column.
+     * @param name The name of the new Task.
+     * @param priority The task's relative priority.
      */
-    public int countTotalTasks(){
-        for(int i = 0; i < tasks.size(); i++){
-            totalColumnTasks++;
-        }
-        return totalColumnTasks;
+    public void addTask(String name, int priority)
+    {
+        Task newTask = new Task(name, priority);
+        tasks.add(newTask);
+    }
+    /**
+     * Adds an already-created Task to this column.
+     * @param task Task to be added.
+     */
+    public void addTask(Task task)
+    {
+        tasks.add(task);
+    }
+    /**
+     * Removes the specified task from the column.
+     * @param task The task to be removed from the column.
+     * @return true if the specified task exists in the column.
+     */
+    public boolean removeTask(Task task)
+    {
+        return tasks.remove(task);
     }
     /**
      * Order's the tasks in alphabetical order,
@@ -126,7 +99,7 @@ public class Column
      * Then, the sortedArray is then passed back into a list called sortedTasks
      */
      public void orderTasks(){
-        Task[] taskArray = new Task[tasks.size()];  //Add each task to an Array
+        Task[] taskArray = new Task[tasks.size()];  // Add each task to an Array
         Task tempTask;
         for(int i = 0; i < tasks.size(); i++){
             tempTask = tasks.get(i);
@@ -134,7 +107,7 @@ public class Column
         }
         //Bubble sort
         boolean swapped = false;
-        for(int i = 0; i < taskArray.length; i++){      //Sort the array.
+        for(int i = 0; i < taskArray.length; i++){      // Sort the array.
             if(taskArray[i].getName().charAt(0) >
             taskArray[i+1].getName().charAt(0)){
                 //swapping
@@ -156,13 +129,3 @@ public class Column
         }
     }
 }
-
-
-
-
-// String tempString = tasks.get(i).getName();
-//             char[] charBox = new char[tempString.length()];
-//             for(int j = 0; j < charBox.length; j++){ // add each char to charBox[]
-//                 char tempChar = tempString.charAt(j);
-//                 charBox[j] = tempChar;
-//             }
