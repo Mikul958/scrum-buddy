@@ -4,7 +4,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 /**
- * A class responsible for the creation, deletion, or other handling of projects for the application.
+ * A class responsible for the creation and deletion of projects for the application.
  * @author Michael Pikula, Miles Wedeking.
  */
 public class ProjectManager
@@ -13,7 +13,7 @@ public class ProjectManager
     private ArrayList<Project> projects;
 
     /**
-     * Creates a new instance of AccountManager, and can only be called once.
+     * Creates a new instance of ProjectManager, and can only be called once.
      */
     private ProjectManager()
     {
@@ -31,6 +31,11 @@ public class ProjectManager
     }
 
     // Accessors
+
+    /**
+     * Returns the list of all existing projects.
+     * @return List of projects.
+     */
     public ArrayList<Project> getProjects()
     {
         return this.projects;
@@ -49,51 +54,34 @@ public class ProjectManager
         }
         return null;
     }
-
-    // Project functionality
     
     /**
-     * If project does not contain a project with the same title then,
-     * add a new project using the parameters.
+     * Creates a new project with the specified details and adds it to the list of projects. Project name does not need to be unique.
      * @param title you want to name the project
      * @param category the project will be
      * @param owner tied to the creation of the project
      */
-    public void addProject(String title, Category category, Account owner)
+    public void createProject(String title, Category category, Account owner)
     {
-        if(!containsProject(title)){        
-            projects.add(new Project(title, category, owner)); 
-        }
+        Project newProject = new Project(title, category, owner);
+        projects.add(newProject);
     }
     /**
-     * Revove a particular project from the current list of projects.
-     * @param projectName of the project to be removed
+     * Remove the specified project from the list of projects if it exists.
+     * @param project Project to be removed.
+     * @return true if the specified project existed in the list.
      */
-    public void removeProject(String projectName)
+    public boolean deleteProject(Project project)
     {
-       if(containsProject(projectName)){
-        projects.remove(findProject(projectName));
-       }
+        return projects.remove(project);
     }
-    /**
-     * Does a project 
-     * @param title is the string name of the project
-     * @return T/F if a project with the same name is contained within the list.
-     */
-    public boolean containsProject(String projectName){
-        for(int i = 0; i < projects.size(); i++){
-            Project temp = projects.get(i);
-            if(temp.getTitle().equals(projectName)){
-                return true;
-            }
-        }
-        return false;
-    }
+    
     /**
      * Find a project based on name.
      * @param title name of the project your are looking for.
      * @return the apropriate project object.
      */
+    // TODO figure out if this is necessary at all
     public Project findProject(String projectName){
         for(int i = 0; i < projects.size(); i++){
             Project temp = projects.get(i);
