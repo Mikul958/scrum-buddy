@@ -53,11 +53,7 @@ public class ProjectManager
     }
     public void removeProject(Project project)
     {
-        //TODO Should we change:    addProject(title, category, owner)
-        //                       
-        //instead to:               addProject(Project project)
-        //
-        //That way, removeProject and addProject can function similarly??
+       
     }
    
    
@@ -83,5 +79,19 @@ public class ProjectManager
             }
         }
         return false;
+    }
+    /**
+     * Find a project based on name.
+     * @param title name of the project your are looking for.
+     * @return the apropriate project.
+     */
+    public Project findProject(String title){
+        for(int i = 0; i < projects.size(); i++){
+            Project temp = projects.get(i);
+            if(temp.getTitle().equals(title)){
+                return temp;
+            }
+        }
+        return null;
     }
 }
