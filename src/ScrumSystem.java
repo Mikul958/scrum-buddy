@@ -22,13 +22,27 @@ public class ScrumSystem {
     {
         return this.currentProject;
     }
+    /**
+     * Get the list of all the currently logged-in user's projects.
+     * @return The list of all projects that the current user is a contributor to.
+     */
+    public ArrayList<Project> getCurrentUserProjects()
+    {
+        return currentUser.getProjects();
+    }
 
+    /**
+     * Saves all accounts and projects to their respective JSON files.
+     * @return true if all data was saved successfully.
+     */
     public boolean saveData()
     {
         if (DataWriter.saveAccounts() && DataWriter.saveProjects())
             return true;
         return false;
     }
+
+    // Account operations
     public boolean login(String username, String password)
     {
         Account temp = accountManager.login(username, password);
@@ -55,6 +69,8 @@ public class ScrumSystem {
     {
         return accountManager.getAccountByUsername(username);
     }
+
+    // Project Operations TODO creation, deletion, etc.
     private ArrayList<Project> getAllProjects()
     {
         return null;
