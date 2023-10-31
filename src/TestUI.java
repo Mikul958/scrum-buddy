@@ -28,10 +28,10 @@ public class TestUI
             System.out.println("  - " + newAccounts.get(i));
         
         // Should print the googoogaga one
-        System.out.println("\nCURRENT USER:\n" + system.getCurrentUser());
+        System.out.println("\nCURRENT USER:\n" + system.getCurrentAccount());
 
         // Should print true
-        System.out.println("---------- Account Deleted: " + system.deleteAccount(system.getCurrentUser()) + " ----------");
+        System.out.println("---------- Account Deleted: " + system.deleteAccount(system.getCurrentAccount()) + " ----------");
 
         // Should print all account before except the googoogaga one since it was just deleted
         System.out.println("Post-deletion:");
@@ -40,7 +40,7 @@ public class TestUI
             System.out.println("  - " + newAccounts.get(i));
 
         // Should print null, as googoogaga was current user and that account was deleted.
-        System.out.println("\nCURRENT USER:\n" + system.getCurrentUser());
+        System.out.println("\nCURRENT USER:\n" + system.getCurrentAccount());
     }
 
     /**
@@ -52,7 +52,7 @@ public class TestUI
     {
         System.out.println("-----------------------------------------");
         if (system.login(username, password))
-            System.out.println("Login Successful:\n" + system.getCurrentUser());
+            System.out.println("Login Successful:\n" + system.getCurrentAccount());
         else
             System.out.println("Login Failed!");
     }
