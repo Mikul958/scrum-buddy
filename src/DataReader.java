@@ -370,7 +370,8 @@ public class DataReader extends DataConstants
         system.logout();
 
 
-        // TESTING PROJECT SAVING
+        // TESTING SAVING
+        DataWriter.saveAccounts();
         DataWriter.saveProjects();
     }
 }
