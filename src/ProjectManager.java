@@ -73,6 +73,7 @@ public class ProjectManager
      */
     public boolean deleteProject(Project project)
     {
+        project.clearContributors();
         return projects.remove(project);
     }
 }
