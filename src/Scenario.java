@@ -35,6 +35,7 @@ public class Scenario {
         //TODO
         //Open "Electric Missiles"
         // Prints basic project information
+        /*
         Project currentProject = currentProjects.get(i);
         System.out.println("PROJECT " + currentProject.getTitle());
         System.out.println("pID: " + currentProject.getID());
@@ -66,7 +67,7 @@ public class Scenario {
                 System.out.println(indent + indent + "Priority: " + colTasks.get(k).getPriority());
             }
         }
-
+        
         // Prints out comments in full.
         ArrayList<Comment> projComments = currentProject.getComments();
         System.out.println("COMMENTS:");
@@ -74,7 +75,7 @@ public class Scenario {
             System.out.println("  - " + projComments.get(j));
 
         System.out.println("-------------------------------------------");
-
+        */
         //Add a new task "Initialize super algorithm to detonate at warp speed". Assign the task to Jeff Goldblum.
         
         //Add a comment to the task "Avoid civilians Jeff!"
