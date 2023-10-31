@@ -144,7 +144,7 @@ public class Project
     // Contributors
 
     /**
-     * Add the specified account as a contributor to a project if account is not already a contributor.
+     * Add the specified account as a contributor to this project if account is not already a contributor, and adds this project to their project list.
      * @param account Account to be added.
      * @return true if the specified account was added successfully.
      */
@@ -153,16 +153,21 @@ public class Project
         if (isContributor(account))
             return false;
         contributors.add(account);
+        account.addProject(this);
         return true;
     }
     /**
-     * Remove the specified account as a contributor from a project.
+     * Remove the specified account as a contributor from this project and this project from their project list.
      * @param account Account to be removed.
      * @return true if the specified account was in the list of contributors.
      */
     public boolean removeContributor(Account account)
     {
-        return contributors.remove(account);
+        boolean removed = contributors.remove(account);
+        if (removed)
+            account.removeProject(this);
+        return removed;
+
     }
     /**
      * Checks to see if the specified account is in the list of contributors.
@@ -178,6 +183,15 @@ public class Project
                 return true;
         }
         return false;
+    }
+    /**
+     * Clears the list of contributors and removes this project from each contributor's project list. Intended to be used on project deletion.
+     */
+    public void clearContributors()
+    {
+        for (int i=0; i<contributors.size(); i++)
+            contributors.get(i).removeProject(this);
+        contributors.clear();
     }
 
     // Columns
