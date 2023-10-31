@@ -18,6 +18,7 @@ public class ScrumSystem {
         projectManager = ProjectManager.getInstance();
     }
 
+    // Accessors
     public Account getCurrentAccount()
     {
         return this.currentAccount;
@@ -25,14 +26,6 @@ public class ScrumSystem {
     public Project getCurrentProject()
     {
         return this.currentProject;
-    }
-    public ArrayList<Account> getAllAccounts()
-    {
-        return accountManager.getAccounts();
-    }
-    public ArrayList<Project> getAllProjects()
-    {
-        return projectManager.getProjects();
     }
     /**
      * Get the list of all the currently logged-in user's projects.
@@ -104,6 +97,13 @@ public class ScrumSystem {
             currentProject = null;
         return removed;
     }
+    public void setCurrentProjectTitle(String title)
+    {
+        currentProject.setTitle(title);
+    }
+
+    // TODO more project operations.
+
     public boolean deleteProject(Project project)
     {
         return projectManager.deleteProject(project);
