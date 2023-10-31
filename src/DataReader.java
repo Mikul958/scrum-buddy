@@ -335,10 +335,10 @@ public class DataReader extends DataConstants
         // Test an account login, then print the names of all their projects.
         ScrumSystem system = new ScrumSystem();
         system.login("CadeAP", "Password123!?");
-        Account currentUser = system.getCurrentUser();
-        ArrayList<Project> currentProjects = currentUser.getProjects();
+        Account currentAccount = system.getCurrentAccount();
+        ArrayList<Project> currentProjects = currentAccount.getProjects();
 
-        System.out.println("Current user:\n" + currentUser);
+        System.out.println("Current user:\n" + currentAccount);
         System.out.println("Their projects:");
         for (int i=0; i<currentProjects.size(); i++)
             System.out.println("  - " + currentProjects.get(i).getTitle());
@@ -347,10 +347,10 @@ public class DataReader extends DataConstants
 
         // Test again with another account.
         system.login("APacicco", "123Password!");
-        currentUser = system.getCurrentUser();
-        currentProjects = currentUser.getProjects();
+        currentAccount = system.getCurrentAccount();
+        currentProjects = currentAccount.getProjects();
 
-        System.out.println("\nCurrent user:\n" + currentUser);
+        System.out.println("\nCurrent user:\n" + currentAccount);
         System.out.println("Their projects:");
         for (int i=0; i<currentProjects.size(); i++)
             System.out.println("  - " + currentProjects.get(i).getTitle());
@@ -359,10 +359,10 @@ public class DataReader extends DataConstants
 
         // Test one last time with another account, this one should have Cade and Al's projects as it is a contributor to both.
         system.login("MPikula1", "Apple456##");
-        currentUser = system.getCurrentUser();
-        currentProjects = currentUser.getProjects();
+        currentAccount = system.getCurrentAccount();
+        currentProjects = currentAccount.getProjects();
 
-        System.out.println("\nCurrent user:\n" + currentUser);
+        System.out.println("\nCurrent user:\n" + currentAccount);
         System.out.println("Their projects:");
         for (int i=0; i<currentProjects.size(); i++)
             System.out.println("  - " + currentProjects.get(i).getTitle());

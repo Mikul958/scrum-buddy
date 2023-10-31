@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ScrumSystem {
     private AccountManager accountManager;
     private ProjectManager projectManager;
-    private Account currentUser;
+    private Account currentAccount;
     private Project currentProject;
 
     public ScrumSystem()
@@ -14,21 +14,29 @@ public class ScrumSystem {
         projectManager = ProjectManager.getInstance();
     }
 
-    public Account getCurrentUser()
+    public Account getCurrentAccount()
     {
-        return this.currentUser;
+        return this.currentAccount;
     }
     public Project getCurrentProject()
     {
         return this.currentProject;
     }
+    public ArrayList<Account> getAllAccounts()
+    {
+        return accountManager.getAccounts();
+    }
+    public ArrayList<Project> getAllProjects()
+    {
+        return projectManager.getProjects();
+    }
     /**
      * Get the list of all the currently logged-in user's projects.
      * @return The list of all projects that the current user is a contributor to.
      */
-    public ArrayList<Project> getCurrentUserProjects()
+    public ArrayList<Project> getCurrentAccountProjects()
     {
-        return currentUser.getProjects();
+        return currentAccount.getProjects();
     }
 
     /**
@@ -48,20 +56,29 @@ public class ScrumSystem {
         Account temp = accountManager.login(username, password);
         if (temp == null)
             return false;
-        currentUser = temp;
+        currentAccount = temp;
         return true;
     }
     public void logout()
     {
-        currentUser = null;
+        currentAccount = null;
     }
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
         return accountManager.createAccount(username, password, email, firstName, lastName);
     }
+    public boolean deleteCurrentAccount()
+    {
+        if (currentAccount == null)
+            return false;
+        boolean removed = accountManager.deleteAccount(currentAccount);
+        if (removed)
+            currentAccount = null;
+        return removed;
+    }
     public boolean deleteAccount(Account account)
     {
-        if (currentUser.equals(account))
+        if (currentAccount.equals(account))
             logout();
         return accountManager.deleteAccount(account);
     }
@@ -71,14 +88,43 @@ public class ScrumSystem {
     }
 
     // Project Operations TODO creation, deletion, etc.
-    private ArrayList<Project> getAllProjects()
+    public void createProject(String title, Category category)
     {
-        return null;
+        if (currentAccount == null)
+            return;
+        projectManager.createProject(title, category, currentAccount);  // Create a project with currentUser as the owner.
     }
-    public Project getProjectByID(String id)
+    public boolean deleteCurrentProject()
     {
-        return null;
+        if (currentProject == null)
+            return false;
+        boolean removed = projectManager.deleteProject(currentProject);
+        if (removed)
+            currentProject = null;
+        return removed;
     }
+    public boolean deleteProject(Project project)
+    {
+        return projectManager.deleteProject(project);
+    }
+    public void changeProjectTitle(String title, Project project)
+    {
+        project.setTitle(title);
+    }
+    public boolean addColumnToProject(Project project, String columnTitle)
+    {
+        return project.addColumn(columnTitle);
+    }
+    public boolean removeColumnFromProject(Project project, String columnTitle)
+    {
+        return project.removeColumn(columnTitle);
+    }
+    public boolean addTaskToColumn(Project project, String columnTitle, String name, int priority)
+    {
+        return project.addTask(columnTitle, name, priority);
+    }
+
+
 
     // TODO moved this from ProjectManager as project names are not meant to be unique, would likely work on a particular USER'S list of projects.
     /**
@@ -86,6 +132,7 @@ public class ScrumSystem {
      * @param title Title of the account to be retrieved.
      * @return The project retrieved (null if no projects with the name exist).
      */
+    /*
     public Project findProject(String projectName){
         for(int i = 0; i < projects.size(); i++){
             Project temp = projects.get(i);
@@ -95,4 +142,5 @@ public class ScrumSystem {
         }
         return null;
     }
+    */
 }
