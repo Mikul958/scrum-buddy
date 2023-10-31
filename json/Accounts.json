@@ -26,5 +26,12 @@
         "password": "hi",
         "email": "mwedeking@hotmail.com",
         "username": "WedekingM"
+    },
+    {
+        "firstName": "Atticus",
+        "lastName": "Madden",
+        "password": "AMad123!",
+        "email": "AtticusMadden@gmail.com",
+        "username": "AtticusM"
     }
 ]
