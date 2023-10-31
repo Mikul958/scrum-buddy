@@ -2,6 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * A class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
+ * @author Michael Pikula
+ */
 public class ScrumSystem {
     private AccountManager accountManager;
     private ProjectManager projectManager;
@@ -14,6 +18,7 @@ public class ScrumSystem {
         projectManager = ProjectManager.getInstance();
     }
 
+    // Accessors
     public Account getCurrentAccount()
     {
         return this.currentAccount;
@@ -21,14 +26,6 @@ public class ScrumSystem {
     public Project getCurrentProject()
     {
         return this.currentProject;
-    }
-    public ArrayList<Account> getAllAccounts()
-    {
-        return accountManager.getAccounts();
-    }
-    public ArrayList<Project> getAllProjects()
-    {
-        return projectManager.getProjects();
     }
     /**
      * Get the list of all the currently logged-in user's projects.
@@ -62,6 +59,7 @@ public class ScrumSystem {
     public void logout()
     {
         currentAccount = null;
+        currentProject = null;
     }
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
@@ -82,12 +80,8 @@ public class ScrumSystem {
             logout();
         return accountManager.deleteAccount(account);
     }
-    private Account getAccountByUsername(String username)
-    {
-        return accountManager.getAccountByUsername(username);
-    }
 
-    // Project Operations TODO creation, deletion, etc.
+    // Project Operations
     public void createProject(String title, Category category)
     {
         if (currentAccount == null)
@@ -103,44 +97,15 @@ public class ScrumSystem {
             currentProject = null;
         return removed;
     }
+    public void setCurrentProjectTitle(String title)
+    {
+        currentProject.setTitle(title);
+    }
+
+    // TODO more project operations.
+
     public boolean deleteProject(Project project)
     {
         return projectManager.deleteProject(project);
     }
-    public void changeProjectTitle(String title, Project project)
-    {
-        project.setTitle(title);
-    }
-    public boolean addColumnToProject(Project project, String columnTitle)
-    {
-        return project.addColumn(columnTitle);
-    }
-    public boolean removeColumnFromProject(Project project, String columnTitle)
-    {
-        return project.removeColumn(columnTitle);
-    }
-    public boolean addTaskToColumn(Project project, String columnTitle, String name, int priority)
-    {
-        return project.addTask(columnTitle, name, priority);
-    }
-
-
-
-    // TODO moved this from ProjectManager as project names are not meant to be unique, would likely work on a particular USER'S list of projects.
-    /**
-     * Retrieves a project from the list based on the entered name.
-     * @param title Title of the account to be retrieved.
-     * @return The project retrieved (null if no projects with the name exist).
-     */
-    /*
-    public Project findProject(String projectName){
-        for(int i = 0; i < projects.size(); i++){
-            Project temp = projects.get(i);
-            if(temp.getTitle().equals(projectName)){
-                return temp;
-            }
-        }
-        return null;
-    }
-    */
 }
