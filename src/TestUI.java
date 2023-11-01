@@ -14,8 +14,13 @@ public class TestUI
         system.logout();
         system.saveData();
 
-        system.createAccount("googoogaga", "woohoo", "googoogaga@aol.com", "Googoo", "Gaga");
-        testLogin("googoogaga", "woohoo");    // Should now succeed as account has been created with this info.
+        // Should not happen because this account is deleted each test, but will happen if account is not deleted.
+        boolean success = system.createAccount("googoogaga", "woohoo", "googoogaga@aol.com", "Googoo", "Gaga");
+        if (!success)
+            System.out.println("Account creation failed: username already in use");
+
+        // Should now succeed as account has been created with this info.
+        testLogin("googoogaga", "woohoo");
         
         System.out.println("-------------------- TESTING ACCOUNT DELETION --------------------");
         
@@ -41,6 +46,8 @@ public class TestUI
 
         // Should print null, as googoogaga was current user and that account was deleted.
         System.out.println("\nCURRENT USER:\n" + system.getCurrentAccount());
+
+        system.saveData();
     }
 
     /**

@@ -180,7 +180,6 @@ public class DataReader extends DataConstants
             if (contributor == null)
                 continue;
             contributors.add(contributor);
-            System.out.println("Added" + contributor.getUsername());
         }
         return contributors;
     }
@@ -273,7 +272,7 @@ public class DataReader extends DataConstants
         return edits;
     }
 
-    // FOR TESTING PURPOSES: DELETE WHEN FINISHED
+    // TODO FOR TESTING PURPOSES: DELETE WHEN FINISHED
     public static void main(String[] args)
     {
         // TESTING PROJECT LOADING AND ACCOUNT-TO-PROJECT LINKING
