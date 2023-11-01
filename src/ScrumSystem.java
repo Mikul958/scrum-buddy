@@ -106,6 +106,25 @@ public class ScrumSystem
     // Project Operations
 
     /**
+     * Sets the current project equal to the specified project if the currentUser is a contributor.
+     * @param project The project to be opened.
+     * @return true if the currentUser is a contributor to the specified project.
+     */
+    public boolean openProject(Project project)
+    {
+        if (currentAccount != null && !currentAccount.getProjects().contains(project))
+            return false;
+        currentProject = project;
+        return true;
+    }
+    /**
+     * Sets the current project equal to null.
+     */
+    public void closeProject()
+    {
+        currentProject = null;
+    }
+    /**
      * Creates a project with the specified title and category and assigns currentUser as owner.
      * @param title The title of the new project.
      * @param category The category of the new project.
