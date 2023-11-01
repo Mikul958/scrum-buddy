@@ -4,21 +4,17 @@ import java.util.ArrayList;
 /**
  * @author Miles Wedeking
  */
-public class Scenario {
+public class ScenarioUI{
 
     private ScrumSystem scrumsystem;
     private final String INDENT = "    ";
 
-    void ScrumSystemUI(){
+    ScenarioUI(){
         scrumsystem = new ScrumSystem();
     }
 
     public void run(){
-        //TODO scenario;
-    }
-    
-    public void printProject(){
-
+        Scenario();
     }
 
     public void Scenario(){
@@ -39,39 +35,7 @@ public class Scenario {
         //Prints basic project information (CODE FORM DATA READER)
         //**********************************************************************
         Project currentProject = currentProjects.get(2); //Electric Missiles index.
-        System.out.println("PROJECT " + currentProject.getTitle());
-        System.out.println("pID: " + currentProject.getID());
-        System.out.println("Title: " + currentProject.getTitle());
-        System.out.println("Category: " + currentProject.getCategory());
-        System.out.println("Owner: " + currentProject.getOwner().getUsername());
-        // Prints usernames of all contributors
-        ArrayList<Account> projContributors = currentProject.getContributors();
-        System.out.println("CONTRIBUTORS:");
-        for (int j = 0; j < projContributors.size(); j++)
-            System.out.println("  - " + projContributors.get(j).getUsername());
-        // Prints columns and the basic information of all their tasks.
-        ArrayList<Column> projColumns = currentProject.getColumns();
-        System.out.println("PROJECT COLUMNS:");
-        for (int j=0; j<projColumns.size(); j++)
-        {
-            System.out.println("COLUMN " + (j+1));
-            System.out.println(INDENT + "Title: " + projColumns.get(j).getTitle());
-            ArrayList<Task> colTasks = projColumns.get(j).getTasks();
-            System.out.println(INDENT + "TASKS: ");
-            for (int k=0; k<colTasks.size(); k++)
-            {
-                System.out.println(INDENT + "TASK " + (k+1));
-                System.out.println(INDENT + INDENT + "tID: " + colTasks.get(k).getID());
-                System.out.println(INDENT + INDENT + "Name: " + colTasks.get(k).getName());
-                System.out.println(INDENT + INDENT + "Priority: " + colTasks.get(k).getPriority());
-            }
-        }
-        // Prints out comments in full.
-        ArrayList<Comment> projComments = currentProject.getComments();
-        System.out.println("COMMENTS:");
-        for (int j=0; j<projComments.size(); j++)
-            System.out.println("  - " + projComments.get(j));
-        System.out.println("-------------------------------------------");
+        gatherProjectInformation(currentProject);
         //********************************************************************** 
         //Add a new task "Initialize super algorithm to detonate at warp speed".
         currentProject.addTask("To-Do", "Initialize super algorithm to detonate at warp speed", 0);
@@ -103,7 +67,47 @@ public class Scenario {
     }
 
     public static void main(String[] args){
-
+      ScenarioUI scenarioInterface = new ScenarioUI();
+      scenarioInterface.run();
+    }
+    /**
+     * Utilizes code from DataReader
+     * @param project to gather information from.
+     */
+    private void gatherProjectInformation(Project project){
+        System.out.println("PROJECT " + project.getTitle());
+        System.out.println("pID: " + project.getID());
+        System.out.println("Title: " + project.getTitle());
+        System.out.println("Category: " + project.getCategory());
+        System.out.println("Owner: " + project.getOwner().getUsername());
+        // Prints usernames of all contributors
+        ArrayList<Account> projContributors = project.getContributors();
+        System.out.println("CONTRIBUTORS:");
+        for (int j = 0; j < projContributors.size(); j++)
+            System.out.println("  - " + projContributors.get(j).getUsername());
+        // Prints columns and the basic information of all their tasks.
+        ArrayList<Column> projColumns = project.getColumns();
+        System.out.println("PROJECT COLUMNS:");
+        for (int j=0; j<projColumns.size(); j++)
+        {
+            System.out.println("COLUMN " + (j+1));
+            System.out.println(INDENT + "Title: " + projColumns.get(j).getTitle());
+            ArrayList<Task> colTasks = projColumns.get(j).getTasks();
+            System.out.println(INDENT + "TASKS: ");
+            for (int k=0; k<colTasks.size(); k++)
+            {
+                System.out.println(INDENT + "TASK " + (k+1));
+                System.out.println(INDENT + INDENT + "tID: " + colTasks.get(k).getID());
+                System.out.println(INDENT + INDENT + "Name: " + colTasks.get(k).getName());
+                System.out.println(INDENT + INDENT + "Priority: " + colTasks.get(k).getPriority());
+            }
+        }
+        // Prints out comments in full.
+        ArrayList<Comment> projComments = project.getComments();
+        System.out.println("COMMENTS:");
+        for (int j=0; j<projComments.size(); j++)
+            System.out.println("  - " + projComments.get(j));
+        System.out.println("-------------------------------------------");
     }
 
 }
