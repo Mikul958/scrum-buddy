@@ -58,7 +58,7 @@ public class ScenarioUI{
          * The list of projects of the current user needs to already be loaded
          * before the next line executes.... 
          */
-        Project currentProject = currentProjects.get(2); //Electric Missiles index?
+        Project currentProject = currentProjects.get(0); //Electric Missiles index?
         gatherProjectInformation(currentProject);
         //**********************************************************************
         
@@ -72,7 +72,7 @@ public class ScenarioUI{
         System.out.println("Task added.\n");
         //**********************************************************************
         //Assign the task to Jeff Goldblum.
-        // TODO
+        // TODO we lose
         //**********************************************************************
         //Add a comment to the task "Avoid civilians Jeff!"
         currentProject.addComment(scrumsystem.getCurrentAccount(), "Avoid civilians Jeff!");
@@ -106,7 +106,7 @@ public class ScenarioUI{
      * @param project to gather information from.
      */
     private void gatherProjectInformation(Project project){
-        System.out.println("PROJECT " + project.getTitle());
+        System.out.println("CURRENT PROJECT:");
         System.out.println("pID: " + project.getID());
         System.out.println("Title: " + project.getTitle());
         System.out.println("Category: " + project.getCategory());
