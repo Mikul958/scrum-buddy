@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * A Facade class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
  * @author Michael Pikula
  */
-public class ScrumSystem {
+public class ScrumSystem
+{
     private AccountManager accountManager;
     private ProjectManager projectManager;
     private Account currentAccount;
