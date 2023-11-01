@@ -68,9 +68,7 @@
         "columns": [
             {
                 "columnTitle": "Backlog",
-                "tasks": [
-                    
-                ]
+                "tasks": []
             },
             {
                 "columnTitle": "Doing",
