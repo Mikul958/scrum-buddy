@@ -164,16 +164,68 @@ public class ScrumSystem {
         return currentProject.removeColumn(columnTitle);
     }
     /**
-     * Moves the column at index from to index to, shifting all other columns as necessary.
+     * Moves the column at index from to index to in the current project, shifting all other columns as necessary.
      * @param from The index of the column to be moved.
      * @param to The index that the column will be moved to.
-     * @return true if the column was successfully moved.
+     * @return true if both indices were in-bounds and the column was successfully moved.
      */
     public boolean moveColumn(int from, int to)
     {
         return currentProject.moveColumn(from, to);
     }
+    
+    // Project task operations.
 
+    /**
+     * Adds a task to the specified column in the current project, if the column exists.
+     * @param columnTitle Title of the column to add task to.
+     * @param name The name of the new task.
+     * @param priority The priority of the new task.
+     * @return true if the column with the specified title exists.
+     */
+    public boolean addProjectTask(String columnTitle, String name, int priority)
+    {
+        return currentProject.addTask(columnTitle, name, priority);
+    }
+    /**
+     * Removes a task from the specified column in the current project, if the column exists.
+     * @param columnTitle Title of the column to remove task from.
+     * @param task The task to be removed, must be obtained from UI before calling.
+     * @return true if the column exists and the task exists in that column.
+     */
+    public boolean removeProjectTask(String columnTitle, Task task)
+    {
+        return currentProject.removeTask(columnTitle, task);
+    }
+    /**
+     * Moves a task in the current project from one specified column to another.
+     * @param task The task to be moved, must be obtained from UI before calling.
+     * @param columnTitleFrom Title of the original column.
+     * @param columnTitleTo Title of the destination column.
+     * @return true if both columns exist and the specified task exists in original column.
+     */
+    public boolean moveProjectTask(Task task, String columnTitleFrom, String columnTitleTo)
+    {
+        return currentProject.moveTask(task, columnTitleFrom, columnTitleTo);
+    }
 
-    // TODO more project operations.
+    // Project comment operations.
+
+    /**
+     * Add a comment to the current project.
+     * @param user Account making the comment.
+     * @param content Content of the comment.
+     */
+    public void addProjectComment(Account user, String content)
+    {
+        currentProject.addComment(user, content);
+    }
+    /**
+     * Remove a comment from the current project.
+     * @param comment Comment to be removed, must be obtained from UI before calling.
+     */
+    public void removeProjectComment(Comment comment)
+    {
+        currentProject.removeComment(comment);
+    }
 }

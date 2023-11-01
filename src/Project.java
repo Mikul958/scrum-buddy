@@ -276,7 +276,6 @@ public class Project
 
     /**
      * Adds a task to the specified column, with the specified name and priority, if the column exists.
-     * See findColumn method below.
      * @param columnTitle Title of the column to add task to.
      * @param name The name of the new task.
      * @param priority The priority of the new task.
@@ -325,7 +324,7 @@ public class Project
      * @param task The task to be moved.
      * @param columnNameFrom Title of the original column.
      * @param columnNameTo Title of the destination column.
-     * @return true if both columns exist and the specified task exists in columnTitleFrom
+     * @return true if both columns exist and the specified task exists in original column.
      */
     public boolean moveTask(Task task, String columnTitleFrom, String columnTitleTo)
     {
@@ -338,14 +337,14 @@ public class Project
             return false;
         toColumn.addTask(task);
         return true;
-        
     }
 
     // Project comments
 
     /**
-     * Add a comment to a project.
-     * @param comment desired to be added.
+     * Add a comment to this project.
+     * @param user Account making the comment.
+     * @param content Content of the comment.
      */
     public void addComment(Account user, String content)
     {
@@ -353,8 +352,8 @@ public class Project
         comments.add(newComment);
     }
     /**
-     * Remove a comment from a project.
-     * @param comment desired to be removed.
+     * Remove a comment from this project.
+     * @param comment Comment to be removed.
      */
     public void removeComment(Comment comment)
     {
