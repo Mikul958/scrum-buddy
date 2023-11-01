@@ -228,7 +228,12 @@ public class ScrumSystem
      */
     public boolean moveProjectTask(Task task, String columnTitleFrom, String columnTitleTo)
     {
-        return currentProject.moveTask(task, columnTitleFrom, columnTitleTo);
+        if (currentProject.moveTask(task, columnTitleFrom, columnTitleTo))
+        {
+            task.addEdit(currentAccount, "Moved to " + columnTitleTo);
+            return true;
+        }
+        return false;
     }
 
     // Project comment operations.
