@@ -72,7 +72,7 @@ public class Task
     {
         comments.add(comment);
     }
-    public boolean deleteComment(Comment comment)
+    public boolean removeComment(Comment comment)
     {
         return comments.remove(comment);
     }

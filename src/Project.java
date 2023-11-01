@@ -338,8 +338,22 @@ public class Project
         toColumn.addTask(task);
         return true;
     }
+    /**
+     * Checks to see if the project contains the specified task. TODO ADD TO UML
+     * @param task The task to be checked for.
+     * @return true if this project contains the specified task.
+     */
+    public boolean containsTask(Task task)
+    {
+        for (int i=0; i<columns.size(); i++)
+        {
+            if (columns.get(i).containsTask(task))
+                return true;
+        }
+        return false;
+    }
 
-    // Project comments
+    // Comments
 
     /**
      * Add a comment to this project.
@@ -358,5 +372,32 @@ public class Project
     public void removeComment(Comment comment)
     {
         comments.remove(comment);
+    }
+    /**
+     * Adds a comment to the specified task if it exists in this project.
+     * @param task The task to add the comment to.
+     * @param user The user making the comment.
+     * @param content The content of the comment.
+     * @return true if the specified task exists in this project.
+     */
+    public boolean addTaskComment(Task task, Account user, String content)
+    {
+        if (!containsTask(task))
+            return false;
+        Comment newComment = new Comment(user, content);
+        task.addComment(newComment);
+        return true;
+    }
+    /**
+     * Removes a comment from the specified task if the task exists in this project.
+     * @param task The task to remove the comment from.
+     * @param comment The comment to be removed.
+     * @return true if the specified task exists in this project and the specified comment existed in the task.
+     */
+    public boolean removeTaskComment(Task task, Comment comment)
+    {
+        if (!containsTask(task))
+            return false;
+        return task.removeComment(comment);
     }
 }

@@ -2,6 +2,8 @@ package src;
 
 import java.util.ArrayList;
 
+// TODO ADD ALL METHODS TO UML
+
 /**
  * A class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
  * @author Michael Pikula
@@ -227,5 +229,26 @@ public class ScrumSystem {
     public void removeProjectComment(Comment comment)
     {
         currentProject.removeComment(comment);
+    }
+    /**
+     * Adds a comment to the specified task if the task exists in the current project.
+     * @param task The task to add the comment to, must be obtained from UI before calling.
+     * @param user The user making the comment.
+     * @param content The content of the comment.
+     * @return true if the specified task exists in the current project.
+     */
+    public boolean addTaskComment(Task task, Account user, String content)
+    {
+        return currentProject.addTaskComment(task, user, content);
+    }
+    /**
+     * Removes a comment from the specified task if the task exists in the current project.
+     * @param task The task to remove the comment from, must be obtained from UI before calling.
+     * @param comment The comment to be removed, must be obtained from UI before calling.
+     * @return true if the specified task exists in the current project and the specified comment existed in the task.
+     */
+    public boolean removeTaskComment(Task task, Comment comment)
+    {
+        return currentProject.removeTaskComment(task, comment);
     }
 }

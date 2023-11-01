@@ -129,4 +129,18 @@ public class Column
             tasks.set(minIndex, temp);
         }
     }
+    /**
+     * Checks to see if this column contains the specified task. TODO ADD TO UML
+     * @param task The task to be checked for.
+     * @return true if this column contains the specified task.
+     */
+    public boolean containsTask(Task task)
+    {
+        for (int i=0; i<tasks.size(); i++)
+        {
+            if (tasks.get(i).equals(task))
+                return true;
+        }
+        return false;
+    }
 }
