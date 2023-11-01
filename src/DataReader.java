@@ -48,9 +48,6 @@ public class DataReader extends DataConstants
         }
         return null;
     }
-
-    // Okay to use AccountManager while loading projects because Accounts are loaded in its constructor and have no dependencies.
-    private static AccountManager manager = AccountManager.getInstance();
     
     /**
      * Reads all projects from Projects.json, builds them, and adds them to a system-wide ArrayList.
@@ -58,6 +55,7 @@ public class DataReader extends DataConstants
      */
     public static ArrayList<Project> loadProjects()
     {
+        AccountManager manager = AccountManager.getInstance();
         ArrayList<Project> projects = new ArrayList<Project>();
 
         // Load in tasks to build columns later.
@@ -172,6 +170,7 @@ public class DataReader extends DataConstants
      */
     private static ArrayList<Account> loadContributors(JSONArray contributorsJSON)
     {
+        AccountManager manager = AccountManager.getInstance();
         ArrayList<Account> contributors = new ArrayList<Account>();
         for (int i=0; i<contributorsJSON.size(); i++)
         {
@@ -227,6 +226,7 @@ public class DataReader extends DataConstants
      */
     private static ArrayList<Comment> loadComments(JSONArray commentsJSON)
     {
+        AccountManager manager = AccountManager.getInstance();
         ArrayList<Comment> comments = new ArrayList<Comment>();
         for (int i=0; i<commentsJSON.size(); i++)
         {
@@ -253,6 +253,7 @@ public class DataReader extends DataConstants
      */
     private static ArrayList<Edit> loadEdits(JSONArray editsJSON)
     {
+        AccountManager manager = AccountManager.getInstance();
         ArrayList<Edit> edits = new ArrayList<Edit>();
         for (int i=0; i<editsJSON.size(); i++)
         {
@@ -272,7 +273,7 @@ public class DataReader extends DataConstants
         return edits;
     }
 
-    // TODO FOR TESTING PURPOSES: DELETE WHEN FINISHED
+    // FOR TESTING PURPOSES: DELETE WHEN FINISHED
     public static void main(String[] args)
     {
         // TESTING PROJECT LOADING AND ACCOUNT-TO-PROJECT LINKING
