@@ -70,8 +70,8 @@ public class AccountManager
     /**
      * Creates a new account with the specified details and adds it to the list of accounts. Username must be unique for account creation.
      * @param username An account identifier that also serves as a display name.
-     * @param password A password used while attempting to log-in.
-     * @param email The email account associated with the account.
+     * @param password A password checked while attempting to log-in.
+     * @param email The email address associated with the account.
      * @param firstName The real first name of the account user.
      * @param lastName The real last name of the account user.
      * @return True if the username was unique and the account was successfully created..

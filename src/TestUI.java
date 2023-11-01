@@ -31,7 +31,7 @@ public class TestUI
         System.out.println("\nCURRENT USER:\n" + system.getCurrentAccount());
 
         // Should print true
-        System.out.println("---------- Account Deleted: " + system.deleteAccount(system.getCurrentAccount()) + " ----------");
+        System.out.println("---------- Account Deleted: " + system.deleteCurrentAccount() + " ----------");
 
         // Should print all account before except the googoogaga one since it was just deleted
         System.out.println("Post-deletion:");

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 // TODO ADD ALL METHODS TO UML
 
 /**
- * A class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
+ * A Facade class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
  * @author Michael Pikula
  */
 public class ScrumSystem {
@@ -38,6 +38,8 @@ public class ScrumSystem {
         return currentAccount.getProjects();
     }
 
+    // Data
+
     /**
      * Saves all accounts and projects to their respective JSON files.
      * @return true if all data was saved successfully.
@@ -50,6 +52,13 @@ public class ScrumSystem {
     }
 
     // Account operations
+
+    /**
+     * Attempts to log in an account with the entered details. Sets currentUser to the entered account if successful.
+     * @param username The username of the account being logged in.
+     * @param password The password of the account being logged in.
+     * @return true if an account with the entered username exists and passwords match.
+     */
     public boolean login(String username, String password)
     {
         Account temp = accountManager.login(username, password);
@@ -58,15 +67,31 @@ public class ScrumSystem {
         currentAccount = temp;
         return true;
     }
+    /**
+     * Logs the current user out. Sets currentUser and currentProject to null.
+     */
     public void logout()
     {
         currentAccount = null;
         currentProject = null;
     }
+    /**
+     * Creates a new account with the specified details. Username must be unique for account creation.
+     * @param username An account identifier that also serves as a display name.
+     * @param password A password checked while attempting to log in.
+     * @param email The email address associated with the account.
+     * @param firstName The real first name of the account user.
+     * @param lastName The real last name of the account user.
+     * @return true if the username was unique and the account was successfully created.
+     */
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
         return accountManager.createAccount(username, password, email, firstName, lastName);
     }
+    /**
+     * Deletes and logs out the account currently in use.
+     * @return true if an account was logged in and successfully deleted.
+     */
     public boolean deleteCurrentAccount()
     {
         if (currentAccount == null)
@@ -75,12 +100,6 @@ public class ScrumSystem {
         if (removed)
             currentAccount = null;
         return removed;
-    }
-    public boolean deleteAccount(Account account)
-    {
-        if (currentAccount.equals(account))
-            logout();
-        return accountManager.deleteAccount(account);
     }
 
     // Project Operations
