@@ -33,5 +33,19 @@
         "password": "AMad123!",
         "email": "AtticusMadden@gmail.com",
         "username": "AtticusM"
+    },
+    {
+        "firstName": "Jeff",
+        "lastName": "Bootyman",
+        "password": "weakpassword",
+        "email": "jbooty@gmail.com",
+        "username": "JeffB"
+    },
+    {
+        "firstName": "Atticus",
+        "lastName": "Finch",
+        "password": "STRONG_PASSWORD",
+        "email": "afinch@gmail.com",
+        "username": "AFinch"
     }
 ]

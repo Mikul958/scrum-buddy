@@ -59,14 +59,14 @@ public class Comment
      */
     public String toString()
     {
-        String out = "User: ";
+        String out = "";
 
         if (user != null)
             out += user.getUsername();
         else
             out += "anonymous";
 
-        out += "\nDate: " + dateFormat.format(dateTime) + "\nContent: " + content;
+        out += " on " + dateFormat.format(dateTime) + ": " + content;
         return out;
     }
     public boolean equals(Object comment)
