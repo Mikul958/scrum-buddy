@@ -2,8 +2,6 @@ package src;
 
 import java.util.ArrayList;
 
-// TODO ADD ALL METHODS TO UML
-
 /**
  * A Facade class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
  * @author Michael Pikula
