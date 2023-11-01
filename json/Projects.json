@@ -68,7 +68,10 @@
         "columns": [
             {
                 "columnTitle": "Backlog",
-                "tasks": []
+                "tasks": [
+                    "1f10868f-ed64-4dfa-9541-8972e1c39389",
+                    "b1bc9883-d2a0-4bb6-aa52-e73f6a38e23b"
+                ]
             },
             {
                 "columnTitle": "Doing",
@@ -81,7 +84,9 @@
         ],
         "pUUID": "1ae8f9a9-d951-41eb-8264-9862c9ee7a78",
         "contributors": [
-            "AtticusM"
+            "AtticusM",
+            "JeffB",
+            "AFinch"
         ],
         "title": "Electric Missiles",
         "category": "Development"

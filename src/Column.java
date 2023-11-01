@@ -130,7 +130,7 @@ public class Column
         }
     }
     /**
-     * Checks to see if this column contains the specified task. TODO ADD TO UML
+     * Checks to see if this column contains the specified task.
      * @param task The task to be checked for.
      * @return true if this column contains the specified task.
      */

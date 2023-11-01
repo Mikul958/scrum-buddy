@@ -2,8 +2,6 @@ package src;
 
 import java.util.ArrayList;
 
-// TODO ADD ALL METHODS TO UML
-
 /**
  * A Facade class responsible for overall management of the software, including accounts, projects, which are open at any time, and more.
  * @author Michael Pikula
@@ -105,6 +103,25 @@ public class ScrumSystem
 
     // Project Operations
 
+    /**
+     * Sets the current project equal to the specified project if the currentUser is a contributor.
+     * @param project The project to be opened.
+     * @return true if the currentUser is a contributor to the specified project.
+     */
+    public boolean openProject(Project project)
+    {
+        if (currentAccount != null && !currentAccount.getProjects().contains(project))
+            return false;
+        currentProject = project;
+        return true;
+    }
+    /**
+     * Sets the current project equal to null.
+     */
+    public void closeProject()
+    {
+        currentProject = null;
+    }
     /**
      * Creates a project with the specified title and category and assigns currentUser as owner.
      * @param title The title of the new project.
@@ -228,7 +245,12 @@ public class ScrumSystem
      */
     public boolean moveProjectTask(Task task, String columnTitleFrom, String columnTitleTo)
     {
-        return currentProject.moveTask(task, columnTitleFrom, columnTitleTo);
+        if (currentProject.moveTask(task, columnTitleFrom, columnTitleTo))
+        {
+            task.addEdit(currentAccount, "Moved to " + columnTitleTo);
+            return true;
+        }
+        return false;
     }
 
     // Project comment operations.

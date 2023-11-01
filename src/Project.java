@@ -339,7 +339,7 @@ public class Project
         return true;
     }
     /**
-     * Checks to see if the project contains the specified task. TODO ADD TO UML
+     * Checks to see if the project contains the specified task.
      * @param task The task to be checked for.
      * @return true if this project contains the specified task.
      */
