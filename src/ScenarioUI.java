@@ -133,6 +133,9 @@ public class ScenarioUI
                 out += (INDENT + INDENT + "COMMENTS:\n");
                 for (int l=0; l<colTasks.get(k).getComments().size(); l++)
                     out += (INDENT + INDENT + "  - " + colTasks.get(k).getComments().get(l) + "\n");
+                out += (INDENT + INDENT + "EDIT HISTORY:\n");
+                for (int l=0; l<colTasks.get(k).getEditHistory().size(); l++)
+                    out += (INDENT + INDENT + "  - " + colTasks.get(k).getEditHistory().get(l) + "\n");
             }
         }
         // Prints out comments in full.
