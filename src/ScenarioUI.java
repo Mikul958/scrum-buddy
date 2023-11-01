@@ -4,31 +4,22 @@ import java.util.ArrayList;
 /**
  * @author Miles Wedeking
  */
-public class ScenarioUI{
+public class ScenarioUI
+{
+    public static void scenario(){
 
-    private ScrumSystem scrumsystem;
-    private final String INDENT = "    ";
-
-    ScenarioUI(){
-        scrumsystem = new ScrumSystem();
-    }
-
-    public void run(){
-        Scenario();
-    }
-
-    public void Scenario(){
+        ScrumSystem system = new ScrumSystem();
 
         //Log in
         //**********************************************************************
-        if(!scrumsystem.login("AtticusM", "AMad123!")){
+        if(!system.login("AtticusM", "AMad123!")){
             System.out.println("Error logging in user.");
             return;
         }
         System.out.println("Atticus Madden is now logged in.\n");
         //**********************************************************************
         //Get projects
-        ArrayList<Project> currentProjects = scrumsystem.getCurrentAccountProjects();
+        ArrayList<Project> currentProjects = system.getCurrentAccountProjects();
         //**********************************************************************
         //Open "Electric Missiles"
 
@@ -58,19 +49,19 @@ public class ScenarioUI{
          * The list of projects of the current user needs to already be loaded
          * before the next line executes.... 
          */
-        Project currentProject = currentProjects.get(0); //Electric Missiles index?
-        Project currentProject = currentProjects.get(0); //Electric Missiles index
-        gatherProjectInformation(currentProject);
+        system.openProject(currentProjects.get(0)); //Electric Missiles index
+        System.out.println(getProjectInformation(system.getCurrentProject()));
         //**********************************************************************
         //Add a new task "Initialize super algorithm to detonate at warp speed".
-        currentProject.addTask("To-Do", "Initialize super algorithm to detonate at warp speed", 0);
+        system.addProjectTask("Backlog", "Initialize super algorithm to detonate at warp speed", 0);
         System.out.println("Task added.\n");
         //**********************************************************************
         //Assign the task to Jeff Goldblum.
-        // TODO
+        // TODO nope
         //**********************************************************************
         //Add a comment to the task "Avoid civilians Jeff!"
-        currentProject.addComment(scrumsystem.getCurrentAccount(), "Avoid civilians Jeff!");
+        Task currentTask = system.getCurrentProject().getColumns().get(0).getTasks().get(2);
+        system.addTaskComment(currentTask, "Avoid civilians Jeff!");
         System.out.println("Comment added.\n");
         //**********************************************************************
 
@@ -86,7 +77,7 @@ public class ScenarioUI{
 
 
         //Add a new column called "Abandoned"
-        currentProject.addColumn("Abandoned");
+        system.addProjectColumn("Abandoned");
         System.out.println("Category  \"Abandoned\" ");
         //**********************************************************************
 
@@ -96,50 +87,61 @@ public class ScenarioUI{
         //Now print the scrum board to a txt file.... make it pretty.
         // TODO
 
+        System.out.println(getProjectInformation(system.getCurrentProject()));
+
     }
 
-    public static void main(String[] args){
-      ScenarioUI scenarioInterface = new ScenarioUI();
-      scenarioInterface.run();
+    public static void main(String[] args)
+    {
+        scenario();
     }
     /**
      * Utilizes code from DataReader
      * @param project to gather information from.
      */
-    private void gatherProjectInformation(Project project){
-        System.out.println("CURRENT PROJECT:");
-        System.out.println("pID: " + project.getID());
-        System.out.println("Title: " + project.getTitle());
-        System.out.println("Category: " + project.getCategory());
-        System.out.println("Owner: " + project.getOwner().getUsername());
+    private static String getProjectInformation(Project project)
+    {
+        String out = "";
+        final String INDENT = "    ";
+        
+        out += ("-------------------------------------------\n");
+        out += ("CURRENT PROJECT:\n");
+        out += ("pID: " + project.getID() + "\n");
+        out += ("Title: " + project.getTitle() + "\n");
+        out += ("Category: " + project.getCategory() + "\n");
+        out += ("Owner: " + project.getOwner().getUsername() + "\n");
         // Prints usernames of all contributors
         ArrayList<Account> projContributors = project.getContributors();
-        System.out.println("CONTRIBUTORS:");
+        out += ("CONTRIBUTORS:\n");
         for (int j = 0; j < projContributors.size(); j++)
-            System.out.println("  - " + projContributors.get(j).getUsername());
+            out += ("  - " + projContributors.get(j).getUsername() + "\n");
         // Prints columns and the basic information of all their tasks.
         ArrayList<Column> projColumns = project.getColumns();
-        System.out.println("PROJECT COLUMNS:");
+        out += ("PROJECT COLUMNS:\n");
         for (int j=0; j<projColumns.size(); j++)
         {
-            System.out.println("COLUMN " + (j+1));
-            System.out.println(INDENT + "Title: " + projColumns.get(j).getTitle());
+            out += ("COLUMN " + (j+1) + "\n");
+            out += (INDENT + "Title: " + projColumns.get(j).getTitle() + "\n");
             ArrayList<Task> colTasks = projColumns.get(j).getTasks();
-            System.out.println(INDENT + "TASKS: ");
+            out += (INDENT + "TASKS:\n");
             for (int k=0; k<colTasks.size(); k++)
             {
-                System.out.println(INDENT + "TASK " + (k+1));
-                System.out.println(INDENT + INDENT + "tID: " + colTasks.get(k).getID());
-                System.out.println(INDENT + INDENT + "Name: " + colTasks.get(k).getName());
-                System.out.println(INDENT + INDENT + "Priority: " + colTasks.get(k).getPriority());
+                out += (INDENT + "TASK " + (k+1) + "\n");
+                out += (INDENT + INDENT + "tID: " + colTasks.get(k).getID() + "\n");
+                out += (INDENT + INDENT + "Name: " + colTasks.get(k).getName() + "\n");
+                out += (INDENT + INDENT + "Priority: " + colTasks.get(k).getPriority() + "\n");
+                out += (INDENT + INDENT + "COMMENTS:\n");
+                for (int l=0; l<colTasks.get(k).getComments().size(); l++)
+                    out += (INDENT + INDENT + "  - " + colTasks.get(k).getComments().get(l) + "\n");
             }
         }
         // Prints out comments in full.
         ArrayList<Comment> projComments = project.getComments();
-        System.out.println("COMMENTS:");
+        out += ("COMMENTS:\n");
         for (int j=0; j<projComments.size(); j++)
-            System.out.println("  - " + projComments.get(j));
-        System.out.println("-------------------------------------------");
-    }
+            out += ("  - " + projComments.get(j) + "\n");
+        out += ("-------------------------------------------\n");
 
+        return out;
+    }
 }

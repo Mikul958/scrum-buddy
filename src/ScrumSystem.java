@@ -260,9 +260,9 @@ public class ScrumSystem
      * @param user Account making the comment.
      * @param content Content of the comment.
      */
-    public void addProjectComment(Account user, String content)
+    public void addProjectComment(String content)
     {
-        currentProject.addComment(user, content);
+        currentProject.addComment(currentAccount, content);
     }
     /**
      * Remove a comment from the current project.
@@ -279,9 +279,9 @@ public class ScrumSystem
      * @param content The content of the comment.
      * @return true if the specified task exists in the current project.
      */
-    public boolean addTaskComment(Task task, Account user, String content)
+    public boolean addTaskComment(Task task, String content)
     {
-        return currentProject.addTaskComment(task, user, content);
+        return currentProject.addTaskComment(task, currentAccount, content);
     }
     /**
      * Removes a comment from the specified task if the task exists in the current project.
