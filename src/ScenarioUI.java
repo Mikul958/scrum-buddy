@@ -6,98 +6,68 @@ import java.util.ArrayList;
  */
 public class ScenarioUI
 {
-    public static void scenario(){
-
-        ScrumSystem system = new ScrumSystem();
-
-        //Log in
-        //**********************************************************************
-        if(!system.login("AtticusM", "AMad123!")){
-            System.out.println("Error logging in user.");
-            return;
-        }
-        System.out.println("Atticus Madden is now logged in.\n");
-        //**********************************************************************
-        //Get projects
-        ArrayList<Project> currentProjects = system.getCurrentAccountProjects();
-        //**********************************************************************
-        //Open "Electric Missiles"
-
-
-
-
-
-        // @author Miles W.
-        // THIS IS WHERE I LEFT OFF 11/1 @ 9:19 AM
-        // Currently the UI runs.
-        // However, @ line 61,the list of current projects is empty. 
-        // see the method:
-        // ScrumSystem.getCurrentAccountProjects()
-
-        /**
-         * In other words, what I understand to be the case.
-         * Is that, currently when the program runs, 
-         * it goes to pull the list of current projects
-         * from the current user's account. 
-         * 
-         * However, when it does that,
-         * Atticus's project list is empty,
-         * causing a IndexOutOfBounds exception on the next line
-         * when the program tries to access that index.
-         * 
-         * In summary, 
-         * The list of projects of the current user needs to already be loaded
-         * before the next line executes.... 
-         */
-        system.openProject(currentProjects.get(0)); //Electric Missiles index
-        System.out.println(getProjectInformation(system.getCurrentProject()));
-        //**********************************************************************
-        //Add a new task "Initialize super algorithm to detonate at warp speed".
-        system.addProjectTask("Backlog", "Initialize super algorithm to detonate at warp speed", 0);
-        System.out.println("Task added.\n");
-        //**********************************************************************
-        //Assign the task to Jeff Goldblum.
-        // TODO nope
-        //**********************************************************************
-        //Add a comment to the task "Avoid civilians Jeff!"
-        Task currentTask = system.getCurrentProject().getColumns().get(0).getTasks().get(2);
-        system.addTaskComment(currentTask, "Avoid civilians Jeff!");
-        System.out.println("Comment added.\n");
-        //**********************************************************************
-
-
-        //Move the existing task of "Curve the metal to make a cylindrical shape" to the 'Doing' column.
-        //TODO
-        //**********************************************************************
-        //This task has the existing comments of "Not cylindrical enough" - by Jeff, and
-        //"What's a cylinder" by Atticus Finch.  
-        //Reply to Jeff's comment and say "How about you do it jeff", and
-        //re-assign the task from yourself to Jeff.
-        //**********************************************************************
-
-
-        //Add a new column called "Abandoned"
-        system.addProjectColumn("Abandoned");
-        System.out.println("Added column  \"Abandoned\" ");
-        //**********************************************************************
-
-
-        //Move an existing task "Make impossible burger possible" which doesn't really relate to the project purpose to "Abandoned"
-        // TODO
-        //Now print the scrum board to a txt file.... make it pretty.
-        // TODO
-
-        System.out.println(getProjectInformation(system.getCurrentProject()));
-
-    }
-
     public static void main(String[] args)
     {
         scenario();
     }
+
+    public static void scenario()
+    {
+        ScrumSystem system = new ScrumSystem();
+
+        //Log in AtticusM
+        //**********************************************************************
+        if (!system.login("AtticusM", "AMad123!"))
+        {
+            System.out.println("Error logging in user.");
+            return;
+        }
+        System.out.println("Atticus Madden is now logged in.\n");
+
+        //Get AtticusM's projects
+        ArrayList<Project> currentProjects = system.getCurrentAccountProjects();
+
+        //Open "Electric Missiles"
+        system.openProject(currentProjects.get(0));
+
+        // Prints the project before any modifications have been made.
+        System.out.println(getProjectInformation(system.getCurrentProject()));
+
+        //Add a new task "Initialize super algorithm to detonate at warp speed".
+        system.addProjectTask("Backlog", "Initialize super algorithm to detonate at warp speed", 0);
+        System.out.println("Task added.\n");
+
+        //Assign the task to Jeff Goldblum.
+        // TODO we can't lol
+
+        //Add a comment to the task "Avoid civilians Jeff!"
+        Task currentTask = system.getCurrentProject().getColumns().get(0).getTaskByName("Initialize super algorithm to detonate at warp speed");
+        system.addTaskComment(currentTask, "Avoid civilians Jeff!");
+        System.out.println("Comment added.\n");
+
+        //Move the existing task of "Curve the metal to make a cylindrical shape" to the 'Doing' column.
+        currentTask = system.getCurrentProject().getColumns().get(0).getTaskByName("Curve the metal to make a cylindrical shape");
+        system.moveProjectTask(currentTask, "Backlog", "Doing");
+        System.out.println("Moved " + currentTask.getName() + " to Doing\n");
+
+        //Add a new column called "Abandoned"
+        system.addProjectColumn("Abandoned");
+        System.out.println("Added column  \"Abandoned\"\n");
+
+        //Move an existing task "Make impossible burger possible" which doesn't really relate to the project purpose to "Abandoned"
+        currentTask = system.getCurrentProject().getColumns().get(0).getTaskByName("Make impossible burger possible");
+        system.moveProjectTask(currentTask, "Backlog", "Abandoned");
+        System.out.println("Moved " + currentTask.getName() + " to Abandoned\n");
+
+        //Now print the scrum board to a txt file.... make it pretty.
+        // TODO
+
+        System.out.println(getProjectInformation(system.getCurrentProject()));
+    }
+
     /**
-     * Utilizes code from DataReader
-     * @param project to gather information from.
+     * Returns a string containing all information of the specified project.
+     * @param project Project to get information from.
      */
     private static String getProjectInformation(Project project)
     {
