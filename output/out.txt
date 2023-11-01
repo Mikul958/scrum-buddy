@@ -1,0 +1,48 @@
+-------------------------------------------
+CURRENT PROJECT:
+pID: 1ae8f9a9-d951-41eb-8264-9862c9ee7a78
+Title: Electric Missiles
+Category: Development
+Owner: AtticusM
+CONTRIBUTORS:
+  - AtticusM
+  - JeffB
+  - AFinch
+PROJECT COLUMNS:
+COLUMN 1
+    Title: Backlog
+    TASKS:
+    TASK 1
+        tID: 5badde59-ba19-4909-9bb1-cac5220c3f7c
+        Name: Initialize super algorithm to detonate at warp speed
+        Priority: 0
+        COMMENTS:
+          - AtticusM on 2023/11/01 at 19:34:35: Avoid civilians Jeff!
+        EDIT HISTORY:
+COLUMN 2
+    Title: Doing
+    TASKS:
+    TASK 1
+        tID: 1f10868f-ed64-4dfa-9541-8972e1c39389
+        Name: Curve the metal to make a cylindrical shape
+        Priority: 1
+        COMMENTS:
+          - JeffB on 2023/11/01 at 18:25:37: Not cylindrical enough
+          - AFinch on 2023/11/01 at 18:26:00: What's a cylinder
+        EDIT HISTORY:
+          - Edit on 2023/11/01 at 19:34:35 by AtticusM: Moved to Doing
+COLUMN 3
+    Title: Done
+    TASKS:
+COLUMN 4
+    Title: Abandoned
+    TASKS:
+    TASK 1
+        tID: b1bc9883-d2a0-4bb6-aa52-e73f6a38e23b
+        Name: Make impossible burger possible
+        Priority: 3
+        COMMENTS:
+        EDIT HISTORY:
+          - Edit on 2023/11/01 at 19:34:35 by AtticusM: Moved to Abandoned
+COMMENTS:
+-------------------------------------------

@@ -1,6 +1,9 @@
 package src;
 
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * @author Miles Wedeking
  */
@@ -60,9 +63,7 @@ public class ScenarioUI
         System.out.println("Moved " + currentTask.getName() + " to Abandoned\n");
 
         //Now print the scrum board to a txt file.... make it pretty.
-        // TODO
-
-        System.out.println(getProjectInformation(system.getCurrentProject()));
+        writeProjectToFile(system.getCurrentProject(), "out.txt");
     }
 
     /**
@@ -116,5 +117,23 @@ public class ScenarioUI
         out += ("-------------------------------------------\n");
 
         return out;
+    }
+
+    private static void writeProjectToFile(Project project, String fileName)
+    {
+        String toWrite = getProjectInformation(project);
+        String filePath = "./output/" + fileName;
+        try
+        {
+            FileWriter writer = new FileWriter(filePath);
+            writer.write(toWrite);
+            writer.flush();
+            writer.close();
+            System.out.println("Project information written to " + filePath + "\n");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
