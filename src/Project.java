@@ -254,11 +254,10 @@ public class Project
         return columns.remove(column);
     }
     /**
-     * Move a column to a different position.
-     * written by: Al Pacicco
+     * Moves the column at index from to index to, shifting all other columns as necessary.
      * @param from The index of the column to be moved.
-     * @param after The index that the column will be moved after.
-     * @return true if the column was successfully moved.
+     * @param to The index that the column will be moved to.
+     * @return true if both indices were in-bounds and the column was successfully moved.
      */
     public boolean moveColumn(int from, int to)
     {  
