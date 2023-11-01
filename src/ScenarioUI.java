@@ -31,65 +31,35 @@ public class ScenarioUI{
         ArrayList<Project> currentProjects = scrumsystem.getCurrentAccountProjects();
         //**********************************************************************
         //Open "Electric Missiles"
-
-
-
-
-
-        // @author Miles W.
-        // THIS IS WHERE I LEFT OFF 11/1 @ 9:19 AM
-        // Currently the UI runs.
-        // However, @ line 61,the list of current projects is empty. 
-        // see the method:
-        // ScrumSystem.getCurrentAccountProjects()
-
-        /**
-         * In other words, what I understand to be the case.
-         * Is that, currently when the program runs, 
-         * it goes to pull the list of current projects
-         * from the current user's account. 
-         * 
-         * However, when it does that,
-         * Atticus's project list is empty,
-         * causing a IndexOutOfBounds exception on the next line
-         * when the program tries to access that index.
-         * 
-         * In summary, 
-         * The list of projects of the current user needs to already be loaded
-         * before the next line executes.... 
-         */
-        Project currentProject = currentProjects.get(2); //Electric Missiles index?
+        Project currentProject = currentProjects.get(0); //Electric Missiles index
         gatherProjectInformation(currentProject);
         //**********************************************************************
-        
-        
-
-
-
-
         //Add a new task "Initialize super algorithm to detonate at warp speed".
         currentProject.addTask("To-Do", "Initialize super algorithm to detonate at warp speed", 0);
         System.out.println("Task added.\n");
-        //**********************************************************************
-        //Assign the task to Jeff Goldblum.
-        // TODO
         //**********************************************************************
         //Add a comment to the task "Avoid civilians Jeff!"
         currentProject.addComment(scrumsystem.getCurrentAccount(), "Avoid civilians Jeff!");
         System.out.println("Comment added.\n");
         //**********************************************************************
+
+
         //Move the existing task of "Curve the metal to make a cylindrical shape" to the 'Doing' column.
-        // TODO
+        //TODO
         //**********************************************************************
         //This task has the existing comments of "Not cylindrical enough" - by Jeff, and
         //"What's a cylinder" by Atticus Finch.  
         //Reply to Jeff's comment and say "How about you do it jeff", and
         //re-assign the task from yourself to Jeff.
         //**********************************************************************
+
+
         //Add a new column called "Abandoned"
         currentProject.addColumn("Abandoned");
         System.out.println("Category  \"Abandoned\" ");
         //**********************************************************************
+
+
         //Move an existing task "Make impossible burger possible" which doesn't really relate to the project purpose to "Abandoned"
         // TODO
         //Now print the scrum board to a txt file.... make it pretty.
