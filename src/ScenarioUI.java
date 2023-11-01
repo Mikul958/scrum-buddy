@@ -78,7 +78,7 @@ public class ScenarioUI
 
         //Add a new column called "Abandoned"
         system.addProjectColumn("Abandoned");
-        System.out.println("Category  \"Abandoned\" ");
+        System.out.println("Added column  \"Abandoned\" ");
         //**********************************************************************
 
 
