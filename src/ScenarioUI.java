@@ -33,13 +33,13 @@ public class ScenarioUI{
         //Open "Electric Missiles"
 
 
-        
+
 
 
         // @author Miles W.
         // THIS IS WHERE I LEFT OFF 11/1 @ 9:19 AM
         // Currently the UI runs.
-        // However, @ line ___,the list of current projects is empty. 
+        // However, @ line 61,the list of current projects is empty. 
         // see the method:
         // ScrumSystem.getCurrentAccountProjects()
 
