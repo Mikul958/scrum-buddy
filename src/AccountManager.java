@@ -94,6 +94,7 @@ public class AccountManager
      */
     public boolean deleteAccount(Account account)
     {
+        account.clearProjects();
         return accounts.remove(account);
     }
 }

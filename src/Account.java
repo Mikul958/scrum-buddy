@@ -83,6 +83,12 @@ public class Account
     {
         return projects.remove(project);
     }
+    public void clearProjects()
+    {
+        for (int i=0; i<projects.size(); i++)
+            projects.get(i).removeContributor(this);
+        projects.clear();
+    }
 
     /**
      * Creates a string containing all account information except for the password.
