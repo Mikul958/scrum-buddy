@@ -9,9 +9,20 @@ import org.junit.jupiter.api.Test;
 
 public class ProjectTest
 {
+    
+
+
+
     @Test
-    public void testing()
-    {
-        assertTrue(true);
+
+    void testGetTotalTasks(){
+        var proj = new Project(null, null, null);
+        assertEquals(4, proj.getTotalTasks());
     }
+
+
+
+   
+    
 }
+
