@@ -84,16 +84,17 @@ public class ProjectTest
     */
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
-     * 
-     * 
      void testRemoveContributor2(){//TESTING TO SEE IF IT'LL REMOVE AN ACCOUNT NOT ON PROJECT
         Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
         Project proj = new Project("List", Category.BUSINESS, acc);
+
+        Account acc2 = new Account("Example2", "password2", "email@ex.com", "Michael", "Pikula");
+        proj.removeContributor(acc2);
         
-        assertFalse(proj.getContributors().contains(acc));
+        assertFalse(proj.getContributors().contains(acc2));
    }
-   //RESULT: FAILED, THINKS ACC IS ON PROJ
-     */
+   // RESULT: PASSED
+   */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
     /*
