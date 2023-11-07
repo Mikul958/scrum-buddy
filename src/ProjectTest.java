@@ -188,35 +188,36 @@ Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino")
 
 
 /*
- * void testRemoveColumnSTRING(){//CAN IT REMOVE ANYTHING
+ * void testRemoveColumnOBJECT(){//CAN IT REMOVE ANYTHING
     Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
         Project proj = new Project("List", Category.BUSINESS, acc);
         String excolString = "excol";
         Column col = new Column(excolString);
 
-        proj.addColumn("excol");
-        proj.removeColumn("excol");
+        proj.addColumn(col;
+        proj.removeColumn(col);
         assertFalse(proj.getColumns().contains("excol"));
 
 
 }//RESULT: PASSED
  */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void testRemoveColumnSTRING2(){//DOES IT REMOVE ANYTHING ACCIDENTALLY?
-    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+void testRemoveColumnOBJECT(){//DOES IT REMOVE ANYTHING ACCIDENTALLY?
+        Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
         Project proj = new Project("List", Category.BUSINESS, acc);
         String excolString = "excol";
-        String excolString2 = "otherExcol";
+        String excolString2 = "excol";
         Column col = new Column(excolString);
-        Column col2 = new Column(excolString2);
+        Column col2 = new Column (excolString2);
 
-        proj.addColumn(excolString);
-       // proj.addColumn("otherExcol");
-        //proj.removeColumn("excol");
-        assertTrue(proj.getColumns().contains(excolString));
+        proj.addColumn(col);
+        proj.addColumn(col2);
+        proj.removeColumn(col);
+        assertTrue((proj.getColumns().contains(col2)));
 
 }
+//RESULT: FAILED. REMOVED ALL COLUMNS 
+ 
 
 
 
