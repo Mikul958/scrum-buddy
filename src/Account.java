@@ -75,6 +75,7 @@ public class Account
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    
     public void addProject(Project project)
     {
         projects.add(project);
