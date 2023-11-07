@@ -68,19 +68,19 @@ public class AccountManager
         return null;
     }
     /**
-     * Creates a new account with the specified details and adds it to the list of accounts. Username must be unique for account creation.
-     * @param username An account identifier that also serves as a display name.
+     * Creates a new account with the specified details and adds it to the list of accounts.
+     * @param username An account identifier that also serves as a display name. Must be non-empty and unique for account creation.
      * @param password A password checked while attempting to log-in.
-     * @param email The email address associated with the account.
+     * @param email The email address associated with the account. Must contain an @ to be valid.
      * @param firstName The real first name of the account user.
      * @param lastName The real last name of the account user.
-     * @return True if the username was unique and the account was successfully created..
+     * @return True if above criteria was met and account was successfully created.
      */
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
         for (int i=0; i<accounts.size(); i++)
         {
-            if (username.equals(accounts.get(i).getUsername()))
+            if (username.equals("") && username.equals(accounts.get(i).getUsername()) && isEmailValid(email))
                 return false;
         }
         Account newAccount = new Account(username, password, email, firstName, lastName);
@@ -96,5 +96,19 @@ public class AccountManager
     {
         account.clearProjects();
         return accounts.remove(account);
+    }
+    /**
+     * Checks if an entered email is valid by checking if it contains an @.
+     * @param email An entered email address used while creating an account.
+     * @return true if entered email contains an @.
+     */
+    private boolean isEmailValid(String email)
+    {
+        for (int i=0; i<email.length(); i++)
+        {
+            if (email.charAt(i) == '@')
+                return true;
+        }
+        return false;
     }
 }
