@@ -202,23 +202,114 @@ Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino")
 }//RESULT: PASSED
  */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
 void testRemoveColumnOBJECT(){//DOES IT REMOVE ANYTHING ACCIDENTALLY?
         Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
         Project proj = new Project("List", Category.BUSINESS, acc);
         String excolString = "excol";
-        String excolString2 = "excol";
+        String excolString2 = "excol2";
         Column col = new Column(excolString);
         Column col2 = new Column (excolString2);
 
         proj.addColumn(col);
         proj.addColumn(col2);
         proj.removeColumn(col);
-        assertTrue((proj.getColumns().contains(col2)));
+        assertTrue(proj.getColumns().contains(col2));
 
 }
 //RESULT: FAILED. REMOVED ALL COLUMNS 
- 
+ */
 
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+ void testMoveColumn(){//DO THE INDEXES MATCH?
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String excolString = "column1";
+    String excolString2 = "column2";
+    String excolString3 = "column3";    
+    Column col = new Column(excolString);
+    Column col2 = new Column(excolString2);
+    Column col3 = new Column(excolString3);
+    proj.addColumn(col);
+    proj.addColumn(col2);
+    proj.addColumn(col3);
+   assertEquals(col, proj.getColumns().get(0));
+
+//RESULT: PASSED
+
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ * 
+ 
+void testMoveColumn2(){//CAN THEY MOVE?
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String excolString = "column1";
+    String excolString2 = "column2";
+    String excolString3 = "column3";    
+    Column col = new Column(excolString);
+    Column col2 = new Column(excolString2);
+    Column col3 = new Column(excolString3);
+    proj.addColumn(col);
+    proj.addColumn(col2);
+    proj.addColumn(col3);
+    proj.moveColumn(0, 1);
+    assertEquals(col, proj.getColumns().get(1));
+
+//RESULT: PASSED
+
+}
+*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void testAddTask(){//CAN A TASK BE ADDED
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String colName = "hi";
+    proj.addColumn(colName);
+    String taskName = "tasky";
+    boolean added = proj.addTask(colName, taskName, 1);
+    assertTrue(added);
+}
+//RESULT: PASSED
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void testAddTask2(){//CAN A TASK BE ADDED TO A COLUMN THAT DOESN'T EXIST
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String colName = "hi";
+    String colName2 = "bye";
+    proj.addColumn(colName);
+    String taskName = "tasky";
+    boolean added = proj.addTask(colName2, taskName, 1);
+    assertFalse(added);
+}
+//RESULT: PASSED
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+void testRemoveTask(){//CAN IT REMOVE A TASK
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String colName = "hi";
+    String taskName = "tasky";
+    proj.addColumn(colName);
+    proj.addTask(colName, taskName, 1);
+    boolean removed = proj.removeTask(colName, taskName);
+
+    assertTrue(removed);
+}
+*/
+
+//RESULT: PASSED
 
 
 }
