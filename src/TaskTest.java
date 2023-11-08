@@ -18,8 +18,8 @@ public class TaskTest {
         Task testTask = new Task("Test Example Name", 0);
         Account testAcc = new Account("TestMiles", "password", "email@.com", "Miles", "Wedeking");
         Project testProject = new Project("Task Test Project", Category.BUSINESS, testAcc);
-        // testProject.addTask(testProject., null, 0)
-        // assertEquals(testAcc, testProject);    
+        testProject.addTask(Category.BUSINESS.toString(), "Example Task", 0);         //not so sure about this toString()
+        assertEquals(testAcc, testProject);    
     }
     
 

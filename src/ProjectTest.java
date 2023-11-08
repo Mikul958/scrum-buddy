@@ -12,7 +12,7 @@ public class ProjectTest
 {
 
 //FOR PROJECT CLASS
-    @Test
+    // @Test
     /*
      * void testGetTotalTasks(){
         Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
