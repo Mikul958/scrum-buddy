@@ -15,9 +15,10 @@ public class TaskTest {
     @Test
     void getTaskInformation(){
 
-        Task testTask = new Task("Test Example Name", 0);
         Account testAcc = new Account("TestMiles", "password", "email@.com", "Miles", "Wedeking");
         Project testProject = new Project("Task Test Project", Category.BUSINESS, testAcc);
+        Task testTask = new Task("Test Example Name", 0);
+        // Need access to the projects column names.
         testProject.addTask(Category.BUSINESS.toString(), "Example Task", 0);         //not so sure about this toString()
         assertEquals(testAcc, testProject);    
     }
