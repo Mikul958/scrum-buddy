@@ -78,9 +78,13 @@ public class AccountManager
      */
     public boolean createAccount(String username, String password, String email, String firstName, String lastName)
     {
+        // Check valid username, password, and email.
+        if (username.equals("") || password.equals("") || !isEmailValid(email))
+            return false;
+        // Check if username is unique.
         for (int i=0; i<accounts.size(); i++)
         {
-            if (username.equals("") && username.equals(accounts.get(i).getUsername()) && isEmailValid(email))
+            if (username.equals(accounts.get(i).getUsername()))
                 return false;
         }
         Account newAccount = new Account(username, password, email, firstName, lastName);
