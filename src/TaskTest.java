@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
  * Class to test functionality of Task class
  * @author Miles Wedeking
  */
-public class TaskTest {
+public class TaskTest
+{
     @Test
-/* 
     void getTaskInformation(){
 
         Account testAcc = new Account("TestMiles", "password", "email@.com", "Miles", "Wedeking");
@@ -24,5 +24,5 @@ public class TaskTest {
         assertEquals(testAcc, testProject);    
     }
     
-*/
+
 }

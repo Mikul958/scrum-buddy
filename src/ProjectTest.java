@@ -1,6 +1,5 @@
 package src;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.BeforeClass;
@@ -12,7 +11,7 @@ public class ProjectTest
 {
 
 //FOR PROJECT CLASS
-    // @Test
+    @Test
     /*
      * void testGetTotalTasks(){
         Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
@@ -511,13 +510,61 @@ void testTaskAddComment(){//DOES IT ADD A COMMENT TO A TASK
 
 }
 */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void tetsTaskRemoveComment(){
-    
+/* 
+void tetsTaskRemoveComment(){//CAN IT REMOVE A COMMENT
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Account acc2Account = new Account("ex", "password", "email@example.com", "Alfred", "Pacicco");
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+
+    proj.addTaskComment(tsk, acc2Account, opinion);
+    proj.removeComment(com);
+
+    assertFalse(proj.getComments().contains(com));
+
+
+    //RESULT: FAILED
+
+
 }
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void tetsTaskRemoveComment2(){//CAN IT REMOVE A COMMENT THAT DOESNT EXIST
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Account acc2Account = new Account("ex", "password", "email@example.com", "Alfred", "Pacicco");
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    String opinion = "this is my opinion";
+    String opinion2 = "this is my other opinion";
+    Comment com = new Comment(acc, opinion);
+    Comment com2 = new Comment(acc2Account, opinion2);
 
 
 
+    proj.addTaskComment(tsk, acc2Account, opinion);
+    proj.addTaskComment(tsk, acc2Account, opinion2);
+    proj.removeComment(com);
+    proj.removeTaskComment(tsk, com);
+
+    assertFalse(proj.getComments().contains(com2));
+
+
+    //RESULT: FAILED
+
+}
 
 }
 
