@@ -310,6 +310,141 @@ void testRemoveTask(){//CAN IT REMOVE A TASK
 */
 
 //RESULT: PASSED
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+void testRemoveTask2(){//DOES IT ERROR WHEN A TASK CAN'T BE REMOVED OR WHEN THE TASK DOESN'T EXIST
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+    String colName = "hi";
+    String taskName = "tasky";
+    String taskName2 = "taskyyy";
+    proj.addColumn(colName);
+    proj.addTask(colName, taskName, 1);
+    proj.addTask(colName, taskName2, 1);
+    boolean removed = proj.removeTask(colName, taskName2);
+
+    assertTrue(removed);
+
+}
+//RESULT: FAILED
+
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void removeTaskOBJECT(){//CAN IT REMOVE A TASK OBJ
+        Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+        Project proj = new Project("List", Category.BUSINESS, acc);
+        String colTitle = "column title";
+        Column col = new Column(colTitle);
+        proj.addColumn(col);
+        String taskTitle = "task title";
+        Task tsk = new Task(taskTitle, 0);
+        proj.addTask(colTitle, taskTitle, 0);
+        boolean removed = proj.removeTask(colTitle, tsk);
+
+
+        assertTrue(removed);
+}
+//RESULT: FAILED
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+/* 
+void testMoveTask(){//CAN IT MOVE A TASK TO ANOTHER COLUMN
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Column toCol = new Column("to column");
+
+    Task tsk = new Task("task name", 0);
+
+    proj.addColumn(toCol);
+    proj.addColumn(fromCol);
+
+    proj.addTask("from column", "task name", 0);
+
+    proj.moveTask(tsk, "from column", "to column");
+
+    assertTrue(toCol.getTasks().contains(tsk));
+
+
+
+//RESULT: FAIL
+}
+
+
+*/ 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void testContainsTask()//DOES IT CONTAIN A TASK
+{
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+
+    Task tsk = new Task("task name", 0);
+
+    proj.addColumn(fromCol);
+
+    proj.addTask("from column", "task name", 0);
+
+    assertTrue(proj.containsTask(tsk));
+
+    //RESULT: FAIL
+
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ * void testContainsTask2()//DOES IT CONTAIN A TASK THAT DOESN'T EXIST
+{
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+
+    Task tsk = new Task("task name", 0);
+    Task tsk2 = new Task("task2 name", 0);
+
+    proj.addColumn(fromCol);
+
+    proj.addTask("from column", "task name", 0);
+
+    assertTrue(!proj.containsTask(tsk2));
+
+    //RESULT: FAIL
+
+}
+ */
+
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+void testAddComment(){
+     Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+
+    Task tsk = new Task("task name", 0);
+    Task tsk2 = new Task("task2 name", 0);
+
+    proj.addColumn(fromCol);
+
+    proj.addTask("from column", "task name", 0);
+
+    proj.addTaskComment(tsk, acc, opinion);
+
+    assertTrue(tsk.getComments().contains(com));
+
+    //RESULT: FAILED
+}
+*/
 
 
 }
