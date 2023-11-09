@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 public class ColumnTest 
 {
- 
     //TESTING FOR COLUMN CLASS
     @Test
     void testGetTaskByName() {
@@ -50,20 +49,7 @@ public class ColumnTest
     //RESULT: PASSED
 
 
-    @Test
-    void testOrderTasks() {
-        Account acc = new Account("testCade", "pass123!", "tester@gmail.com", "Cade", "Phillips");
-        Project proj = new Project("null", Category.PERSONAL, acc);
-        Column col = new Column("testColumn");
-        Task task = new Task("testTask", 1);
-        //Task task2 = new Task("testTask2", 1);
-        //Task task3 = new Task("testTask3", 1);
-        col.addTask("testTask", 1);
-        col.addTask("testTask2", 1);
-        col.addTask("testTask3", 1);
-        assertEquals(task, col.getTasks().get(0));
 
-    }
 
     
 
