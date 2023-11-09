@@ -24,5 +24,13 @@ public class TaskTest
         assertEquals(testAcc, testProject);    
     }
     
+    public void testRemoveComment(){
+        Task task = new Task("Test Task", 1); 
+        Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
+        Comment testComm = new Comment(testAcc, "this sucks");
 
+        task.removeComment(testComm);
+
+        assertTrue(!task.getComments().contains(testComm));
+    }
 }
