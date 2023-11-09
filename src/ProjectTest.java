@@ -1,6 +1,5 @@
 package src;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.BeforeClass;
@@ -12,7 +11,7 @@ public class ProjectTest
 {
 
 //FOR PROJECT CLASS
-    // @Test
+    @Test
     /*
      * void testGetTotalTasks(){
         Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
@@ -108,7 +107,7 @@ public class ProjectTest
      }
      */
 
-     //RESULT: FAILED? 
+     //RESULT: failed? 
        
       
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -423,7 +422,7 @@ void testContainsTask()//DOES IT CONTAIN A TASK
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* 
-void testAddComment(){
+void testAddComment(){//CAN IT ADD A COMMENT    
      Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
     Project proj = new Project("List", Category.BUSINESS, acc);
 
@@ -432,7 +431,6 @@ void testAddComment(){
     Comment com = new Comment(acc, opinion);
 
     Task tsk = new Task("task name", 0);
-    Task tsk2 = new Task("task2 name", 0);
 
     proj.addColumn(fromCol);
 
@@ -445,7 +443,128 @@ void testAddComment(){
     //RESULT: FAILED
 }
 */
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void testRemoveComment(){//CAN IT REMOVE A COMMENT
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
 
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    proj.addColumn(fromCol);
+    proj.addTask("from column", "task name", 0);
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+
+    proj.addComment(acc, opinion);
+    proj.removeComment(com);
+
+    assertTrue(tsk.getComments().contains(com));
+
+    //RESULT: FAILED
+}
+*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+void testRemoveComment2(){//DOES IT REMOVE A SPECIFIC COMMENT AS OPPOSED TO ALL OF THEM
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    proj.addColumn(fromCol);
+    proj.addTask("from column", "task name", 0);
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+
+    proj.addComment(acc, opinion);
+    proj.removeComment(com);
+
+    assertTrue(tsk.getComments().contains(com));
+
+}
+//RESULT: FAILED
+
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* 
+void testTaskAddComment(){//DOES IT ADD A COMMENT TO A TASK
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Account acc2Account = new Account("ex", "password", "email@example.com", "Alfred", "Pacicco");
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+    proj.addColumn(fromCol);
+    proj.addTask("from column", "task name", 0);
+
+    boolean commenty = proj.addTaskComment(tsk, acc2Account, opinion);
+    assertTrue(commenty);
+
+
+}
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+void tetsTaskRemoveComment(){//CAN IT REMOVE A COMMENT
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Account acc2Account = new Account("ex", "password", "email@example.com", "Alfred", "Pacicco");
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    String opinion = "this is my opinion";
+    Comment com = new Comment(acc, opinion);
+
+    proj.addTaskComment(tsk, acc2Account, opinion);
+    proj.removeComment(com);
+
+    assertFalse(proj.getComments().contains(com));
+
+
+    //RESULT: FAILED
+
+
+}
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void tetsTaskRemoveComment2(){//CAN IT REMOVE A COMMENT THAT DOESNT EXIST
+    Account acc = new Account("Example", "password", "email@ex.com", "Al", "Pacino");//practice account
+    Account acc2Account = new Account("ex", "password", "email@example.com", "Alfred", "Pacicco");
+    Project proj = new Project("List", Category.BUSINESS, acc);
+
+    Column fromCol = new Column("from column");
+    Task tsk = new Task("task name", 0);
+
+    String opinion = "this is my opinion";
+    String opinion2 = "this is my other opinion";
+    Comment com = new Comment(acc, opinion);
+    Comment com2 = new Comment(acc2Account, opinion2);
+
+
+
+    proj.addTaskComment(tsk, acc2Account, opinion);
+    proj.addTaskComment(tsk, acc2Account, opinion2);
+    proj.removeComment(com);
+    proj.removeTaskComment(tsk, com);
+
+    assertFalse(proj.getComments().contains(com2));
+
+
+    //RESULT: FAILED
+
+}
 
 }
 
