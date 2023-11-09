@@ -84,11 +84,15 @@ public class Account
     {
         return projects.remove(project);
     }
+    /**
+     * Clears this account's project list and removes them as a contributor from all projects on the list. Intended to be used on account deletion.
+     */
     public void clearProjects()
     {
-        for (int i=0; i<projects.size(); i++)
+        // NOTE: project.removeContributor already removes both ways. This means that for-loop needs to progress backwards, otherwise indices will shift mid-loop and lead to skips.
+        for (int i=projects.size()-1; i >= 0; i--)
             projects.get(i).removeContributor(this);
-        projects.clear();
+        // projects.clear() is not needed because of above :)
     }
 
     /**

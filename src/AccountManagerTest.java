@@ -122,7 +122,6 @@ public class AccountManagerTest
                 deleteTest2 = false;
         }
 
-        // Note: deleteTest2 fails, all other true. Weird that deleteTest2 specifically fails when deleteTest1 passes. Confirmed with print statements too.
-        assertTrue(deleted && deletedConfirmed && deleteTest1 && deleteTest2);
+        assertTrue(deleted && deletedConfirmed && deleteTest1 && deleteTest2);  // Passes, fixed bug with removing account as contributor to projects.
     }
 }
