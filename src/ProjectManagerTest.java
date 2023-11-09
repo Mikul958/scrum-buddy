@@ -12,11 +12,18 @@ public class ProjectManagerTest
 {
     AccountManager aManager;
     ProjectManager manager;
+    Account loggedIn;
     
     @BeforeEach
     public void getManager()
     {
         aManager = AccountManager.getInstance();
         manager = ProjectManager.getInstance();
+        loggedIn = aManager.login("MPikula1", "Apple456##");
+    }
+
+    @Test
+    public void testCreateProject()
+    {
     }
 }
