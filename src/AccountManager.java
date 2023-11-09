@@ -69,9 +69,9 @@ public class AccountManager
     }
     /**
      * Creates a new account with the specified details and adds it to the list of accounts.
-     * @param username An account identifier that also serves as a display name. Must be non-empty and unique for account creation.
-     * @param password A password checked while attempting to log-in.
-     * @param email The email address associated with the account. Must contain an @ to be valid.
+     * @param username An account identifier that also serves as a display name. Must be non-empty and unique.
+     * @param password A password checked while attempting to log-in. Must be non-empty.
+     * @param email The email address associated with the account. Must contain an @.
      * @param firstName The real first name of the account user.
      * @param lastName The real last name of the account user.
      * @return True if above criteria was met and account was successfully created.
