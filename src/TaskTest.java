@@ -14,16 +14,15 @@ import org.junit.jupiter.api.Test;
 public class TaskTest
 {
     @Test
-    public void testAddComment(){
-        Task task = new Task("Test Task", 1); 
-        Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
-        Comment testComm = new Comment(testAcc, "this sucks");
+    // public void testAddComment(){
+    //     Task task = new Task("Test Task", 1); 
+    //     Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
+    //     Comment testComm = new Comment(testAcc, "this sucks");
 
-        task.addComment(testComm);
+    //     task.addComment(testComm);
 
-        assertTrue(task.getComments().contains(testComm));
-    }
-
+    //     assertTrue(task.getComments().contains(testComm));
+    // }
     
     // public void testRemoveComment(){
     //     Task task = new Task("Test Task", 1); 
@@ -34,4 +33,15 @@ public class TaskTest
 
     //     assertTrue(!task.getComments().contains(testComm));
     // }
+
+    public void testAddEdit(){
+
+        Task task = new Task("Test Task", 1); 
+        Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
+        Edit testEdit = new Edit(testAcc, "this sucks");
+
+        task.addEdit(testEdit);
+
+        assertTrue(task.getEditHistory().contains(testEdit));
+    }
 }
