@@ -22,6 +22,4 @@ public class TaskTest {
         testProject.addTask(Category.BUSINESS.toString(), "Example Task", 0);         //not so sure about this toString()
         assertEquals(testAcc, testProject);    
     }
-    
-
 }
