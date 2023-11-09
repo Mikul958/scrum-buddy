@@ -14,23 +14,24 @@ import org.junit.jupiter.api.Test;
 public class TaskTest
 {
     @Test
-    void getTaskInformation(){
-
-        Account testAcc = new Account("TestMiles", "password", "email@.com", "Miles", "Wedeking");
-        Project testProject = new Project("Task Test Project", Category.BUSINESS, testAcc);
-        Task testTask = new Task("Test Example Name", 0);
-        // Need access to the projects column names.
-        testProject.addTask(Category.BUSINESS.toString(), "Example Task", 0);         //not so sure about this toString()
-        assertEquals(testAcc, testProject);    
-    }
-    
-    public void testRemoveComment(){
+    public void testAddComment(){
         Task task = new Task("Test Task", 1); 
         Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
         Comment testComm = new Comment(testAcc, "this sucks");
 
-        task.removeComment(testComm);
+        task.addComment(testComm);
 
-        assertTrue(!task.getComments().contains(testComm));
+        assertTrue(task.getComments().contains(testComm));
     }
+
+    
+    // public void testRemoveComment(){
+    //     Task task = new Task("Test Task", 1); 
+    //     Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  
+    //     Comment testComm = new Comment(testAcc, "this sucks");
+
+    //     task.removeComment(testComm);
+
+    //     assertTrue(!task.getComments().contains(testComm));
+    // }
 }
