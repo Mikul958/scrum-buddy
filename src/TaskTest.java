@@ -11,15 +11,17 @@ import org.junit.jupiter.api.Test;
  * Class to test functionality of Task class
  * @author Miles Wedeking
  */
-public class TaskTest {
+public class TaskTest
+{
     @Test
-    void getTaskInformation(){
+    public void testAddComment()
+    {
+        Task task = new Task("Test Task", 1);  // Create task to test on.
+        Account testAcc = new Account("test", "test", "test@gmail.com", "Test", "Test");  // Create temp account as comment author.
+        Comment testComm = new Comment(testAcc, "this sucks");  // Create test comment.
 
-        Account testAcc = new Account("TestMiles", "password", "email@.com", "Miles", "Wedeking");
-        Project testProject = new Project("Task Test Project", Category.BUSINESS, testAcc);
-        Task testTask = new Task("Test Example Name", 0);
-        // Need access to the projects column names.
-        testProject.addTask(Category.BUSINESS.toString(), "Example Task", 0);         //not so sure about this toString()
-        assertEquals(testAcc, testProject);    
+        task.addComment(testComm);  // Add comment to task.
+
+        assertTrue(task.getComments().contains(testComm));  // Test if task comments list contains the added comment.
     }
 }
