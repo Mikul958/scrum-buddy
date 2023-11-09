@@ -16,6 +16,7 @@ public class AccountManagerTest
     public void getManager()
     {
         manager = AccountManager.getInstance();
+        ProjectManager temp = ProjectManager.getInstance();  // Required to load in projects from file.
     }
 
     @Test
@@ -90,5 +91,38 @@ public class AccountManagerTest
     {
         boolean created = manager.createAccount("testman123", "testpass", "testman.com", "Test", "Man");
         assertFalse(created);
+    }
+
+    // NOTE: This test seems to screw with other tests due to account deletion, comment it out if bulk testing and test it separately.
+    @Test
+    public void deleteAccount()
+    {
+        Account loggedIn = manager.login("MPikula1", "Apple456##");
+        
+        Project project1 = loggedIn.getProjects().get(0);  // Cade's Project, MPikula1 contributes
+        Project project2 = loggedIn.getProjects().get(1);  // Al's Project, MPikula1 contributes
+
+        // Get deletion confirmation from deleteAccount() and secondary test to see if account is no longer in list.
+        boolean deleted = manager.deleteAccount(loggedIn);
+        boolean deletedConfirmed = true;
+        if (manager.getAccountByUsername("MPikula1") != null)
+            deletedConfirmed = false;
+
+        // Test to see if deleted account was removed from projects it contributed to.
+        boolean deleteTest1 = true;
+        boolean deleteTest2 = true;
+        for (int i=0; i<project1.getContributors().size(); i++)
+        {
+            if (project1.getContributors().get(i).getUsername().equals("MPikula1"))
+                deleteTest1 = false;
+        }
+        for (int i=0; i<project2.getContributors().size(); i++)
+        {
+            if (project2.getContributors().get(i).getUsername().equals("MPikula1"))
+                deleteTest2 = false;
+        }
+
+        // Note: deleteTest2 fails, all other true. Weird that deleteTest2 specifically fails when deleteTest1 passes. Confirmed with print statements too.
+        assertTrue(deleted && deletedConfirmed && deleteTest1 && deleteTest2);
     }
 }
