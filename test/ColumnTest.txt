@@ -1,0 +1,109 @@
+package src;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+public class ColumnTest 
+{
+    //TESTING FOR COLUMN CLASS
+    
+    @Test
+    void testGetTaskByName()
+    {
+        Column col = new Column("exampleColumn");
+        col.addTask("exampleTask2", 2);
+
+        Task retrieved = col.getTaskByName("exampleTask2");
+
+        boolean equal = retrieved.getName().equals("exampleTask2") && retrieved.getPriority() == 2;
+        assertTrue(equal);
+    }
+    @Test
+    void testGetTaskByNameNotExists()
+    {
+        Column col = new Column("exampleColumn");
+        col.addTask("exampleTask2", 2);
+
+        Task retrieved = col.getTaskByName("ExampleTask2");
+
+        assertEquals(retrieved, null);
+    }
+    // passed
+
+    @Test
+    void testAddTask() {
+        Column col = new Column("testColumn");
+        col.addTask("testTask", 1);
+
+        // Since addTask takes properties as parameters, compare by properties rather than object.
+        boolean contains = false;
+        for (int i=0; i<col.getTasks().size(); i++)
+        {
+            if (col.getTasks().get(i).getName().equals("testTask") && col.getTasks().get(i).getPriority() == 1)
+                contains = true;
+        }
+        assertTrue(contains);
+    }
+    // passed
+
+    @Test
+    void testRemoveTask() {
+        Account acc = new Account("testCade", "pass123!", "tester@gmail.com", "Cade", "Phillips");
+        Project proj = new Project("testProj", Category.PERSONAL, acc);
+        Column col = new Column("testColumn");
+        proj.addColumn("testColumn");
+        Task task = new Task("testTask", 1);
+        col.addTask("testTask", 1);
+        col.removeTask(task);
+        assertFalse(col.getTasks().contains(task));
+    }
+    // passed
+
+    @Test
+    void testOrderTasks() {
+        Column col = new Column("testColumn");
+        //Task task = new Task("testTask", 1);
+        //Task task2 = new Task("anotherTestTask", 1);
+
+        col.addTask("TestTask", 1);
+        col.addTask("anotherTestTask", 1);
+        col.orderTasks();
+        assertEquals("anotherTestTask", col.getTasks().get(0).getName());  // Check name of first entry is now "anotherTestTask".
+    }
+    // passed
+
+    @Test
+    void testContainsTasks() {
+        Column col = new Column("testColumn");
+        
+        col.addTask("testTask", 1);
+        col.addTask("anotherTestTask", 2);
+        col.addTask("anotherAnotherTestTask", 3);
+
+        Task task1 = col.getTasks().get(0);
+        Task task2 = col.getTasks().get(1);
+        Task task3 = col.getTasks().get(2);
+
+        assertTrue(col.containsTask(task1) && col.containsTask(task2) && col.containsTask(task3));
+    }
+    // passed
+
+    @Test
+    void testNotContainsTasks() {
+        Column col = new Column("testColumn");
+        
+        col.addTask("testTask", 1);
+        col.addTask("anotherTestTask", 2);
+        col.addTask("anotherAnotherTestTask", 3);
+
+        Task decoy = new Task("testTask", 1);  // Not the same as first testTask, as UUID is different
+
+        assertFalse(col.containsTask(decoy));
+    }
+    // passed
+}
