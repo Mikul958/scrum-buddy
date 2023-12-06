@@ -16,7 +16,7 @@ public class ScenarioUI
 
     public static void scenario()
     {
-        ScrumSystem system = new ScrumSystem();
+        ScrumSystem system = ScrumSystem.getInstance();
 
         //Log in AtticusM
         //**********************************************************************
