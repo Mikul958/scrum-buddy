@@ -1,4 +1,4 @@
-package src;
+package model;
 
 import java.util.ArrayList;
 
@@ -211,6 +211,15 @@ public class ScrumSystem
         return currentProject.removeColumn(columnTitle);
     }
     /**
+     * Removes the specified column from the current project, if it exists.
+     * @param column The column to be removed.
+     * @return true if the specified column existed in the project.
+     */
+    public boolean removeProjectColumn(Column column)
+    {
+        return currentProject.removeColumn(column);
+    }
+    /**
      * Moves the column at index from to index to in the current project, shifting all other columns as necessary.
      * @param from The index of the column to be moved.
      * @param to The index that the column will be moved to.
@@ -235,6 +244,16 @@ public class ScrumSystem
         return currentProject.addTask(columnTitle, name, priority);
     }
     /**
+     * Adds a task to the specified column in the current project.
+     * @param column Column to add task to.
+     * @param name The name of the new task.
+     * @param priority The priority of the new task.
+     */
+    public void addProjectTask(Column column, String name, int priority)
+    {
+        currentProject.addTask(column, name, priority);
+    }
+    /**
      * Removes a task from the specified column in the current project, if the column exists.
      * @param columnTitle Title of the column to remove task from.
      * @param task The task to be removed, must be obtained from UI before calling.
@@ -242,7 +261,11 @@ public class ScrumSystem
      */
     public boolean removeProjectTask(String columnTitle, Task task)
     {
-        return currentProject.removeTask(columnTitle, task);
+        return currentProject.removeTask(columnTitle, task.getName());
+    }
+    public boolean removeProjectTask(Column column, Task task)
+    {
+        return currentProject.removeTask(column, task);
     }
     /**
      * Moves a task in the current project from one specified column to another.
